@@ -11,13 +11,15 @@ public class Order {
     public void addOrder(int orderNumber){
         if(orderNumber >= 0){
             orderNumber += 1;
-        }
+        }       
     }
     
     public void deleteOrder(int orderNumber){
         if(orderNumber != 0){
             orderNumber -= 1;
-        }
+        }else{
+            //Remove the order from the storage 
+        }        
     }
     
     public float calculateTax (float tax){

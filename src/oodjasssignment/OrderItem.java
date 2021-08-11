@@ -15,6 +15,8 @@ public class OrderItem extends Order{
     public void deleteItemOrder(int orderItemNumber){
         if(orderItemNumber != 0){
             orderItemNumber -= 1;
+        }else{
+           //Remove the item from the order list
         }
     }
 }
