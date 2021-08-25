@@ -40,14 +40,14 @@ public class InterfaceOrderList extends javax.swing.JFrame {
 
         OrderListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Item ID", "Item Name", "Tax", "Total"
+                "Order ID", "Product ID", "Quantity", "Tax", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -75,6 +75,11 @@ public class InterfaceOrderList extends javax.swing.JFrame {
 
         BackButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +128,11 @@ public class InterfaceOrderList extends javax.swing.JFrame {
     private void DeleteItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemButtonActionPerformed
         user.deleteOrder(OrderListTable);
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // Close orderlist window only
+        this.dispose();
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments

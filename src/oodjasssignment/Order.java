@@ -3,7 +3,7 @@ package oodjasssignment;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Order {
+public class Order{
     
     //Data Type
     public String orderId, orderCustomerId, orderDate;

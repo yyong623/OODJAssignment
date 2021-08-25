@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -21,7 +22,7 @@ public class User {
     Scanner scan = new Scanner(System.in);
     
     //Data Type
-    public String name,email, phoneNum, mailingAdd;
+    static String name,email, phoneNum, mailingAdd;
     public static String username;
     protected String password;
     
@@ -141,22 +142,31 @@ public class User {
             model.removeRow(rowSelected);
             JOptionPane.showMessageDialog(null, "Item deleted");
             
+            String tempFile = "tempbooking.txt";
+            File oldFile = new File ("Order.txt");
+            File newFile = new File (tempFile);
+            //String orderId, productId,;
+            
             //Read text file to delete record as well
             try{
                 FileWriter fw = new FileWriter("Order.txt",true);
                 
-                BufferedWriter bfr = new BufferedWriter(fw);
-                            
-                //PrintWriter pw = new PrintWriter(bfr);
+                BufferedWriter bfw = new BufferedWriter(fw);
                 
-                //Get all the row and col from the jTable
-                for (int i = 0 ; i < table.getRowCount() ; i++){
-                    for(int j = 0 ; j < table.getRowCount(); j++){
-                        bfr.write(table.getValueAt(i, j).toString()+ " / ");
-                    }
-                    bfr.newLine();
+                Scanner scan = new Scanner(oldFile);         
+                
+                while(scan.hasNext()){
+                    
                 }
-                bfr.close();
+                
+//                //Get all the row and col from the jTable
+//                for (int i = 0 ; i < table.getRowCount() ; i++){
+//                    for(int j = 0 ; j < table.getColumnCount(); j++){
+//                        bfw.write(table.getValueAt(i, j).toString()+ " / ");
+//                    }
+//                    bfw.newLine();
+//                }
+//                bfw.close();
             }catch(IOException e){
                 JOptionPane.showMessageDialog(null,e);
             }
@@ -167,45 +177,73 @@ public class User {
         
     }
     
-    public void editProfile(String name, String phoneNum, String email, String mailingAdd){
-//        try{
-//            FileReader fr = new FileReader("database.txt");
-//
-//            BufferedReader bfr = new BufferedReader(new FileReader(f1));
-//
-//            FileWriter fw = null;
-//        
-//            
-//            
-//            
-//            //Read all line in the file
-//            String line = bfr.readLine();
-//            
-//            //If name is updated
-//            while(line != null){
-//                oldWord = oldWord + line + System.lineSeparator();
-//                
-//                line = bfr.readLine();
-//            }
-//            
-//            //Replace oldText into newText
-//            String newWord = oldWord.replaceAll(oldText, newText);
-//            
-//            //Rewrite the text file with new data
-//            fw = new FileWriter(f1);
-//            
-//            fw.write(newWord);
-//            
-//        }catch (IOException e){
-//            System.out.println(e);
-//        }finally{
-//            //Close all the reader and writer
-//            try {
-//                bfr.close();
-//                fw.close();
-//            } catch (IOException e) {
-//                System.out.println(e);
-//            }
-//        }
+    //View Profile
+    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
+        
+        String name, phoneNum, email, mailingAdd;
+        
+        try{
+            Scanner scan = new Scanner(new File("Customer.txt"));
+            
+            while(scan.hasNext()){
+                name = scan.next();
+                phoneNum = scan.next();
+                email = scan.next();
+                mailingAdd = scan.next();
+            }
+            
+                        
+            textFd1.setText(name);
+            textFd2.setText(phoneNum);
+            textFd3.setText(email);
+            textFd4.setText(mailingAdd);
+            
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void editProfile(String OldText,String newText){
+        File f1 = new File("Search.txt");
+        
+        //Give oldText a null string to keep word
+        String oldWord = "";
+        
+        BufferedReader bfr = null;
+        
+        FileWriter fw = null;
+        
+        try{
+            bfr = new BufferedReader(new FileReader(f1));
+            
+            //Read all line in the file
+            String line = bfr.readLine();
+            
+            //If name is updated
+            while(line != null){
+                oldWord = oldWord + line + System.lineSeparator();
+                
+                line = bfr.readLine();
+            }
+            
+            //Replace oldText into newText
+            String newWord = oldWord.replaceAll(OldText,newText );
+            
+            //Rewrite the text file with new data
+            fw = new FileWriter(f1);
+            
+            fw.write(newWord);
+            
+        }catch (IOException e){
+            System.out.println(e);
+        }finally{
+            //Close all the reader and writer
+            try {
+                bfr.close();
+                fw.close();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        }
     }
 }
