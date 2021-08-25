@@ -5,6 +5,8 @@
  */
 package oodjasssignment;
 
+import oodjasssignment.User;
+
 /**
  *
  * @author ASUS
