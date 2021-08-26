@@ -5,14 +5,7 @@
  */
 package oodjasssignment;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Random;
-import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
        
 public class CustomerInterface extends javax.swing.JFrame {
@@ -442,7 +435,6 @@ public class CustomerInterface extends javax.swing.JFrame {
             jTableSearchViewProduct.getColumnModel().getColumn(1).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(2).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(3).setResizable(false);
-            jTableSearchViewProduct.getColumnModel().getColumn(3).setHeaderValue("Quantity");
         }
 
         AddToOrder.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
@@ -499,7 +491,7 @@ public class CustomerInterface extends javax.swing.JFrame {
             .addGroup(SearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SearchLayout.setVerticalGroup(
             SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
