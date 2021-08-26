@@ -9,12 +9,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class User {
@@ -82,29 +84,32 @@ public class User {
       
     //Search method
     public void searchProduct(JTable table, String valueToSearch){  
-        
+                       
         try{
-            Scanner scan = new Scanner(new File("Product.txt"));
-
-            //Read line by line using Scanner
-            while(scan.hasNextLine()){
-                valueToSearch = scan.nextLine();
-                if(valueToSearch.contains(scan.nextLine())){
-                    String result = valueToSearch;
-                                        
+            
+            BufferedReader br = new BufferedReader(new FileReader("Product.txt"));
+            
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            
+            String line;
+            int count = 0;
+            while((line = br.readLine()) != null){
+                
+                if(line.contains(valueToSearch)){
+                    String[] row = line.split("/");
+                    model.addRow(row);
+                    count++;
                 }
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(model);
-                table.setRowSorter(trs);
-                trs.setRowFilter(RowFilter.regexFilter(valueToSearch.trim()));
             }
-            scan.close();
-        }catch(FileNotFoundException e){
+            if(count == 0){
+               JOptionPane.showMessageDialog(null, "No Item Found !"); 
+            }
+       
+        }catch(IOException e){
             System.out.println("File Not Found");
-        }         
+        }               
     }                
 
-    
     public void viewOrder(JTable table){
         
         //Open File       
@@ -128,7 +133,7 @@ public class User {
         }
         
         if(count == 0){
-            System.out.println("No Order Found !");
+            JOptionPane.showMessageDialog(null, "No Order Found ! \n Please Go Add one.");
         }
     }
     
@@ -177,31 +182,31 @@ public class User {
         
     }
     
-    //View Profile
-    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
-        
-        String name, phoneNum, email, mailingAdd;
-        
-        try{
-            Scanner scan = new Scanner(new File("Customer.txt"));
-            
-            while(scan.hasNext()){
-                name = scan.next();
-                phoneNum = scan.next();
-                email = scan.next();
-                mailingAdd = scan.next();
-            }
-            
-                        
-            textFd1.setText(name);
-            textFd2.setText(phoneNum);
-            textFd3.setText(email);
-            textFd4.setText(mailingAdd);
-            
-        }catch(FileNotFoundException e){
-            System.out.println(e);
-        }
-    }
+//    //View Profile
+//    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
+//        
+//        String name, phoneNum, email, mailingAdd;
+//        
+//        try{
+//            Scanner scan = new Scanner(new File("Customer.txt"));
+//            
+//            while(scan.hasNext()){
+//                name = scan.next();
+//                phoneNum = scan.next();
+//                email = scan.next();
+//                mailingAdd = scan.next();
+//            }
+//            
+//                        
+//            textFd1.setText(name);
+//            textFd2.setText(phoneNum);
+//            textFd3.setText(email);
+//            textFd4.setText(mailingAdd);
+//            
+//        }catch(FileNotFoundException e){
+//            System.out.println(e);
+//        }
+//    }
     
     public void editProfile(String OldText,String newText){
         File f1 = new File("Search.txt");

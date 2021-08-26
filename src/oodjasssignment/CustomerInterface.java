@@ -8,6 +8,7 @@ package oodjasssignment;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -240,9 +241,17 @@ public class CustomerInterface extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Order ID", "Product ID", "Price", "Quantity"
+                "Product ID", "Product Name", "Price", "Quantity"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPaneShoppingCart.setViewportView(ShoppingjTable);
 
         javax.swing.GroupLayout OrderLayout = new javax.swing.GroupLayout(Order);
@@ -265,9 +274,9 @@ public class CustomerInterface extends javax.swing.JFrame {
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(13, 13, 13)
                 .addComponent(ShowAllOrderButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPaneShoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -305,16 +314,16 @@ public class CustomerInterface extends javax.swing.JFrame {
         LabelSearch.setText("Searching");
 
         TextFiledSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TextFiledSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFiledSearchActionPerformed(evt);
-            }
-        });
 
         ButtonSearch.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         ButtonSearch.setText("Search");
+        ButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSearchActionPerformed(evt);
+            }
+        });
 
-        jTableSearchViewProduct.setFont(new java.awt.Font("Tekton Pro Cond", 0, 14)); // NOI18N
+        jTableSearchViewProduct.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSearchViewProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -341,6 +350,7 @@ public class CustomerInterface extends javax.swing.JFrame {
             jTableSearchViewProduct.getColumnModel().getColumn(1).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(2).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(3).setResizable(false);
+            jTableSearchViewProduct.getColumnModel().getColumn(3).setHeaderValue("Quantity");
         }
 
         AddToOrder.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
@@ -471,33 +481,11 @@ public class CustomerInterface extends javax.swing.JFrame {
     private void AddToOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToOrderActionPerformed
         //Add Order of the selected row in search
         //Select row to add order and show quantity to insert
-        model = (DefaultTableModel)jTableSearchViewProduct.getModel();
+        order.addOrder(jTableSearchViewProduct, ShoppingjTable);
         
-        int[] rowSelected = jTableSearchViewProduct.getSelectedRows();
         
-        Object[] row = new Object[4];
-        
-        //Add to shopping cart                       
-        DefaultTableModel model1 = (DefaultTableModel) ShoppingjTable.getModel();
-         
-        for(int i = 0; i < rowSelected.length; i++){
-            
-            row[0] = model.getValueAt(rowSelected[i], 0);
-            row[1] = model.getValueAt(rowSelected[i], 1);
-            row[2] = model.getValueAt(rowSelected[i], 2);
-            row[3] = model.getValueAt(rowSelected[i], 3);
-
-            model1.addRow(row);
-            
-            //Called method to write to txt file that has been ordered to record
-            order.addOrder();
-        }
         //Called method to write to text file that has been ordered
-        
 
-        
-        
-        
 //        //Calculate the total Price
 //        int sum = 0;
 //        for (int i = 0 ; i < ShoppingjTable.getRowCount(); i ++){
@@ -505,10 +493,9 @@ public class CustomerInterface extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AddToOrderActionPerformed
 
-    private void TextFiledSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFiledSearchActionPerformed
+    private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
         user.searchProduct(jTableSearchViewProduct, TextFiledSearch.getText());
-        
-    }//GEN-LAST:event_TextFiledSearchActionPerformed
+    }//GEN-LAST:event_ButtonSearchActionPerformed
 
     /**
      * @param args the command line arguments
