@@ -1,4 +1,8 @@
-  package oodjasssignment;
+package oodjasssignment;
+
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class OrderItem extends Order{
     
@@ -7,7 +11,9 @@ public class OrderItem extends Order{
     public int orderItemQuantity;
     
     //Method - choose how many quantity 
-    public void addItemOrder ( int orderItemQuantity ){
+    public void ItemOrderQuantity ( int orderItemQuantity ){
+        DefaultTableModel model = new DefaultTableModel();
+        
         if(orderItemQuantity >= 0){
             orderItemQuantity += 1;
         }
@@ -21,7 +27,14 @@ public class OrderItem extends Order{
         }
     }
     
-    public void calculateTotalPayment(){
-        super.totalPrice = (super.orderNumber * super.tax * orderItemQuantity);
+    public void calculateTotalPayment(JTable table, JTextField textField){
+        double total = 0;
+        //Get row count
+        for (int i = 0; i < table.getRowCount(); i ++){
+            int amount = Integer.parseInt((String) table.getValueAt(i, 4));
+            total += amount;
+        }
+        
+        textField.setText(String.valueOf(total%.2f));
     }
 }

@@ -12,9 +12,11 @@ package oodjasssignment;
 public class InterfaceOrderList extends javax.swing.JFrame {
 
     User user = new User();
+    Order order = new Order();
     
     public InterfaceOrderList() {
         initComponents();
+        order.randomId(OrderIdTextField);
     }
 
     /**
@@ -34,6 +36,8 @@ public class InterfaceOrderList extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         OrderIdTextField = new javax.swing.JTextField();
         InvoiveLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabelTotalOrderList = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +49,7 @@ public class InterfaceOrderList extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Product Name", "Quantity", "Tax", "Total"
+                "Product ID", "Product Name", "Price", "Quantity", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -58,6 +62,13 @@ public class InterfaceOrderList extends javax.swing.JFrame {
         });
         OrderListTable.getTableHeader().setReorderingAllowed(false);
         JScrollPanel.setViewportView(OrderListTable);
+        if (OrderListTable.getColumnModel().getColumnCount() > 0) {
+            OrderListTable.getColumnModel().getColumn(0).setResizable(false);
+            OrderListTable.getColumnModel().getColumn(1).setResizable(false);
+            OrderListTable.getColumnModel().getColumn(2).setResizable(false);
+            OrderListTable.getColumnModel().getColumn(3).setResizable(false);
+            OrderListTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         ViewButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         ViewButton.setText("View Items");
@@ -88,6 +99,9 @@ public class InterfaceOrderList extends javax.swing.JFrame {
         InvoiveLabel.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
         InvoiveLabel.setText("Invoice :");
 
+        jLabelTotalOrderList.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelTotalOrderList.setText("Total :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,11 +110,6 @@ public class InterfaceOrderList extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JScrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OrderListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(InvoiveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -108,14 +117,23 @@ public class InterfaceOrderList extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ViewButton)
                         .addGap(10, 10, 10)
-                        .addComponent(DeleteItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DeleteItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(OrderListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelTotalOrderList, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(OrderListLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addComponent(OrderListLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -124,9 +142,12 @@ public class InterfaceOrderList extends javax.swing.JFrame {
                     .addComponent(OrderIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(InvoiveLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(JScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BackButton)
+                .addComponent(JScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackButton)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTotalOrderList, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -134,6 +155,7 @@ public class InterfaceOrderList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewButtonActionPerformed
+        
         user.viewOrder(OrderListTable);
     }//GEN-LAST:event_ViewButtonActionPerformed
 
@@ -191,6 +213,8 @@ public class InterfaceOrderList extends javax.swing.JFrame {
     private javax.swing.JLabel OrderListLabel;
     private javax.swing.JTable OrderListTable;
     private javax.swing.JButton ViewButton;
+    private javax.swing.JLabel jLabelTotalOrderList;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     class OderListTable {

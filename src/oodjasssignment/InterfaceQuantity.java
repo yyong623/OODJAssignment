@@ -5,15 +5,20 @@
  */
 package oodjasssignment;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class InterfaceQuantity extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Quantity
-     */
+    Order order = new Order();
+    
+    
+    CustomerInterface customer = new CustomerInterface();
+    
     public InterfaceQuantity() {
         initComponents();
     }
@@ -28,17 +33,26 @@ public class InterfaceQuantity extends javax.swing.JFrame {
     private void initComponents() {
 
         EnterQuantityLabel = new javax.swing.JLabel();
-        jTextFieldQuantity = new javax.swing.JTextField();
+        jButtonEnter = new javax.swing.JButton();
+        QuantityTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         EnterQuantityLabel.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         EnterQuantityLabel.setText("Please Enter Quantity");
 
-        jTextFieldQuantity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextFieldQuantity.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEnter.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jButtonEnter.setText("Enter");
+        jButtonEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldQuantityActionPerformed(evt);
+                jButtonEnterActionPerformed(evt);
+            }
+        });
+
+        QuantityTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        QuantityTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuantityTextFieldActionPerformed(evt);
             }
         });
 
@@ -47,34 +61,68 @@ public class InterfaceQuantity extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EnterQuantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jButtonEnter))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EnterQuantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(28, 28, 28)
                 .addComponent(EnterQuantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addComponent(QuantityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButtonEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQuantityActionPerformed
-        //Get Quantity
-        jTextFieldQuantity.getText();
+    private void jButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnterActionPerformed
+        CustomerInterface customer = new CustomerInterface();
+        
+        DefaultTableModel model = (DefaultTableModel)customer.jTableSearchViewProduct.getModel();
+        
+        int[] rowSelected = customer.jTableSearchViewProduct.getSelectedRows();
+        
+        Object[] row = new Object[4];
         
         //If choose number is existing number error message
-        if(jTextFieldQuantity.getText() > jTextFieldQuantity.getText()){
-        
+        for(int i = 0 ; i < rowSelected.length; i ++){
+            //int[] row = row[3];
+            //String line = model.getValueAt(rowSelected[i], 3).toString();
+           
+            if(Integer.parseInt(model.getValueAt(rowSelected[i], 3).toString()) < Integer.parseInt(QuantityTextField.getText())){
+                JOptionPane.showMessageDialog(null,"Amount Not Sufficient");
+            }else{
+                JOptionPane.showMessageDialog(null,"HI");
+                //
+            }  
         }
-    }//GEN-LAST:event_jTextFieldQuantityActionPerformed
+
+//            if(Integer. parseInt(QuantityTextField.getText()) == 0){
+//                JOptionPane.showMessageDialog(null,"Amount Not Sufficient");
+//            }else{
+//                JOptionPane.showMessageDialog(null,"HI");
+//                //
+//            }  
+        
+        
+//        customer.order.addOrder(jTableSearchViewProduct, ShoppingjTable);
+    }//GEN-LAST:event_jButtonEnterActionPerformed
+
+    private void QuantityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuantityTextFieldActionPerformed
+        //QuantityTextField.getText();
+    }//GEN-LAST:event_QuantityTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +162,7 @@ public class InterfaceQuantity extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel EnterQuantityLabel;
-    private javax.swing.JTextField jTextFieldQuantity;
+    private javax.swing.JTextField QuantityTextField;
+    private javax.swing.JButton jButtonEnter;
     // End of variables declaration//GEN-END:variables
 }

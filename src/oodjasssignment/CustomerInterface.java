@@ -25,7 +25,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     //Constructor
     public CustomerInterface() {
         initComponents();
-        
+        order.randomId(jTextFieldInvoice);
     }
 
     /**
@@ -57,12 +57,23 @@ public class CustomerInterface extends javax.swing.JFrame {
         EditPhoneNum = new javax.swing.JLabel();
         EditMailingAdd = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButtonCheckOut = new javax.swing.JButton();
         Order = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ShowAllOrderButton = new javax.swing.JButton();
         jScrollPaneShoppingCart = new javax.swing.JScrollPane();
         ShoppingjTable = new javax.swing.JTable();
+        jTextFieldTotalAmount = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabelQuantity = new javax.swing.JLabel();
+        jLabelTotalAmount = new javax.swing.JLabel();
+        DeleteButton = new javax.swing.JButton();
+        jLabelTotalAmount1 = new javax.swing.JLabel();
+        jTextFieldInvoice = new javax.swing.JTextField();
+        jLabelQPrice = new javax.swing.JLabel();
+        jTextFieldPriceProduct = new javax.swing.JTextField();
+        jLabelProductID = new javax.swing.JLabel();
+        jTextFieldProductID = new javax.swing.JTextField();
         Search = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         LabelSearch = new javax.swing.JLabel();
@@ -213,10 +224,11 @@ public class CustomerInterface extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("Check Out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCheckOut.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jButtonCheckOut.setText("Check Out");
+        jButtonCheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCheckOutActionPerformed(evt);
             }
         });
 
@@ -226,7 +238,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         jLabel1.setText("Shopping Cart");
 
         ShowAllOrderButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
-        ShowAllOrderButton.setText("Show All Order");
+        ShowAllOrderButton.setText("Enter");
         ShowAllOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShowAllOrderButtonActionPerformed(evt);
@@ -235,17 +247,17 @@ public class CustomerInterface extends javax.swing.JFrame {
 
         ShoppingjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Product Name", "Price", "Quantity"
+                "Product ID", "Product Name", "Price", "Quantity", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -254,30 +266,110 @@ public class CustomerInterface extends javax.swing.JFrame {
         });
         jScrollPaneShoppingCart.setViewportView(ShoppingjTable);
 
+        jLabelQuantity.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelQuantity.setText("Quantity :");
+
+        jLabelTotalAmount.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelTotalAmount.setText("Invoice :");
+
+        DeleteButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
+
+        jLabelTotalAmount1.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelTotalAmount1.setText("Total : ");
+
+        jLabelQPrice.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelQPrice.setText("Price :");
+
+        jLabelProductID.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jLabelProductID.setText("Product ID :");
+
         javax.swing.GroupLayout OrderLayout = new javax.swing.GroupLayout(Order);
         Order.setLayout(OrderLayout);
         OrderLayout.setHorizontalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(OrderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneShoppingCart)
+                    .addComponent(jScrollPaneShoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                     .addGroup(OrderLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(ShowAllOrderButton)))
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(OrderLayout.createSequentialGroup()
+                                .addComponent(jLabelTotalAmount1)
+                                .addGap(29, 29, 29)
+                                .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(OrderLayout.createSequentialGroup()
+                                .addComponent(jLabelTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                                .addComponent(jLabelQPrice)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextFieldPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelProductID)
+                                    .addComponent(jLabelQuantity))
+                                .addGap(18, 18, 18)
+                                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(33, 33, 33)
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(ShowAllOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         OrderLayout.setVerticalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(ShowAllOrderButton)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPaneShoppingCart, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OrderLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldInvoice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeleteButton)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)))
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OrderLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(OrderLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelTotalAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(OrderLayout.createSequentialGroup()
+                                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelQPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldPriceProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                        .addComponent(ShowAllOrderButton)
+                        .addGap(29, 29, 29)))
+                .addComponent(jScrollPaneShoppingCart, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -289,18 +381,18 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(262, 262, 262))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(243, 243, 243)
+                .addComponent(jButtonCheckOut)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
 
@@ -458,19 +550,16 @@ public class CustomerInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
+        InterfaceBillPayment bill = new InterfaceBillPayment();
+        bill.setVisible(true);
+        bill.pack();
+        bill.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButtonCheckOutActionPerformed
 
     
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
-        //Order can be view 
-               
-        InterfaceOrderList order = new InterfaceOrderList();
-        order.setVisible(true);
-        order.pack();
-        order.setLocationRelativeTo(null);
-                              
+        order.addOrder(ShoppingjTable);
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void LabelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelLogOutMouseClicked
@@ -480,11 +569,13 @@ public class CustomerInterface extends javax.swing.JFrame {
 
     private void AddToOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToOrderActionPerformed
         //Add Order of the selected row in search
-        //Select row to add order and show quantity to insert
-        order.addOrder(jTableSearchViewProduct, ShoppingjTable);
+        //Select row to add order to order page
         
+        int row = jTableSearchViewProduct.getSelectedRow();
         
-        //Called method to write to text file that has been ordered
+        jTextFieldProductID.setText((jTableSearchViewProduct.getModel().getValueAt(row, 0)).toString());
+        jTextFieldPriceProduct.setText((jTableSearchViewProduct.getModel().getValueAt(row, 2)).toString());
+        
 
 //        //Calculate the total Price
 //        int sum = 0;
@@ -496,6 +587,10 @@ public class CustomerInterface extends javax.swing.JFrame {
     private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
         user.searchProduct(jTableSearchViewProduct, TextFiledSearch.getText());
     }//GEN-LAST:event_ButtonSearchActionPerformed
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        user.deleteOrder(ShoppingjTable);
+    }//GEN-LAST:event_DeleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -538,6 +633,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToOrder;
     private javax.swing.JButton ButtonSearch;
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JLabel EditEmail;
     private javax.swing.JLabel EditMailingAdd;
     private javax.swing.JLabel EditName;
@@ -551,7 +647,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JPanel Order;
     private javax.swing.JPanel Profile;
     private javax.swing.JPanel Search;
-    private javax.swing.JTable ShoppingjTable;
+    public javax.swing.JTable ShoppingjTable;
     private javax.swing.JButton ShowAllOrderButton;
     private javax.swing.JTabbedPane Tab;
     private javax.swing.JTextField TextFieldProfileAddress;
@@ -559,9 +655,14 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldProfileName;
     private javax.swing.JTextField TextFieldProfilePhoneNum;
     private javax.swing.JTextField TextFiledSearch;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCheckOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelProductID;
+    private javax.swing.JLabel jLabelQPrice;
+    private javax.swing.JLabel jLabelQuantity;
+    private javax.swing.JLabel jLabelTotalAmount;
+    private javax.swing.JLabel jLabelTotalAmount1;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -569,7 +670,12 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPaneSearchView;
     private javax.swing.JScrollPane jScrollPaneShoppingCart;
-    private javax.swing.JTable jTableSearchViewProduct;
+    public javax.swing.JTable jTableSearchViewProduct;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldInvoice;
+    private javax.swing.JTextField jTextFieldPriceProduct;
+    private javax.swing.JTextField jTextFieldProductID;
+    private javax.swing.JTextField jTextFieldTotalAmount;
     // End of variables declaration//GEN-END:variables
 }

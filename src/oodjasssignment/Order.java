@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -17,16 +18,13 @@ public class Order{
     
     
     //Method
-    public void addOrder(JTable searchViewProduct, JTable shoppingTable){
+    public void addOrder(JTable shoppingTable){
                                 
-        DefaultTableModel model = (DefaultTableModel)searchViewProduct.getModel();
+        DefaultTableModel model = (DefaultTableModel)shoppingTable.getModel();
         
-        int[] rowSelected = searchViewProduct.getSelectedRows();
+        int[] rowSelected = shoppingTable.getSelectedRows();
         
-        Object[] row = new Object[4];
-        
-        //Add to shopping cart   
-        DefaultTableModel model1 = (DefaultTableModel)shoppingTable.getModel();                                   
+        Object[] row = new Object[5];
         
         try{
             //Random random = new Random();
@@ -45,16 +43,17 @@ public class Order{
 
                     //Show Quantity
                     row[3] = model.getValueAt(rowSelected[i], 3).toString();
-
                     
-        
-                    model1.addRow(row);
+                    //Show Total of the quantity inserted
+                    row[4] = model.getValueAt(rowSelected[i], 4).toString();
+
+                    model.addRow(row);
                 }
 
             //Get all the row to append into text file for recording
             
             FileWriter fw = new FileWriter("Order.txt",true);
-            
+            //Write to txt file
             fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"\n");
             
             fw.close();
@@ -76,10 +75,11 @@ public class Order{
     } 
 
     //Generate Order ID
-    public void randomId(){
+    public void randomId(JTextField textField){
         Random random = new Random();
-        int n = random.nextInt(1000);
+        int n = random.nextInt(1000) + 1;
         String value = String.valueOf(n);  
+        textField.setText(value);
     }
     
 }
