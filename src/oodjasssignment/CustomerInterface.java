@@ -300,7 +300,7 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
 
@@ -350,7 +350,6 @@ public class CustomerInterface extends javax.swing.JFrame {
             jTableSearchViewProduct.getColumnModel().getColumn(1).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(2).setResizable(false);
             jTableSearchViewProduct.getColumnModel().getColumn(3).setResizable(false);
-            jTableSearchViewProduct.getColumnModel().getColumn(3).setHeaderValue("Quantity");
         }
 
         AddToOrder.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
@@ -407,7 +406,7 @@ public class CustomerInterface extends javax.swing.JFrame {
             .addGroup(SearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         SearchLayout.setVerticalGroup(
             SearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
