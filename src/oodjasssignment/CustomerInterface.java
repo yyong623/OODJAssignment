@@ -470,7 +470,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         order.setVisible(true);
         order.pack();
         order.setLocationRelativeTo(null);
-                      
+                              
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void LabelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelLogOutMouseClicked
