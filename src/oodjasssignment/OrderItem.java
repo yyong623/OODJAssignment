@@ -6,7 +6,7 @@ public class OrderItem extends Order{
     public int orderId;
     public int orderItemQuantity;
     
-    //Method
+    //Method - choose how many quantity 
     public void addItemOrder ( int orderItemQuantity ){
         if(orderItemQuantity >= 0){
             orderItemQuantity += 1;
@@ -19,5 +19,9 @@ public class OrderItem extends Order{
         }else{
            //Remove the item from the order list
         }
+    }
+    
+    public void calculateTotalPayment(){
+        super.totalPrice = (super.orderNumber * super.tax * orderItemQuantity);
     }
 }

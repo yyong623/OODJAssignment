@@ -42,14 +42,14 @@ public class InterfaceOrderList extends javax.swing.JFrame {
 
         OrderListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Quantity", "Tax", "Total"
+                "Product ID", "Product Name", "Quantity", "Tax", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

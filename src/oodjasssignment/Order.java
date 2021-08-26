@@ -15,6 +15,7 @@ public class Order{
     public float tax, totalPrice;
     
     
+    
     //Method
     public void addOrder(JTable searchViewProduct, JTable shoppingTable){
                                 
@@ -22,29 +23,31 @@ public class Order{
         
         int[] rowSelected = searchViewProduct.getSelectedRows();
         
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         
-        //Add to shopping cart                       
-        DefaultTableModel model1 = (DefaultTableModel) shoppingTable.getModel();
+        //Add to shopping cart   
+        DefaultTableModel model1 = (DefaultTableModel)shoppingTable.getModel();                                   
+        
         try{
             //Random random = new Random();
             for(int i = 0; i < rowSelected.length; i++){
 
                     //To create random 
-                    //int randomNum = random.nextInt(100) + 1;
-
+                    
                     //Show Product Id 
-                    row[0] = model.getValueAt(rowSelected[i],0);
+                    row[0] = model.getValueAt(rowSelected[i],0).toString();
                     
                     //Show Product Name
-                    row[1] = model.getValueAt(rowSelected[i], 1);
+                    row[1] = model.getValueAt(rowSelected[i], 1).toString();
                     
                     //Show Price
-                    row[2] = model.getValueAt(rowSelected[i], 2);
+                    row[2] = model.getValueAt(rowSelected[i], 2).toString();
 
                     //Show Quantity
-                    row[3] = model.getValueAt(rowSelected[i], 3);
+                    row[3] = model.getValueAt(rowSelected[i], 3).toString();
 
+                    
+        
                     model1.addRow(row);
                 }
 

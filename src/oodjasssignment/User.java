@@ -137,50 +137,51 @@ public class User {
         }
     }
     
-    public void deleteOrder(JTable table){
-        DefaultTableModel model = (DefaultTableModel)table.getModel();
+    public void deleteOrder(JTable orderListTable){
+        DefaultTableModel model = (DefaultTableModel)orderListTable.getModel();
                 
         //Get selected row index
-        int rowSelected = table.getSelectedRow();
+        int rowSelected = orderListTable.getSelectedRow();
         //Check if a row is selected
-        if(rowSelected >= 0){
-            model.removeRow(rowSelected);
-            JOptionPane.showMessageDialog(null, "Item deleted");
+        if(rowSelected == -1){ //return -1 if no row is selected
             
-            String tempFile = "tempbooking.txt";
+            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
+        }else{
+        
+            model.removeRow(orderListTable.getSelectedRow());
+            
+            JOptionPane.showMessageDialog(null, "Item deleted");
+        
+            String tempFile = "tempOder.txt";
             File oldFile = new File ("Order.txt");
             File newFile = new File (tempFile);
-            //String orderId, productId,;
-            
+
             //Read text file to delete record as well
+
             try{
-                FileWriter fw = new FileWriter("Order.txt",true);
-                
-                BufferedWriter bfw = new BufferedWriter(fw);
-                
-                Scanner scan = new Scanner(oldFile);         
-                
-                while(scan.hasNext()){
-                    
+                FileWriter fw = new FileWriter(tempFile,true);
+
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
+                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
+
+                            bw.write(orderListTable.getValueAt(i, j)+ "/");
+                    }
+                    bw.newLine();
                 }
+                bw.flush();
+                bw.close();
+                fw.close();
+                oldFile.delete();
+                File replace = new File("Order.txt");
+                newFile.renameTo(replace);
                 
-//                //Get all the row and col from the jTable
-//                for (int i = 0 ; i < table.getRowCount() ; i++){
-//                    for(int j = 0 ; j < table.getColumnCount(); j++){
-//                        bfw.write(table.getValueAt(i, j).toString()+ " / ");
-//                    }
-//                    bfw.newLine();
-//                }
-//                bfw.close();
-            }catch(IOException e){
-                JOptionPane.showMessageDialog(null,e);
+            }catch(IOException e ){
+                System.out.println(e);
             }
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
         }
-        
-    }
+}
     
 //    //View Profile
 //    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
