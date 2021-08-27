@@ -24,24 +24,9 @@ public class Admin extends User {
         this.AdminId = AdminId;
     }  
     
-    public void viewCus(JTable ViewCusTable){
-    try (BufferedReader bfr = new BufferedReader(new FileReader("Customer.txt"))){
-                DefaultTableModel model = (DefaultTableModel)ViewCusTable.getModel();
-            //Get line from txt file
-            Object[] tableLine = bfr.lines().toArray();
-                                    
-            for(int i = 0 ; i < tableLine.length; i++){
-                String[] line = tableLine[i].toString().split("/");
-                model.addRow(line); 
-            }
-            bfr.close();
-    }catch (IOException e){
-            System.out.println(e);
-        }
-        
-    }
-    public void viewProd(JTable ViewProdTable){
-    try (BufferedReader bfr = new BufferedReader(new FileReader("Product.txt"))){
+    
+    public void viewTable(JTable ViewProdTable, String txtFileName){
+    try (BufferedReader bfr = new BufferedReader(new FileReader(txtFileName))){
                 DefaultTableModel model = (DefaultTableModel)ViewProdTable.getModel();
             //Get line from txt file
             Object[] tableLine = bfr.lines().toArray();
