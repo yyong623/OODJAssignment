@@ -1,8 +1,13 @@
 package oodjasssignment;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -18,61 +23,84 @@ public class Order{
     
     
     //Method
-    public void addOrder(JTable shoppingTable){
+    public void addOrder(JTable shoppingTable, JTextField id, JTextField name, JTextField price, JTextField quantity, JLabel quantityPre){
                                 
         DefaultTableModel model = (DefaultTableModel)shoppingTable.getModel();
+                
+        Object[] columns = {"Product ID","Product Name","Price","Quntity","Total"};
         
-        int[] rowSelected = shoppingTable.getSelectedRows();
+        model.setColumnIdentifiers(columns);
+        shoppingTable.setModel(model);
         
-        Object[] row = new Object[5];
-        
-        try{
-            //Random random = new Random();
-            for(int i = 0; i < rowSelected.length; i++){
+                
+        try{            
+            Object [] row = new Object[5];
 
-                    //To create random 
-                    
-                    //Show Product Id 
-                    row[0] = model.getValueAt(rowSelected[i],0).toString();
-                    
-                    //Show Product Name
-                    row[1] = model.getValueAt(rowSelected[i], 1).toString();
-                    
-                    //Show Price
-                    row[2] = model.getValueAt(rowSelected[i], 2).toString();
+            //Get Text to row
+            row[0] = id.getText();
+            row[1] = name.getText();
+            row[2] = price.getText();
+            row[3] = quantity.getText();            
 
-                    //Show Quantity
-                    row[3] = model.getValueAt(rowSelected[i], 3).toString();
-                    
-                    //Show Total of the quantity inserted
-                    row[4] = model.getValueAt(rowSelected[i], 4).toString();
+            double prices = Double.parseDouble(price.getText());
+            int unit = Integer.parseInt(quantity.getText());
 
-                    model.addRow(row);
-                }
 
-            //Get all the row to append into text file for recording
-            
-            FileWriter fw = new FileWriter("Order.txt",true);
-            //Write to txt file
-            fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"\n");
-            
-            fw.close();
+            //Get the value of the present quantity
+            int qua = Integer.parseInt(quantityPre.getText());
+
+            if(qua > unit){  
+                
+                String totalAmount = String.valueOf(unit * prices);
+                row[4] = totalAmount;
+
+                model.addRow(row);
+                
+                //Get all the row to append into text file for recording            
+                FileWriter fw = new FileWriter("Order.txt",true);
+                //Write to txt file (Order that has been selected)
+                fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"/"+  row[4] +"\n");
+                fw.close();     
+
+                
+                //Set the quantityPre to minus the enter unit
+                int newQua = qua - unit;
+                
+                quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
+                //int newAmount = Integer.parseInt(quantityPre.getText());
+                //Update on txt file
+                update(String.valueOf(qua),String.valueOf(newQua));
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Not enough Sufficient !");
+            }
         }catch(IOException e){
             System.out.println(e);
         }        
     }
     
-    public void deleteOrder(int orderNumber){
-        if(orderNumber != 0){
-            orderNumber -= 1;
-        }else{
-            //Remove the order from the storage 
-        }        
-    }
+//    public void calculateTotalPayment(JTable table, JTextField text){
+//        double total = 0;
+//        
+//        //Get row count
+//        for (int i = 0; i < table.getRowCount(); i ++){
+//            double amount = Double.parseDouble(table.getValueAt(i, 4).toString());
+//            total += amount;
+//        }        
+//        text.setText(String.valueOf(total));
+//    }  
     
-    public float calculateTax (float tax){
-        return tax = (float) (totalPrice * 0.6);
-    } 
+//    public void deleteOrder(int orderNumber){
+//        if(orderNumber != 0){
+//            orderNumber -= 1;
+//        }else{
+//            //Remove the order from the storage 
+//        }        
+//    }
+//    
+//    public float calculateTax (float tax){
+//        return tax = (float) (totalPrice * 0.6);
+//    } 
 
     //Generate Order ID
     public void randomId(JTextField textField){
@@ -80,6 +108,48 @@ public class Order{
         int n = random.nextInt(1000) + 1;
         String value = String.valueOf(n);  
         textField.setText(value);
-    }
+    }   
     
+    public void update(String OldText,String newText){
+        File f1 = new File("Product.txt");
+        
+        //Give oldText a null string to keep word
+        String oldWord = "";
+        
+        BufferedReader bfr = null;
+        
+        FileWriter fw = null;
+        
+        try{
+            bfr = new BufferedReader(new FileReader(f1));            
+            //Read all line in the file
+            String line = bfr.readLine();
+            
+            //If name is updated
+            while(line != null){
+                oldWord = oldWord + line + System.lineSeparator();
+                
+                line = bfr.readLine();
+            }
+            
+            //Replace oldText into newText
+            String newWord = oldWord.replaceAll(OldText,newText);
+            
+            //Rewrite the text file with new data
+            fw = new FileWriter(f1);
+            
+            fw.write(newWord);
+            
+        }catch (IOException e){
+            System.out.println(e);
+        }finally{
+            //Close all the reader and writer
+            try {
+                bfr.close();
+                fw.close();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
 }

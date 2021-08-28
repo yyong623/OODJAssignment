@@ -183,34 +183,33 @@ public class User {
         }
 }
     
-//    //View Profile
-//    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
-//        
-//        String name, phoneNum, email, mailingAdd;
-//        
-//        try{
-//            Scanner scan = new Scanner(new File("Customer.txt"));
-//            
-//            while(scan.hasNext()){
-//                name = scan.next();
-//                phoneNum = scan.next();
-//                email = scan.next();
-//                mailingAdd = scan.next();
-//            }
-//            
-//                        
-//            textFd1.setText(name);
-//            textFd2.setText(phoneNum);
-//            textFd3.setText(email);
-//            textFd4.setText(mailingAdd);
-//            
-//        }catch(FileNotFoundException e){
-//            System.out.println(e);
-//        }
-//    }
+    //View Profile
+    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
+        
+        BufferedReader br ;
+        String[] characters = new String[1000];
+        
+        try{
+            String lines;
+            br = new BufferedReader(new FileReader("TestingCustomer.txt"));
+            
+            int count = 0;
+            while((lines = br.readLine()) != null){
+                String[] array = lines.split("/");
+                
+                textFd1.setText(array[0]);
+                textFd2.setText(array[4]);
+                textFd3.setText(array[2]);
+                textFd4.setText(array[3]);
+            }    
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     
-    public void editProfile(String OldText,String newText){
-        File f1 = new File("Search.txt");
+    public void editProfile(JTextField OldText,JTextField newText){
+        
+        File f1 = new File("TestingCustomer.txt");
         
         //Give oldText a null string to keep word
         String oldWord = "";
@@ -220,8 +219,7 @@ public class User {
         FileWriter fw = null;
         
         try{
-            bfr = new BufferedReader(new FileReader(f1));
-            
+            bfr = new BufferedReader(new FileReader(f1));            
             //Read all line in the file
             String line = bfr.readLine();
             
@@ -233,15 +231,16 @@ public class User {
             }
             
             //Replace oldText into newText
-            String newWord = oldWord.replaceAll(OldText,newText );
+            String newWord = oldWord.replaceAll(OldText.getText(),newText.getText());
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);
             
             fw.write(newWord);
-            
+            JOptionPane.showMessageDialog(null, "Successfully Updated");
         }catch (IOException e){
             System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Update Failed");
         }finally{
             //Close all the reader and writer
             try {
