@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,57 +25,72 @@ public class Order{
     
     
     //Method
-    public void addOrder(JTable shoppingTable, JTextField id, JTextField name, JTextField price, JTextField quantity, JLabel quantityPre){
+    public void addOrder(JTable shoppingTable, JLabel id, JLabel name, JLabel type, JLabel price, JTextField quantity, JLabel quantityPre){
                                 
         DefaultTableModel model = (DefaultTableModel)shoppingTable.getModel();
                 
-        Object[] columns = {"Product ID","Product Name","Price","Quntity","Total"};
+        Object[] columns = {"Product ID","Product Name","Type","Price","Quntity","Total"};
         
         model.setColumnIdentifiers(columns);
         shoppingTable.setModel(model);
         
                 
         try{            
-            Object [] row = new Object[5];
+            Object [] row = new Object[6];
 
             //Get Text to row
             row[0] = id.getText();
             row[1] = name.getText();
-            row[2] = price.getText();
-            row[3] = quantity.getText();            
+            row[2] = type.getText();
+            row[3] = price.getText();
+            row[4] = quantity.getText();            
 
             double prices = Double.parseDouble(price.getText());
             int unit = Integer.parseInt(quantity.getText());
-
-
-            //Get the value of the present quantity
+            //Get the value of the exist quantity
             int qua = Integer.parseInt(quantityPre.getText());
-
-            if(qua > unit){  
+                        
+//            HashSet <String> hs = new HashSet <String>();               
+//            Scanner scanFile = new Scanner(new FileReader("Order.txt"));
+            
+//            while(scanFile.hasNext()){
+//                
+//            }
                 
+//            boolean i = scanFile.hasNext();
+                
+//            if(i == hs.contains(row[1])){
+//                JOptionPane.showMessageDialog(null, "NONONO");
+//            }else{
+                //Check if the input quantity is sufficient
+            if(qua > unit && unit > 0){  
+
                 String totalAmount = String.valueOf(unit * prices);
-                row[4] = totalAmount;
+                row[5] = totalAmount;
 
                 model.addRow(row);
-                
+
                 //Get all the row to append into text file for recording            
                 FileWriter fw = new FileWriter("Order.txt",true);
                 //Write to txt file (Order that has been selected)
-                fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"/"+  row[4] +"\n");
-                fw.close();     
+                fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"/"+  row[4] + row[5] +"\n");
+                fw.close(); 
 
-                
                 //Set the quantityPre to minus the enter unit
                 int newQua = qua - unit;
-                
+
                 quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
-                //int newAmount = Integer.parseInt(quantityPre.getText());
+
                 //Update on txt file
                 update(String.valueOf(qua),String.valueOf(newQua));
-                
+
             }else{
                 JOptionPane.showMessageDialog(null, "Not enough Sufficient !");
             }
+            
+            
+                    
+            //}
         }catch(IOException e){
             System.out.println(e);
         }        

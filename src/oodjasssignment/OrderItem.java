@@ -31,7 +31,7 @@ public class OrderItem extends Order{
         double total = 0.0;
         //Get row count
         for (int i = 0; i < table.getRowCount(); i ++){
-            double amount = Double.parseDouble((table.getValueAt(i, 4).toString()));
+            double amount = Double.parseDouble((table.getValueAt(i, 5).toString()));
             total += amount;
         }
         

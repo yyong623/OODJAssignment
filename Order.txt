@@ -1,2 +1,11 @@
-1235/Zombie/35.00/4/140.0
-1237/Water/40.00/1/40.0
+1116/Basket/Fragile/40.00/00.0
+1111/Chair/Fragile/40.00/3120.0
+1111/Chair/Fragile/40.00/00.0
+818/Book/NonFragile/40.00/280.0
+818/Book/NonFragile/40.00/00.0
+88/Zombie/NonFragile/8.00/00.0
+88/Water/NonFragile/40.00/00.0
+88/Zombie/NonFragile/8.00/00.0
+796/Basket/Fragile/40.00/-2-80.0
+88/Chair/Fragile/40.00/9360.0
+-1-1/Water/NonFragile/40.00/00.0

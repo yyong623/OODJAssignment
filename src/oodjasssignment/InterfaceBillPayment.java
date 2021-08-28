@@ -35,9 +35,9 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jLabelBill1 = new javax.swing.JLabel();
         jTextFieldBill = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableReceipt = new javax.swing.JTable();
         jButtonBack = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableReceipt = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,27 +50,6 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButton1.setText("Pay");
 
-        jTableReceipt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product Id", "Product Name", "Price", "Quantity", "Total"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableReceipt);
-        if (jTableReceipt.getColumnModel().getColumnCount() > 0) {
-            jTableReceipt.getColumnModel().getColumn(4).setResizable(false);
-        }
-
         jButtonBack.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +57,32 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
                 jButtonBackActionPerformed(evt);
             }
         });
+
+        jTableReceipt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product Id", "Product Name", "Type", "Price", "Quantity", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableReceipt);
+        if (jTableReceipt.getColumnModel().getColumnCount() > 0) {
+            jTableReceipt.getColumnModel().getColumn(0).setResizable(false);
+            jTableReceipt.getColumnModel().getColumn(1).setResizable(false);
+            jTableReceipt.getColumnModel().getColumn(2).setResizable(false);
+            jTableReceipt.getColumnModel().getColumn(3).setResizable(false);
+            jTableReceipt.getColumnModel().getColumn(4).setResizable(false);
+            jTableReceipt.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,15 +99,14 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
                 .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(223, 223, 223))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,9 +114,9 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +189,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBill1;
     private javax.swing.JLabel jLabelTotalBill;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableReceipt;
     private javax.swing.JTextField jTextFieldBill;
     // End of variables declaration//GEN-END:variables
