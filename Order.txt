@@ -1,11 +1,2 @@
-1235/Zombie/35.00/10/null/
-1236/Basket/41.00/7/null/
-1237/Water/42.00/5/null/
-1238/Book/47.00/145/null/
-1237/Water/40.00/5/null/
-1235/Zombie/35.00/10/null/
-1238/Book/40.00/145/null/
-1234/Chair/40.00/45/null/
-1237/Water/40.00/5
-1238/Book/40.00/145
-null/null/null/null
+1235/Zombie/35.00/4/140.0
+1237/Water/40.00/1/40.0

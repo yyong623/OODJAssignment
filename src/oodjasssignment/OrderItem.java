@@ -28,13 +28,13 @@ public class OrderItem extends Order{
     }
     
     public void calculateTotalPayment(JTable table, JTextField textField){
-        double total = 0;
+        double total = 0.0;
         //Get row count
         for (int i = 0; i < table.getRowCount(); i ++){
-            int amount = Integer.parseInt((String) table.getValueAt(i, 4));
+            double amount = Double.parseDouble((table.getValueAt(i, 4).toString()));
             total += amount;
         }
         
-        textField.setText(String.valueOf(total%.2f));
+        textField.setText(String.valueOf(total));
     }
 }

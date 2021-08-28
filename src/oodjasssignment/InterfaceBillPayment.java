@@ -18,12 +18,8 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         this.ori = new OrderItem();
         initComponents();
         user.viewOrder(jTableReceipt);
-        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);
+        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);        
     }
-    
-    
-//        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,10 +52,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
 
         jTableReceipt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Product Id", "Product Name", "Price", "Quantity", "Total"
