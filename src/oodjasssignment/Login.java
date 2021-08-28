@@ -5,6 +5,8 @@
  */
 package oodjasssignment;
 
+
+
 /**
  *
  * @author User
@@ -27,15 +29,20 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PasswordTextField = new javax.swing.JTextField();
         LoginBtn = new javax.swing.JButton();
         UserIdTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        PasswordField = new javax.swing.JPasswordField();
         AdminLoginBtn = new javax.swing.JButton();
 
         LoginBtn.setText("Login");
+        LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginBtnMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Inventory Management System");
@@ -44,7 +51,14 @@ public class Login extends javax.swing.JPanel {
 
         jLabel2.setText("password");
 
-        AdminLoginBtn.setText("Login as Admin");
+        PasswordField.setText("jPasswordField1");
+
+        AdminLoginBtn.setText("Login As Admin");
+        AdminLoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminLoginBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,8 +79,8 @@ public class Login extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGap(45, 45, 45)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(UserIdTextField)
-                                .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(UserIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                .addComponent(PasswordField)))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,7 +95,7 @@ public class Login extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginBtn)
@@ -89,18 +103,47 @@ public class Login extends javax.swing.JPanel {
                 .addGap(49, 49, 49))
         );
 
-        PasswordTextField.getAccessibleContext().setAccessibleName("PasswordTxtbox");
         LoginBtn.getAccessibleContext().setAccessibleName("loginBtn");
         UserIdTextField.getAccessibleContext().setAccessibleName("IDtextbox");
         jLabel1.getAccessibleContext().setAccessibleName("UserIDLbl");
         jLabel2.getAccessibleContext().setAccessibleName("passwordLbl");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
+        // TODO add your handling code here:
+        String usr = this.UserIdTextField.getText();
+        String pwd = new String(this.PasswordField.getPassword());
+        User.loginFunc("Customer.txt", usr, pwd);
+        if (User.loginIdentifier = true){
+        CustomerInterface CustomerInterface = new CustomerInterface();
+        CustomerInterface.setVisible(true);
+        }
+        else{
+        UserIdTextField.setText("");
+        PasswordField.setText("");
+        }
+    }//GEN-LAST:event_LoginBtnMouseClicked
+
+    private void AdminLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBtnMouseClicked
+        // TODO add your handling code here:
+        String usr = this.UserIdTextField.getText();
+        String pwd = new String(this.PasswordField.getPassword());
+        User.loginFunc("Customer.txt", usr, pwd);
+        if (User.loginIdentifier = true){
+        AdminInterface AdminInterface = new AdminInterface();
+        AdminInterface.setVisible(true);
+        }else{
+        UserIdTextField.setText("");
+        PasswordField.setText("");
+        
+        }
+    }//GEN-LAST:event_AdminLoginBtnMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminLoginBtn;
     private javax.swing.JButton LoginBtn;
-    private javax.swing.JTextField PasswordTextField;
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JTextField UserIdTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

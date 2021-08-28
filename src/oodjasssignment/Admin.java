@@ -25,7 +25,7 @@ public class Admin extends User {
     }  
     
     
-    public void viewTable(JTable ViewProdTable, String txtFileName){
+    public static void viewTable(JTable ViewProdTable, String txtFileName){
     try (BufferedReader bfr = new BufferedReader(new FileReader(txtFileName))){
                 DefaultTableModel model = (DefaultTableModel)ViewProdTable.getModel();
             //Get line from txt file

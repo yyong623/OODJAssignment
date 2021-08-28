@@ -17,8 +17,8 @@ public class AdminInterface extends javax.swing.JFrame {
     /** Creates new form AdminInterface */
     public AdminInterface() {
         initComponents();
-        viewTable(ViewCusTable,"Customer.txt");
-        viewTable(ViewProdTable,"Product.txt");
+        Admin.viewTable(ViewCusTable,"Customer.txt");
+        Admin.viewTable(ViewProdTable,"Product.txt");
 
         
     }
@@ -461,8 +461,6 @@ public class AdminInterface extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 
-    private void viewTable(JTable ViewCusTable, String customertxt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 }

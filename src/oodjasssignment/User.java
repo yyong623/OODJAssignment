@@ -27,7 +27,7 @@ public class User {
     static String name,email, phoneNum, mailingAdd;
     public static String username;
     protected String password;
-    
+    static boolean loginIdentifier;
     //Method
     
     //Setter and Getter Username & Password
@@ -253,5 +253,41 @@ public class User {
         }
     }
     
-    
+
+public static void loginFunc(String userFile, String username, String Password){
+    File loginScan = new File(userFile);
+    try {
+        Scanner read = new Scanner(loginScan);
+        boolean loginIdentifier = false;
+        while (read.hasNextLine())
+            {
+              String s = read.nextLine();  
+              String[] sArray = s.split("/");
+              
+              if (username == sArray[0] && Password == sArray[1])
+              {
+                JOptionPane.showMessageDialog(null,
+                    "Login Successful", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+                    loginIdentifier = true;
+                    
+              }
+              else
+              {
+                JOptionPane.showMessageDialog(null,
+                    "Invalid Username / Password", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+              }
+            }
+    }catch(FileNotFoundException e){
+                JOptionPane.showMessageDialog(null,
+                    "File Not Found", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                }
+        
+        
+    }
+
 }
+    
+
