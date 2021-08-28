@@ -115,6 +115,8 @@ public class Login extends javax.swing.JPanel {
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){
+        UserIdTextField.setText("");
+        PasswordField.setText("");
         CustomerInterface CustomerInterface = new CustomerInterface();
         CustomerInterface.setVisible(true);
         }
@@ -130,11 +132,13 @@ public class Login extends javax.swing.JPanel {
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){
-        AdminInterface AdminInterface = new AdminInterface();
-        AdminInterface.setVisible(true);
+            UserIdTextField.setText("");
+            PasswordField.setText("");
+            AdminInterface AdminInterface = new AdminInterface();
+            AdminInterface.setVisible(true);
         }else{
-        UserIdTextField.setText("");
-        PasswordField.setText("");
+            UserIdTextField.setText("");
+            PasswordField.setText("");
         
         }
     }//GEN-LAST:event_AdminLoginBtnMouseClicked
