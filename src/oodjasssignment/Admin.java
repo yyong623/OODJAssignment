@@ -6,11 +6,14 @@
 package oodjasssignment;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 /**
@@ -19,6 +22,7 @@ import javax.swing.JTable;
  */
 public class Admin extends User {
     public int AdminId;
+    public static boolean repeatIdentifier;
 
     public void setAdminId(int AdminId) {
         this.AdminId = AdminId;
@@ -43,20 +47,49 @@ public class Admin extends User {
     }
     
     public void addProd(String ProdId, String ProdName, String ProdPrice, String ProdQuan){
+        repeatChecker("Product.txt", name);
+        if (repeatIdentifier = false){
+            try {
+               FileWriter fw = new FileWriter("Product.txt",true);
+              fw.write( ProdId +"/"+  ProdName +"/"+ ProdPrice +"/"+  ProdQuan +"\n");
+               fw.close();
+           } catch (IOException ex) {
+              Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        else{
         
-        try {
-            FileWriter fw = new FileWriter("Product.txt",true);
-            fw.write( ProdId +"/"+  ProdName +"/"+ ProdPrice +"/"+  ProdQuan +"\n");
-            fw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
     
-    
-    
-    public void addCus(String name,String email,String phoneNum,String mailingAdd,String password){
+    public void repeatChecker(String FileName, String comparedUserName){
+        Scanner FileReader = new Scanner(FileName);
+        repeatIdentifier = false;   
+        while (FileReader.hasNextLine())
+        {
+            String s = FileReader.nextLine();
+            String[] sArray = s.split("/");
+            
+            if (comparedUserName == sArray[0] )
+            {
+                JOptionPane.showMessageDialog(null,
+                        "Login Successful", "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+                repeatIdentifier = true;
+                FileReader.close();
+                
+            }
+            else
+            {
+                FileReader.close();
+            }
+        }
+    }
+        
+    public void addCus(String name,String email,String phoneNum,String mailingAdd,String password, boolean repeatIdentifier){
+        repeatChecker("Customer.txt", name);
+        if (repeatIdentifier = false){
         try {
             FileWriter fw = new FileWriter("Customer.txt",true);
             fw.write( name +"/"+ password  +"/"+ email +"/"+  mailingAdd +"/"+ phoneNum +"\n");
@@ -64,6 +97,9 @@ public class Admin extends User {
         } catch (IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+        }
+        else{
+        
+        }
     }
 }
