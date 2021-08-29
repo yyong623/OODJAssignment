@@ -12,7 +12,7 @@ package oodjasssignment;
  * @author User
  */
 public class Login extends javax.swing.JPanel {
-
+    String usr;
     /**
      * Creates new form Login
      */
@@ -111,7 +111,7 @@ public class Login extends javax.swing.JPanel {
 
     private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
         // TODO add your handling code here:
-        String usr = this.UserIdTextField.getText();
+         usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JPanel {
 
     private void AdminLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBtnMouseClicked
         // TODO add your handling code here:
-        String usr = this.UserIdTextField.getText();
+         usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){

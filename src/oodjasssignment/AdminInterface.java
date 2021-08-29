@@ -9,6 +9,7 @@ package oodjasssignment;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +22,8 @@ public class AdminInterface extends javax.swing.JFrame {
     public AdminInterface() {
         initComponents();
         
-        Admin.viewTable(ViewCusTable,"Customer.txt");
-        Admin.viewTable(ViewProdTable,"Product.txt");
+        admin.viewTable(ViewCusTable,"Customer.txt");
+        admin.viewTable(ViewProdTable,"Product.txt");
         
         
     }
@@ -100,6 +101,11 @@ public class AdminInterface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        ViewProdTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ViewProdTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(ViewProdTable);
         if (ViewProdTable.getColumnModel().getColumnCount() > 0) {
             ViewProdTable.getColumnModel().getColumn(0).setResizable(false);
@@ -144,6 +150,11 @@ public class AdminInterface extends javax.swing.JFrame {
         });
 
         DelProdBtn.setText("Delete");
+        DelProdBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DelProdBtnMouseClicked(evt);
+            }
+        });
 
         UpdateProdBtn.setText("Update");
         UpdateProdBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +254,11 @@ public class AdminInterface extends javax.swing.JFrame {
                 "Name", "Password", "Email", "Address", "Phone Number"
             }
         ));
+        ViewCusTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ViewCusTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(ViewCusTable);
 
         AddCusEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +285,11 @@ public class AdminInterface extends javax.swing.JFrame {
         });
 
         DelProdBtn1.setText("Delete");
+        DelProdBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DelProdBtn1MouseClicked(evt);
+            }
+        });
 
         UpdateCusBtn.setText("Update");
 
@@ -461,6 +482,15 @@ public class AdminInterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
         }else{
         admin.addProd(ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
+        JOptionPane.showMessageDialog(null,
+                        "Record Added Successfully", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+        addProdID.setText("");
+        addProdName.setText("");
+        FragileCheck.setSelected(false);
+        addProdPrice.setText("");
+        addProdQuan.setText("");
+        admin.viewTable(ViewProdTable,"Product.txt");
         }
         
     }//GEN-LAST:event_AddProdBtnMouseClicked
@@ -479,6 +509,16 @@ public class AdminInterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
         }else{
         admin.addCus(CusName, CusPass, CusEmail, CusAdd, CusPhone);
+        JOptionPane.showMessageDialog(null,
+                        "Record Added Successfully", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+        AddCusName.setText("");
+        AddCusPassw.setText("");
+        AddCusEmail.setText("");
+        addCusAddress.setText("");
+        AddCusPhone.setText("");
+        admin.viewTable(ViewCusTable,"Customer.txt");
+        
         }
     }//GEN-LAST:event_AddCusBtnMouseClicked
 
@@ -508,6 +548,65 @@ public class AdminInterface extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_addProdQuanKeyTyped
+
+    private void ViewProdTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewProdTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel ProdsTable = (DefaultTableModel)ViewProdTable.getModel();
+        String productID = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),0).toString();
+        String productName = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),1).toString();
+        String productFrag = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),2).toString();
+        String productPrice = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),3).toString();
+        String productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
+        addProdID.setText(productID);
+        addProdName.setText(productName);
+        if(productFrag == "Fragile" ){
+            FragileCheck.setSelected(true);
+        } else {
+            FragileCheck.setSelected(false);
+        }
+        addProdPrice.setText(productPrice);
+        addProdQuan.setText(productQuan);
+        
+        
+    }//GEN-LAST:event_ViewProdTableMouseClicked
+
+    private void ViewCusTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewCusTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel CusTable = (DefaultTableModel)ViewCusTable.getModel();
+        String CustomerID = CusTable.getValueAt(ViewCusTable.getSelectedRow(),0).toString();
+        String CustomerPass = CusTable.getValueAt(ViewCusTable.getSelectedRow(),1).toString();
+        String  CustomerEmail= CusTable.getValueAt(ViewCusTable.getSelectedRow(),2).toString();
+        String CustomerAddress = CusTable.getValueAt(ViewCusTable.getSelectedRow(),3).toString();
+        String CustomerPhone = CusTable.getValueAt(ViewCusTable.getSelectedRow(),4).toString();
+        AddCusName.setText(CustomerID);
+        AddCusPassw.setText(CustomerPass);
+        
+        AddCusEmail.setText(CustomerEmail);
+        addCusAddress.setText(CustomerAddress);
+        AddCusPhone.setText(CustomerPhone);
+    }//GEN-LAST:event_ViewCusTableMouseClicked
+
+    private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked
+        // TODO add your handling code here:
+        user.deleteOrder(ViewProdTable, "Product.txt");
+        addProdID.setText("");
+        addProdName.setText("");
+        FragileCheck.setSelected(false);
+        addProdPrice.setText("");
+        addProdQuan.setText("");
+        admin.viewTable(ViewProdTable,"Product.txt");
+    }//GEN-LAST:event_DelProdBtnMouseClicked
+
+    private void DelProdBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtn1MouseClicked
+        // TODO add your handling code here:
+        user.deleteOrder(ViewCusTable, "Customer.txt");
+        AddCusName.setText("");
+        AddCusPassw.setText("");
+        AddCusEmail.setText("");
+        addCusAddress.setText("");
+        AddCusPhone.setText("");
+        admin.viewTable(ViewCusTable,"Customer.txt");
+    }//GEN-LAST:event_DelProdBtn1MouseClicked
 
     /**
      * @param args the command line arguments
