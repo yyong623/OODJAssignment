@@ -454,8 +454,14 @@ public class AdminInterface extends javax.swing.JFrame {
         }
         String ProdPrice = this.addProdPrice.getText();
         String ProdQuan = this.addProdQuan.getText();
+        if (addProdID.getText().isEmpty()||addProdName.getText().isEmpty()||addProdPrice.getText().isEmpty()||addProdQuan.getText().isEmpty())
+        {
+        JOptionPane.showMessageDialog(null,
+                        "Some Fields Are Empty", "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+        }else{
         admin.addProd(ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
-        
+        }
         
     }//GEN-LAST:event_AddProdBtnMouseClicked
 
@@ -466,7 +472,14 @@ public class AdminInterface extends javax.swing.JFrame {
         String CusEmail = this.AddCusEmail.getText();
         String CusAdd = this.addCusAddress.getText();
         String CusPhone = this.AddCusPhone.getText();
+        if (AddCusName.getText().isEmpty()||AddCusPassw.getText().isEmpty()||AddCusEmail.getText().isEmpty()||addCusAddress.getText().isEmpty()||AddCusPhone.getText().isEmpty())
+        {
+        JOptionPane.showMessageDialog(null,
+                        "Some Fields Are Empty", "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+        }else{
         admin.addCus(CusName, CusPass, CusEmail, CusAdd, CusPhone);
+        }
     }//GEN-LAST:event_AddCusBtnMouseClicked
 
     private void AddCusPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddCusPhoneKeyTyped
