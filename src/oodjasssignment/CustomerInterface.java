@@ -51,7 +51,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         EditPhoneNum = new javax.swing.JLabel();
         EditMailingAdd = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButtonCheckOut = new javax.swing.JButton();
         Order = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         ShowAllOrderButton = new javax.swing.JButton();
@@ -66,7 +65,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         QuantityAmountLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ShoppingjTable = new javax.swing.JTable();
-        DeleteButton = new javax.swing.JButton();
         jLabelType = new javax.swing.JLabel();
         jLabeltype = new javax.swing.JLabel();
         jLabelProductId = new javax.swing.JLabel();
@@ -237,14 +235,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButtonCheckOut.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
-        jButtonCheckOut.setText("Check Out");
-        jButtonCheckOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCheckOutActionPerformed(evt);
-            }
-        });
-
         Order.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
@@ -307,14 +297,6 @@ public class CustomerInterface extends javax.swing.JFrame {
             ShoppingjTable.getColumnModel().getColumn(4).setResizable(false);
             ShoppingjTable.getColumnModel().getColumn(5).setResizable(false);
         }
-
-        DeleteButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
-        DeleteButton.setText("Delete");
-        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteButtonActionPerformed(evt);
-            }
-        });
 
         jLabelType.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jLabelType.setText("Type : ");
@@ -382,7 +364,6 @@ public class CustomerInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ShowAllOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(OrderLayout.createSequentialGroup()
@@ -425,13 +406,11 @@ public class CustomerInterface extends javax.swing.JFrame {
                             .addComponent(jLabelQPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(OrderLayout.createSequentialGroup()
                         .addComponent(jButtonView)
-                        .addGap(18, 18, 18)
-                        .addComponent(DeleteButton)
-                        .addGap(18, 18, 18)
+                        .addGap(63, 63, 63)
                         .addComponent(ShowAllOrderButton)
                         .addGap(1, 1, 1)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -443,18 +422,12 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCheckOut)
-                .addGap(249, 249, 249))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCheckOut)
                 .addContainerGap())
         );
 
@@ -621,10 +594,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
-        
-    }//GEN-LAST:event_jButtonCheckOutActionPerformed
-
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
         order.addOrder(ShoppingjTable, jLabelProductId.getText(), jLabelName.getText(), jLabeltype.getText(), jLabelPriceProduct.getText(),jTextFieldUnitsProduct.getText(), QuantityAmountLabel);
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
@@ -649,12 +618,13 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_AddToOrderActionPerformed
 
     private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
+        DefaultTableModel model = (DefaultTableModel)jTableSearchViewProduct.getModel();
+        //Clear data in JTable
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        
         user.searchProduct(jTableSearchViewProduct, TextFiledSearch.getText());
     }//GEN-LAST:event_ButtonSearchActionPerformed
-
-    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        user.deleteOrder(ShoppingjTable, "Order.txt");
-    }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel)jTableSearchViewProduct.getModel();
@@ -736,7 +706,6 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JButton AddToOrder;
     private javax.swing.JButton ButtonSearch;
     private javax.swing.JButton ClearButton;
-    private javax.swing.JButton DeleteButton;
     private javax.swing.JLabel EditEmail;
     private javax.swing.JLabel EditMailingAdd;
     private javax.swing.JLabel EditName;
@@ -759,7 +728,6 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldProfileName;
     private javax.swing.JTextField TextFieldProfilePhoneNum;
     private javax.swing.JTextField TextFiledSearch;
-    private javax.swing.JButton jButtonCheckOut;
     private javax.swing.JButton jButtonView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

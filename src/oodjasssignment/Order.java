@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JLabel;
@@ -23,8 +24,29 @@ public class Order {
     public int orderNumber;
     public double totalPrice;
     boolean identifier;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + orderId + ", productId=" + productId + ", productName=" + productName + ", orderNumber=" + orderNumber + ", totalPrice=" + totalPrice + '}';
+    }
     
-    Object[] row = new Object[6];
+    Object[] row = new Object[7];
     
     Admin ad = new Admin();
 
@@ -42,53 +64,52 @@ public class Order {
             check("Order.txt", id);
             
             //Get Text to row
+            
             row[0] = id;
             row[1] = name;
             row[2] = type;
             row[3] = price;
             row[4] = quantity;
+            row[6] = orderId;
+            
+            
             
             double prices = Double.parseDouble(price);
             int unit = Integer.parseInt(quantity);
             //Get the value of the exist quantity
             int qua = Integer.parseInt(quantityPre.getText());
 
-            int count = 0;
-            int flag = 0;
+            if (unit <= 0) {
+                JOptionPane.showMessageDialog(null, "Please Enter at least one amount !");
 
-            
-            
-                if (unit <= 0) {
-                    JOptionPane.showMessageDialog(null, "Please Enter at least one amount !");
+            } else if (qua >= unit) {
 
-                } else if (qua >= unit) {
-                    
-                    if(identifier == false){    //This is where no duplication occur
+                if(identifier == false){    //This is where no duplication occur
 
-                        //Write to txt file (Order that has been selected)
-                        //Get all the row to append into text file for recording 
-                        String totalAmount = String.valueOf(unit * prices);
-                        row[5] = totalAmount;
+                    //Write to txt file (Order that has been selected)
+                    //Get all the row to append into text file for recording 
+                    String totalAmount = String.valueOf(unit * prices);
+                    row[5] = totalAmount;
 
-                        //Set the quantityPre to minus the enter unit
-                        int newQua = qua - unit;
+                    //Set the quantityPre to minus the enter unit
+                    int newQua = qua - unit;
 
-                        quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
+                    quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
 
-                        //Update on txt file
+                    //Update on txt file
 
-                        update(String.valueOf(qua), String.valueOf(newQua));
+                    update(String.valueOf(qua), String.valueOf(newQua));
 
-                        model.addRow(row); 
+                    model.addRow(row); 
 
-                        FileWriter fw = new FileWriter("Order.txt", true);
-                        //Write to txt file (Order that has been selected)
-                        fw.write(row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + "\n");
-
-                        fw.close();
-                    }  
-                }else {
-                    JOptionPane.showMessageDialog(null, "Not enough Sufficient !");
+                    FileWriter fw = new FileWriter("Order.txt", true);
+                    //Write to txt file (Order that has been selected)
+                    fw.write(row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + row[6] + "/" + "\n");
+                    //fw.write(Arrays.toString(row));
+                    fw.close();
+                }  
+            }else {
+                JOptionPane.showMessageDialog(null, "Not enough Sufficient !");
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -127,6 +148,7 @@ public class Order {
         int n = random.nextInt(1000) + 1;
         String value = String.valueOf(n);
         textField.setText(value);
+        
     }
 
     public void update(String OldText, String newText) {
