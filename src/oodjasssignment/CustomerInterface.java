@@ -645,7 +645,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSearchActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        user.deleteOrder(ShoppingjTable);
+        user.deleteOrder(ShoppingjTable, "Order.txt");
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed

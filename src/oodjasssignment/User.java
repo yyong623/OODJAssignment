@@ -137,7 +137,7 @@ public class User {
         }
     }
     
-    public void deleteOrder(JTable orderListTable){
+    public void deleteOrder(JTable orderListTable, String FileName){
         DefaultTableModel model = (DefaultTableModel)orderListTable.getModel();
                 
         //Get selected row index
@@ -153,7 +153,7 @@ public class User {
             JOptionPane.showMessageDialog(null, "Item deleted");
         
             String tempFile = "tempOder.txt";
-            File oldFile = new File ("Order.txt");
+            File oldFile = new File (FileName);
             File newFile = new File (tempFile);
 
             //Read text file to delete record as well
@@ -174,7 +174,7 @@ public class User {
                 bw.close();
                 fw.close();
                 oldFile.delete();
-                File replace = new File("Order.txt");
+                File replace = new File(FileName);
                 newFile.renameTo(replace);
                 
             }catch(IOException e ){

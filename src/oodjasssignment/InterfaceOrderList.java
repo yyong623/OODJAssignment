@@ -160,7 +160,7 @@ public class InterfaceOrderList extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewButtonActionPerformed
 
     private void DeleteItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteItemButtonActionPerformed
-        user.deleteOrder(OrderListTable);
+        user.deleteOrder(OrderListTable, "Order.txt");
     }//GEN-LAST:event_DeleteItemButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
