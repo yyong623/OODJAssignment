@@ -194,8 +194,7 @@ public class User {
             
             //int count = 0;
             while((lines = br.readLine()) != null){
-                String[] array = lines.split("/");                               
-                
+                String[] array = lines.split("/"); 
                 
                     name.setText(array[0]);
                     phoneNum.setText(array[4]);
@@ -235,7 +234,7 @@ public class User {
             String newWord = oldWord.replaceAll(OldText,newText);
             
             //Set Text HERE ! --> updated info
-            //updateText.setText(newText);
+            //newText;
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);

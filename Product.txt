@@ -1,5 +1,5 @@
-67/Chair/Fragile/45.00/25
-78/Zombie/NonFragile/23.00/25
-06/Basket/Fragile/67.98/23
-33/Water/NonFragile/50.99/0
-00/Book/NonFragile/49.99/2020
+67/Chair/Fragile/45.00/21
+78/Zombie/NonFragile/0.00/21
+06/Basket/Fragile/67.98/637
+33/Water/NonFragile/50.99/574
+00/Book/NonFragile/49.99/78
