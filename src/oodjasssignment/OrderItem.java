@@ -1,14 +1,7 @@
 package oodjasssignment;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.HashSet;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 public class OrderItem extends Order{
     
@@ -16,7 +9,6 @@ public class OrderItem extends Order{
     public String productId, productName,type;
     public int orderItemQuantity;
     public double price;
-    boolean identifier = false;
     
     //Method
     //Get Final Total Price
