@@ -618,7 +618,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCheckOutActionPerformed
 
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
-        order.addOrder(ShoppingjTable, jLabelProductId, jLabelName, jLabeltype, jLabelPriceProduct,jTextFieldUnitsProduct, QuantityAmountLabel);
+        order.addOrder(ShoppingjTable, jLabelProductId.getText(), jLabelName.getText(), jLabeltype.getText(), jLabelPriceProduct.getText(),jTextFieldUnitsProduct.getText(), QuantityAmountLabel);
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void LabelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelLogOutMouseClicked

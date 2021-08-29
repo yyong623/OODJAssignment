@@ -71,7 +71,7 @@ public class Admin extends User {
             String s = FileReader.nextLine();
             String[] sArray = s.split("/");
             
-            if (comparedUserName == sArray[0] )
+            if (comparedUserName.equals(sArray[0]))
             {
                 JOptionPane.showMessageDialog(null,
                         "Login Successful", "Error",

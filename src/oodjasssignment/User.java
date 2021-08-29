@@ -184,30 +184,29 @@ public class User {
 }
     
     //View Profile
-    public void viewProfile(JTextField textFd1, JTextField textFd2,JTextField textFd3,JTextField textFd4){
+    public void viewProfile(JTextField name,JTextField phoneNum,JTextField email,JTextField mailingAdd){
         
-        BufferedReader br ;
-        String[] characters = new String[1000];
+        BufferedReader br ;        
         
         try{
             String lines;
             br = new BufferedReader(new FileReader("TestingCustomer.txt"));
             
-            int count = 0;
+            //int count = 0;
             while((lines = br.readLine()) != null){
                 String[] array = lines.split("/");
                 
-                textFd1.setText(array[0]);
-                textFd2.setText(array[4]);
-                textFd3.setText(array[2]);
-                textFd4.setText(array[3]);
+                name.setText(array[0]);
+                phoneNum.setText(array[4]);
+                email.setText(array[2]);
+                mailingAdd.setText(array[3]);
             }    
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,e);
         }
     }
     
-    public void editProfile(JTextField OldText,JTextField newText){
+    public void editProfile(String OldText,String newText){
         
         File f1 = new File("TestingCustomer.txt");
         
@@ -231,7 +230,10 @@ public class User {
             }
             
             //Replace oldText into newText
-            String newWord = oldWord.replaceAll(OldText.getText(),newText.getText());
+            String newWord = oldWord.replaceAll(OldText,newText);
+            
+            //Set Text HERE ! --> updated info
+            //updateText.setText(newText);
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);

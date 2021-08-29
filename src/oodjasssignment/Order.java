@@ -2,6 +2,7 @@ package oodjasssignment;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,14 +19,17 @@ import javax.swing.table.DefaultTableModel;
 public class Order{
     
     //Data Type
-    public String orderId, orderCustomerId, orderDate;
+    public String orderCustomerId, orderDate;
+    public int orderId;
     public int orderNumber = 0;
     public float tax, totalPrice;
-    
+    boolean identifier = false;
+
+       
     
     
     //Method
-    public void addOrder(JTable shoppingTable, JLabel id, JLabel name, JLabel type, JLabel price, JTextField quantity, JLabel quantityPre){
+    public void addOrder(JTable shoppingTable, String id, String name, String type, String price, String quantity, JLabel quantityPre){
                                 
         DefaultTableModel model = (DefaultTableModel)shoppingTable.getModel();
                 
@@ -39,32 +43,27 @@ public class Order{
             Object [] row = new Object[6];
 
             //Get Text to row
-            row[0] = id.getText();
-            row[1] = name.getText();
-            row[2] = type.getText();
-            row[3] = price.getText();
-            row[4] = quantity.getText();            
+            row[0] = id;
+            row[1] = name;
+            row[2] = type;
+            row[3] = price;
+            row[4] = quantity;            
 
-            double prices = Double.parseDouble(price.getText());
-            int unit = Integer.parseInt(quantity.getText());
+            double prices = Double.parseDouble(price);
+            int unit;
+            unit = Integer.parseInt(quantity);
             //Get the value of the exist quantity
             int qua = Integer.parseInt(quantityPre.getText());
-                        
-//            HashSet <String> hs = new HashSet <String>();               
-//            Scanner scanFile = new Scanner(new FileReader("Order.txt"));
+     
+            OrderItem oi = new OrderItem();
+            oi.check("Order.txt", id, identifier);
+            if (identifier = false){}
             
-//            while(scanFile.hasNext()){
-//                
-//            }
-                
-//            boolean i = scanFile.hasNext();
-                
-//            if(i == hs.contains(row[1])){
-//                JOptionPane.showMessageDialog(null, "NONONO");
-//            }else{
-                //Check if the input quantity is sufficient
-            if(qua > unit && unit > 0){  
+            //Check if the input quantity is sufficient                
+            if(unit <= 0){
+                JOptionPane.showMessageDialog(null, "Please Enter at least one amount !");
 
+            }else if(qua >= unit){ 
                 String totalAmount = String.valueOf(unit * prices);
                 row[5] = totalAmount;
 
@@ -73,7 +72,7 @@ public class Order{
                 //Get all the row to append into text file for recording            
                 FileWriter fw = new FileWriter("Order.txt",true);
                 //Write to txt file (Order that has been selected)
-                fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"/"+  row[4] + row[5] +"\n");
+                fw.write( row[0] +"/"+  row[1] +"/"+ row[2] +"/"+  row[3] +"/"+  row[4] + "/"+ row[5] +"\n");
                 fw.close(); 
 
                 //Set the quantityPre to minus the enter unit
@@ -87,10 +86,7 @@ public class Order{
             }else{
                 JOptionPane.showMessageDialog(null, "Not enough Sufficient !");
             }
-            
-            
-                    
-            //}
+
         }catch(IOException e){
             System.out.println(e);
         }        
@@ -107,17 +103,25 @@ public class Order{
 //        text.setText(String.valueOf(total));
 //    }  
     
-//    public void deleteOrder(int orderNumber){
-//        if(orderNumber != 0){
-//            orderNumber -= 1;
-//        }else{
-//            //Remove the order from the storage 
-//        }        
-//    }
-//    
-//    public float calculateTax (float tax){
-//        return tax = (float) (totalPrice * 0.6);
-//    } 
+    public void check (String file, String id, boolean identifier){
+
+        try (Scanner scanFile = new Scanner(new FileReader(file))) {
+            while(scanFile.hasNextLine()){
+                String line = scanFile.nextLine();
+                String[] words = line.split("/");
+                
+                if(id.equals(words[0])){
+                    JOptionPane.showMessageDialog(null, "You have entered this product");
+                    identifier = true;
+                }
+            }
+            scanFile.close();
+            
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }     
+
+    }
 
     //Generate Order ID
     public void randomId(JTextField textField){

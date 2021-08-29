@@ -104,7 +104,7 @@ public class InterfaceUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfrimActionPerformed
-        user.editProfile(TextFieldOld, TextFieldNew);
+        user.editProfile(TextFieldOld.getText(), TextFieldNew.getText());
         this.dispose();
     }//GEN-LAST:event_jButtonConfrimActionPerformed
 
