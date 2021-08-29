@@ -21,34 +21,5 @@ public class OrderItem extends Order{
         }
         
         textField.setText(String.valueOf(total));
-    }
-    
-    
-    //Get all data in txt file to array      
-//    public static String[] readArray(String file){
-//        
-//        int totalChar = 0 ;
-//        try{
-//            Scanner s1 = new Scanner(new File(file));
-//            while (s1.hasNextLine()){
-//                totalChar = totalChar + 1;
-//                s1.next();
-//            }
-//            
-//            String[] word = new String [totalChar];
-//            
-//            Scanner s2 = new Scanner(new File(file));
-//            
-//            for ( int i = 0; i < totalChar ; i ++){
-//                word[i] = s2.next();
-//            }
-//            return word;
-//            
-//        }catch(FileNotFoundException e){
-//            System.out.println(e);
-//        }
-//        return null;
-//    }
-    
-    
+    }  
 }

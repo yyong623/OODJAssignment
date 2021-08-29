@@ -184,7 +184,7 @@ public class User {
 }
     
     //View Profile
-    public void viewProfile(JTextField name,JTextField phoneNum,JTextField email,JTextField mailingAdd){
+    public void viewProfile(JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
         
         BufferedReader br ;        
         
@@ -194,21 +194,23 @@ public class User {
             
             //int count = 0;
             while((lines = br.readLine()) != null){
-                String[] array = lines.split("/");
+                String[] array = lines.split("/");                               
                 
-                name.setText(array[0]);
-                phoneNum.setText(array[4]);
-                email.setText(array[2]);
-                mailingAdd.setText(array[3]);
+                
+                    name.setText(array[0]);
+                    phoneNum.setText(array[4]);
+                    email.setText(array[2]);
+                    mailingAdd.setText(array[3]);
+                
             }    
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,e);
         }
     }
     
-    public void editProfile(String OldText,String newText){
+    public void edit(String fileName, String OldText,String newText){
         
-        File f1 = new File("TestingCustomer.txt");
+        File f1 = new File(fileName);
         
         //Give oldText a null string to keep word
         String oldWord = "";

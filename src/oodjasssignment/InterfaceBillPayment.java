@@ -38,6 +38,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jButtonBack = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableReceipt = new javax.swing.JTable();
+        jButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +46,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jLabelTotalBill.setText("Total :");
 
         jLabelBill1.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
-        jLabelBill1.setText("Receipt");
+        jLabelBill1.setText("Order List");
 
         jButton1.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButton1.setText("Pay");
@@ -84,37 +85,50 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
             jTableReceipt.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        jButtonDelete.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabelTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146)
-                .addComponent(jButton1)
+                .addGap(220, 220, 220)
+                .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jButtonDelete)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(248, 248, 248)
+                                .addComponent(jLabelTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -123,7 +137,8 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButtonBack))
+                    .addComponent(jButtonBack)
+                    .addComponent(jButtonDelete))
                 .addGap(26, 26, 26))
         );
 
@@ -146,6 +161,11 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        user.deleteOrder(jTableReceipt, "Order.txt");
+        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);       
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +206,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonDelete;
     private javax.swing.JLabel jLabelBill1;
     private javax.swing.JLabel jLabelTotalBill;
     private javax.swing.JPanel jPanel1;

@@ -111,24 +111,26 @@ public class Login extends javax.swing.JPanel {
 
     private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
         // TODO add your handling code here:
-         usr = this.UserIdTextField.getText();
+        usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){
-        UserIdTextField.setText("");
-        PasswordField.setText("");
-        CustomerInterface CustomerInterface = new CustomerInterface();
-        CustomerInterface.setVisible(true);
+            UserIdTextField.setText("");
+            PasswordField.setText("");
+            
+            CustomerInterface CustomerInterface = new CustomerInterface();
+            CustomerInterface.setVisible(true);
+            
         }
         else{
-        UserIdTextField.setText("");
-        PasswordField.setText("");
+            UserIdTextField.setText("");
+            PasswordField.setText("");
         }
     }//GEN-LAST:event_LoginBtnMouseClicked
 
     private void AdminLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBtnMouseClicked
         // TODO add your handling code here:
-         usr = this.UserIdTextField.getText();
+        usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd);
         if (User.loginIdentifier = true){

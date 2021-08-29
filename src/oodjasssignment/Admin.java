@@ -77,14 +77,12 @@ public class Admin extends User {
                         "repeated", "Error",
                         JOptionPane.INFORMATION_MESSAGE);
                 repeatIdentifier = true;
-                FileReader.close();
-                
             }
             else
             {
                 FileReader.close();
             }
-        }
+        }FileReader.close();
 
     }
         
