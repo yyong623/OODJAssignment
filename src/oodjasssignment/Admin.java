@@ -6,10 +6,13 @@
 package oodjasssignment;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,5 +103,45 @@ public class Admin extends User {
         else{
         
         }
+    }
+    private static Scanner x;
+    
+    public void editProds(String filePath, String OldProdId, String OldProdName,String OldFragileCheck, String OldProdPrice, String OldProdQuan,
+            String newProdId, String newProdName,String newFragileCheck, String newProdPrice, String newProdQuan){
+    String TempFile = "temp.txt";
+    File oldFile = new File(filePath);
+    File newFile = new File(TempFile);
+    String ID = ""; String Name = ""; String Fragile = ""; String Price = "";String ProdQuan = "";
+    try{
+        FileWriter fw = new FileWriter(TempFile,true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        x = new Scanner(new File(filePath));
+        x.useDelimiter("[/,\n]");
+        while(x.hasNext()){
+        ID =x.next();
+        Name = x.next();
+        Fragile = x.next();
+        Price = x.next();
+        ProdQuan = x.next();
+        if (ID.equals(OldProdId)){
+            pw.println( newProdId +"/"+  newProdName +"/"+newFragileCheck +"/"+ newProdPrice +"/"+  newProdQuan +"\n");
+        }
+        else{
+            pw.println(OldProdId +"/"+  OldProdName +"/"+OldFragileCheck +"/"+ OldProdPrice +"/"+  OldProdQuan +"\n");
+        }
+        }
+        x.close();
+        pw.flush();
+        pw.close();
+        oldFile.delete();
+        File dump = new File(filePath);
+        newFile.renameTo(dump);
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null,
+                        "Error", "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+    }
     }
 }
