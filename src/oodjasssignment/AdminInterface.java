@@ -6,6 +6,8 @@
 
 package oodjasssignment;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -13,13 +15,15 @@ import javax.swing.JTable;
  * @author ASUS
  */
 public class AdminInterface extends javax.swing.JFrame {
-
+    Admin admin = new Admin();
+    User user = new User();
     /** Creates new form AdminInterface */
     public AdminInterface() {
         initComponents();
+        
         Admin.viewTable(ViewCusTable,"Customer.txt");
         Admin.viewTable(ViewProdTable,"Product.txt");
-
+        
         
     }
 
@@ -48,11 +52,12 @@ public class AdminInterface extends javax.swing.JFrame {
         AddProdBtn = new javax.swing.JButton();
         DelProdBtn = new javax.swing.JButton();
         UpdateProdBtn = new javax.swing.JButton();
+        FragileCheck = new javax.swing.JCheckBox();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ViewCusTable = new javax.swing.JTable();
         AddCusName = new javax.swing.JTextField();
-        AddCusPhoneNum = new javax.swing.JTextField();
         addCusAddress = new javax.swing.JTextField();
         AddCusEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -65,6 +70,7 @@ public class AdminInterface extends javax.swing.JFrame {
         UpdateCusBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         AddCusPassw = new javax.swing.JTextField();
+        AddCusPhone = new javax.swing.JTextField();
         panel1 = new java.awt.Panel();
         AdmCusOrderTable = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -77,21 +83,30 @@ public class AdminInterface extends javax.swing.JFrame {
 
         ViewProdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Product Name", "Price", "Quantity"
+                "Product ID", "Product Name", "Fragile", "Price", "Quantity"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(ViewProdTable);
         if (ViewProdTable.getColumnModel().getColumnCount() > 0) {
             ViewProdTable.getColumnModel().getColumn(0).setResizable(false);
             ViewProdTable.getColumnModel().getColumn(1).setResizable(false);
             ViewProdTable.getColumnModel().getColumn(2).setResizable(false);
             ViewProdTable.getColumnModel().getColumn(3).setResizable(false);
+            ViewProdTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabel1.setText("Product ID : ");
@@ -103,14 +118,30 @@ public class AdminInterface extends javax.swing.JFrame {
                 addProdPriceActionPerformed(evt);
             }
         });
+        addProdPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                addProdPriceKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Price : ");
 
+        addProdQuan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                addProdQuanKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Quantity : ");
 
-        CancelProdBtn.setText("Cancel");
+        CancelProdBtn.setText("Clear");
 
-        AddProdBtn.setText("Apply");
+        AddProdBtn.setText("Add");
+        AddProdBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddProdBtnMouseClicked(evt);
+            }
+        });
 
         DelProdBtn.setText("Delete");
 
@@ -121,6 +152,10 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
+        FragileCheck.setText("Check If Yes");
+
+        jLabel10.setText("Is It Fragile? : ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,33 +164,39 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(DelProdBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(addProdName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(addProdID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(FragileCheck))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(addProdName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addProdQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(addProdID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(addProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                                .addComponent(addProdQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(UpdateProdBtn)
                         .addGap(18, 18, 18)
                         .addComponent(AddProdBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(CancelProdBtn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(DelProdBtn)))
+                        .addComponent(CancelProdBtn)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -174,15 +215,17 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
                         .addComponent(addProdID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(addProdQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(addProdName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(addProdName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(addProdQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FragileCheck)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(DelProdBtn)
                 .addContainerGap())
         );
@@ -219,12 +262,23 @@ public class AdminInterface extends javax.swing.JFrame {
         CancelProdBtn1.setText("Cancel");
 
         AddCusBtn.setText("Add");
+        AddCusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddCusBtnMouseClicked(evt);
+            }
+        });
 
         DelProdBtn1.setText("Delete");
 
         UpdateCusBtn.setText("Update");
 
         jLabel9.setText("Password : ");
+
+        AddCusPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AddCusPhoneKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -236,11 +290,6 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(AddCusPhoneNum, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -261,8 +310,14 @@ public class AdminInterface extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(addCusAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(addCusAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(AddCusPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(UpdateCusBtn)
@@ -298,8 +353,8 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(AddCusPhoneNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(AddCusPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(76, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -339,7 +394,7 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("orders", panel1);
@@ -386,6 +441,61 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UpdateProdBtnActionPerformed
 
+    private void AddProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddProdBtnMouseClicked
+        // TODO add your handling code here:
+        String ProdId = this.addProdID.getText();
+        String ProdName = this.addProdName.getText();
+        boolean Fragile = this.FragileCheck.isSelected();
+        String FragileChecks;
+        if (Fragile){
+            FragileChecks = "Fragile";
+        }else{
+            FragileChecks = "Not Fragile";
+        }
+        String ProdPrice = this.addProdPrice.getText();
+        String ProdQuan = this.addProdQuan.getText();
+        admin.addProd(ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
+        
+        
+    }//GEN-LAST:event_AddProdBtnMouseClicked
+
+    private void AddCusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddCusBtnMouseClicked
+        // TODO add your handling code here:
+        String CusName = this.AddCusName.getText();
+        String CusPass = this.AddCusPassw.getText();
+        String CusEmail = this.AddCusEmail.getText();
+        String CusAdd = this.addCusAddress.getText();
+        String CusPhone = this.AddCusPhone.getText();
+        admin.addCus(CusName, CusPass, CusEmail, CusAdd, CusPhone);
+    }//GEN-LAST:event_AddCusBtnMouseClicked
+
+    private void AddCusPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AddCusPhoneKeyTyped
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_AddCusPhoneKeyTyped
+
+    private void addProdPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addProdPriceKeyTyped
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_addProdPriceKeyTyped
+
+    private void addProdQuanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addProdQuanKeyTyped
+        // TODO add your handling code here:
+        char c =evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_addProdQuanKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -426,13 +536,14 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JTextField AddCusEmail;
     private javax.swing.JTextField AddCusName;
     private javax.swing.JTextField AddCusPassw;
-    private javax.swing.JTextField AddCusPhoneNum;
+    private javax.swing.JTextField AddCusPhone;
     private javax.swing.JButton AddProdBtn;
     private javax.swing.JScrollPane AdmCusOrderTable;
     private javax.swing.JButton CancelProdBtn;
     private javax.swing.JButton CancelProdBtn1;
     private javax.swing.JButton DelProdBtn;
     private javax.swing.JButton DelProdBtn1;
+    private javax.swing.JCheckBox FragileCheck;
     private javax.swing.JButton UpdateCusBtn;
     private javax.swing.JButton UpdateProdBtn;
     private javax.swing.JTable ViewCusTable;
@@ -443,6 +554,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JTextField addProdPrice;
     private javax.swing.JTextField addProdQuan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

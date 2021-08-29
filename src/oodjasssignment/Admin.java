@@ -46,12 +46,12 @@ public class Admin extends User {
         
     }
     
-    public void addProd(String ProdId, String ProdName, String ProdPrice, String ProdQuan){
+    public void addProd(String ProdId, String ProdName,String FragileCheck, String ProdPrice, String ProdQuan){
         repeatChecker("Product.txt", name);
         if (repeatIdentifier = false){
             try {
                FileWriter fw = new FileWriter("Product.txt",true);
-              fw.write( ProdId +"/"+  ProdName +"/"+ ProdPrice +"/"+  ProdQuan +"\n");
+              fw.write( ProdId +"/"+  ProdName +"/"+FragileCheck +"/"+ ProdPrice +"/"+  ProdQuan +"\n");
                fw.close();
            } catch (IOException ex) {
               Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,7 +74,7 @@ public class Admin extends User {
             if (comparedUserName.equals(sArray[0]))
             {
                 JOptionPane.showMessageDialog(null,
-                        "Login Successful", "Error",
+                        "repeated", "Error",
                         JOptionPane.INFORMATION_MESSAGE);
                 repeatIdentifier = true;
                 FileReader.close();
@@ -85,9 +85,10 @@ public class Admin extends User {
                 FileReader.close();
             }
         }
+
     }
         
-    public void addCus(String name,String email,String phoneNum,String mailingAdd,String password, boolean repeatIdentifier){
+    public void addCus(String name,String email,String phoneNum,String mailingAdd,String password){
         repeatChecker("Customer.txt", name);
         if (repeatIdentifier = false){
         try {
