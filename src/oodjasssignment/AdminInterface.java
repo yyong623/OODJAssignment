@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class AdminInterface extends javax.swing.JFrame {
     Admin admin = new Admin();
     User user = new User();
+    String productID,productName,productFrag,productPrice,productQuan;
     /** Creates new form AdminInterface */
     public AdminInterface() {
         initComponents();
@@ -552,11 +553,11 @@ public class AdminInterface extends javax.swing.JFrame {
     private void ViewProdTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewProdTableMouseClicked
         // TODO add your handling code here:
         DefaultTableModel ProdsTable = (DefaultTableModel)ViewProdTable.getModel();
-        String productID = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),0).toString();
-        String productName = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),1).toString();
-        String productFrag = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),2).toString();
-        String productPrice = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),3).toString();
-        String productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
+         productID = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),0).toString();
+         productName = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),1).toString();
+         productFrag = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),2).toString();
+         productPrice = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),3).toString();
+         productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
         addProdID.setText(productID);
         addProdName.setText(productName);
         if(productFrag == "Fragile" ){
