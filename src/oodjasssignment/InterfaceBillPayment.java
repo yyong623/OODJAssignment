@@ -13,12 +13,14 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
 
     User user = new User();
     OrderItem ori;
+    Order order = new Order ();
     
     public InterfaceBillPayment() {
         this.ori = new OrderItem();
         initComponents();
         user.viewOrder(jTableReceipt);
-        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);        
+        ori.calculateFinalTotal(jTextFieldBill);
+        order.FindOrderId("OrderList.txt", "OrderList.txt", jTableReceipt);
     }
 
     /**
@@ -46,7 +48,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jLabelTotalBill.setText("Total :");
 
         jLabelBill1.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
-        jLabelBill1.setText("Order List");
+        jLabelBill1.setText("Order ");
 
         jButton1.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButton1.setText("Pay");
@@ -97,10 +99,6 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -122,6 +120,10 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(245, 245, 245)
+                .addComponent(jLabelBill1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +166,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         user.deleteOrder(jTableReceipt, "Order.txt");
-        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);       
+        ori.calculateFinalTotal(jTextFieldBill);    
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**

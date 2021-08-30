@@ -18,8 +18,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     //Constructor
     public CustomerInterface() {
         initComponents();
-        order.randomId(jTextFieldInvoice);
-        //user.viewProfile();
+        order.randomId(jTextFieldInvoice);        
     }
 
     /**
@@ -71,6 +70,8 @@ public class CustomerInterface extends javax.swing.JFrame {
         jLabelName = new javax.swing.JLabel();
         jLabelPriceProduct = new javax.swing.JLabel();
         jButtonView = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Search = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         LabelSearch = new javax.swing.JLabel();
@@ -237,8 +238,8 @@ public class CustomerInterface extends javax.swing.JFrame {
 
         Order.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
-        jLabel1.setText("Shopping Cart");
+        jLabel1.setFont(new java.awt.Font("Tekton Pro Cond", 0, 36)); // NOI18N
+        jLabel1.setText("Order List");
 
         ShowAllOrderButton.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         ShowAllOrderButton.setText("Enter");
@@ -321,15 +322,23 @@ public class CustomerInterface extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("* Click view to see total order you have");
+
+        jLabel3.setText("* Please Enter to add to cart");
+
         javax.swing.GroupLayout OrderLayout = new javax.swing.GroupLayout(Order);
         Order.setLayout(OrderLayout);
         OrderLayout.setHorizontalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(OrderLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(239, 239, 239))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(OrderLayout.createSequentialGroup()
                         .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(OrderLayout.createSequentialGroup()
                                 .addGap(184, 184, 184)
@@ -363,18 +372,18 @@ public class CustomerInterface extends javax.swing.JFrame {
                             .addComponent(jLabelName, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ShowAllOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(jButtonView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ShowAllOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))))
                 .addContainerGap())
-            .addGroup(OrderLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         OrderLayout.setVerticalGroup(
             OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrderLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(15, 15, 15)
+                .addGap(4, 4, 4)
                 .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(OrderLayout.createSequentialGroup()
                         .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -402,15 +411,20 @@ public class CustomerInterface extends javax.swing.JFrame {
                             .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextFieldUnitsProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelPriceProduct)
+                            .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelPriceProduct)
+                                .addComponent(jLabel3))
                             .addComponent(jLabelQPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(OrderLayout.createSequentialGroup()
                         .addComponent(jButtonView)
-                        .addGap(63, 63, 63)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addComponent(ShowAllOrderButton)
-                        .addGap(1, 1, 1)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGap(26, 26, 26)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -593,37 +607,10 @@ public class CustomerInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
-        order.addOrder(ShoppingjTable, jLabelProductId.getText(), jLabelName.getText(), jLabeltype.getText(), jLabelPriceProduct.getText(),jTextFieldUnitsProduct.getText(), QuantityAmountLabel);
-    }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
-
     private void LabelLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LabelLogOutMouseClicked
         //Exit if LogOut button is triggered
         this.dispose();     
     }//GEN-LAST:event_LabelLogOutMouseClicked
-
-    private void AddToOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToOrderActionPerformed
-        //Add Order of the selected row in search
-        //Select row to add order to order page        
-        
-        int row = jTableSearchViewProduct.getSelectedRow();
-        
-        jLabelProductId.setText((jTableSearchViewProduct.getModel().getValueAt(row, 0)).toString());
-        jLabelName.setText((jTableSearchViewProduct.getModel().getValueAt(row, 1)).toString());
-        jLabeltype.setText((jTableSearchViewProduct.getModel().getValueAt(row, 2)).toString());
-        jLabelPriceProduct.setText((jTableSearchViewProduct.getModel().getValueAt(row, 3)).toString());
-        QuantityAmountLabel.setText((jTableSearchViewProduct.getModel().getValueAt(row, 4)).toString());
-       
-    }//GEN-LAST:event_AddToOrderActionPerformed
-
-    private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
-        DefaultTableModel model = (DefaultTableModel)jTableSearchViewProduct.getModel();
-        //Clear data in JTable
-        model.getDataVector().removeAllElements();
-        model.fireTableDataChanged();
-        
-        user.searchProduct(jTableSearchViewProduct, TextFiledSearch.getText());
-    }//GEN-LAST:event_ButtonSearchActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel)jTableSearchViewProduct.getModel();
@@ -632,23 +619,39 @@ public class CustomerInterface extends javax.swing.JFrame {
         model.fireTableDataChanged();
     }//GEN-LAST:event_ClearButtonActionPerformed
 
-    private void EditNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditNameMouseClicked
-        interUpdate.setVisible(true);
-        interUpdate.pack();
-        interUpdate.setLocationRelativeTo(null);
-    }//GEN-LAST:event_EditNameMouseClicked
+    private void AddToOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToOrderActionPerformed
+        //Add Order of the selected row in search
+        //Select row to add order to order page
 
-    private void EditPhoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditPhoneNumMouseClicked
-        interUpdate.setVisible(true);
-        interUpdate.pack();
-        interUpdate.setLocationRelativeTo(null);                                     
-    }//GEN-LAST:event_EditPhoneNumMouseClicked
+        int row = this.jTableSearchViewProduct.getSelectedRow();
 
-    private void EditEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditEmailMouseClicked
-        interUpdate.setVisible(true);
-        interUpdate.pack();
-        interUpdate.setLocationRelativeTo(null);
-    }//GEN-LAST:event_EditEmailMouseClicked
+        this.jLabelProductId.setText((jTableSearchViewProduct.getModel().getValueAt(row, 0)).toString());
+        this.jLabelName.setText((jTableSearchViewProduct.getModel().getValueAt(row, 1)).toString());
+        this.jLabeltype.setText((jTableSearchViewProduct.getModel().getValueAt(row, 2)).toString());
+        this.jLabelPriceProduct.setText((jTableSearchViewProduct.getModel().getValueAt(row, 3)).toString());
+        this.QuantityAmountLabel.setText((jTableSearchViewProduct.getModel().getValueAt(row, 4)).toString());
+
+    }//GEN-LAST:event_AddToOrderActionPerformed
+
+    private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
+        DefaultTableModel model = (DefaultTableModel)jTableSearchViewProduct.getModel();
+        //Clear data in JTable
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+
+        user.searchProduct(jTableSearchViewProduct, TextFiledSearch.getText());
+    }//GEN-LAST:event_ButtonSearchActionPerformed
+
+    private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
+        InterfaceShoppingCart shoppingC = new InterfaceShoppingCart();
+        shoppingC.setVisible(true);
+        shoppingC.pack();
+        shoppingC.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButtonViewActionPerformed
+
+    private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
+        order.addOrder(ShoppingjTable, jTextFieldInvoice.getText(), jLabelProductId.getText(), jLabelName.getText(), jLabeltype.getText(), jLabelPriceProduct.getText(),jTextFieldUnitsProduct.getText(), QuantityAmountLabel);
+    }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void EditMailingAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditMailingAddMouseClicked
         interUpdate.setVisible(true);
@@ -656,12 +659,23 @@ public class CustomerInterface extends javax.swing.JFrame {
         interUpdate.setLocationRelativeTo(null);
     }//GEN-LAST:event_EditMailingAddMouseClicked
 
-    private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
-        InterfaceBillPayment bill = new InterfaceBillPayment();
-        bill.setVisible(true);
-        bill.pack();
-        bill.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButtonViewActionPerformed
+    private void EditPhoneNumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditPhoneNumMouseClicked
+        interUpdate.setVisible(true);
+        interUpdate.pack();
+        interUpdate.setLocationRelativeTo(null);
+    }//GEN-LAST:event_EditPhoneNumMouseClicked
+
+    private void EditNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditNameMouseClicked
+        interUpdate.setVisible(true);
+        interUpdate.pack();
+        interUpdate.setLocationRelativeTo(null);
+    }//GEN-LAST:event_EditNameMouseClicked
+
+    private void EditEmailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditEmailMouseClicked
+        interUpdate.setVisible(true);
+        interUpdate.pack();
+        interUpdate.setLocationRelativeTo(null);
+    }//GEN-LAST:event_EditEmailMouseClicked
 
     /**
      * @param args the command line arguments
@@ -729,6 +743,8 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JTextField TextFiledSearch;
     private javax.swing.JButton jButtonView;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPriceProduct;

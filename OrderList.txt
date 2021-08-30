@@ -1,0 +1,4 @@
+354/67/Chair/Fragile/45.00/4/180.0/
+123/78/Zombie/NonFragile/23.00/10/230.0/
+248/06/Basket/Fragile/67.98/4/271.92/
+248/78/Zombie/NonFragile/23.00/10/230.0/
