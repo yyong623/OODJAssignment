@@ -18,7 +18,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     public InterfaceBillPayment() {
         this.ori = new OrderItem();
         initComponents();
-        user.viewOrder(jTableReceipt);
+        //user.viewOrder(jTableReceipt);
         ori.calculateFinalTotal(jTextFieldBill);
         order.FindOrderId("OrderList.txt", "OrderList.txt", jTableReceipt);
     }

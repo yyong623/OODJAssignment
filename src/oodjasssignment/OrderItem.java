@@ -46,6 +46,12 @@ public class OrderItem extends Order{
                 String[] price = lines.split("/");
                 double amount = Double.parseDouble(price[6]);
                 total = total + amount;
+                if (price[3].equals("Fragile")){
+                    total = total + 5.00;
+                }else if (price[3].equals("NonFragile")){
+                    total = total;
+                }
+                
             }
             textField.setText(String.valueOf(String.format("%.2f", total)));
             
