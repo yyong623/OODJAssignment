@@ -11,11 +11,12 @@ package oodjasssignment;
  */
 public class InterfaceShoppingCart extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfaceShoppingCart
-     */
+    Order order = new Order();
+    CustomerInterface customer = new CustomerInterface();
+    
     public InterfaceShoppingCart() {
         initComponents();
+        order.compareCusId("Order.txt", customer.TextFieldProfileName.getText(), jTable1);
     }
 
     /**
@@ -37,17 +38,17 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "OrderId", "Total Price", "Status"
+                "OrderId", "Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -59,7 +60,6 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jButtonCheck.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N

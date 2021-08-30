@@ -13,12 +13,14 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
 
     User user = new User();
     OrderItem ori;
+    Order order = new Order ();
     
     public InterfaceBillPayment() {
         this.ori = new OrderItem();
         initComponents();
         user.viewOrder(jTableReceipt);
-        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);        
+        ori.calculateFinalTotal(jTextFieldBill);
+        order.FindOrderId("OrderList.txt", "OrderList.txt", jTableReceipt);
     }
 
     /**
@@ -164,7 +166,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         user.deleteOrder(jTableReceipt, "Order.txt");
-        ori.calculateTotalPayment(jTableReceipt, jTextFieldBill);       
+        ori.calculateFinalTotal(jTextFieldBill);    
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**

@@ -114,7 +114,7 @@ public class User {
         //Open File       
         
         int count = 0;
-        try(BufferedReader bfr = new BufferedReader(new FileReader("Order.txt"))){
+        try(BufferedReader bfr = new BufferedReader(new FileReader("OrderList.txt"))){
             
             
             DefaultTableModel model = (DefaultTableModel)table.getModel();

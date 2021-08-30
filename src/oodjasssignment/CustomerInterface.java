@@ -334,12 +334,10 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(239, 239, 239))
-            .addGroup(OrderLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(OrderLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1))
+                .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(OrderLayout.createSequentialGroup()
                         .addGroup(OrderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(OrderLayout.createSequentialGroup()
@@ -424,9 +422,9 @@ public class CustomerInterface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(ShowAllOrderButton)
                         .addGap(26, 26, 26)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -738,10 +736,10 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JTable ShoppingjTable;
     private javax.swing.JButton ShowAllOrderButton;
     private javax.swing.JTabbedPane Tab;
-    private javax.swing.JTextField TextFieldProfileAddress;
-    private javax.swing.JTextField TextFieldProfileEmail;
-    private javax.swing.JTextField TextFieldProfileName;
-    private javax.swing.JTextField TextFieldProfilePhoneNum;
+    public javax.swing.JTextField TextFieldProfileAddress;
+    public javax.swing.JTextField TextFieldProfileEmail;
+    public javax.swing.JTextField TextFieldProfileName;
+    public javax.swing.JTextField TextFieldProfilePhoneNum;
     private javax.swing.JTextField TextFiledSearch;
     private javax.swing.JButton jButtonView;
     private javax.swing.JLabel jLabel1;
