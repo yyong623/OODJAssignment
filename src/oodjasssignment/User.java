@@ -8,16 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 public class User {
    
@@ -183,29 +178,7 @@ public class User {
         }
 }
     
-    //View Profile
-    public void viewProfile(JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
-        
-        BufferedReader br ;        
-        
-        try{
-            String lines;
-            br = new BufferedReader(new FileReader("TestingCustomer.txt"));
-            
-            //int count = 0;
-            while((lines = br.readLine()) != null){
-                String[] array = lines.split("/"); 
-                
-                    name.setText(array[0]);
-                    phoneNum.setText(array[4]);
-                    email.setText(array[2]);
-                    mailingAdd.setText(array[3]);
-                
-            }    
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }
+    
     
     public void edit(String fileName, String OldText,String newText){
         
@@ -255,40 +228,71 @@ public class User {
         }
     }
     
-
-public static void loginFunc(String userFile, String username, String Password){
-    File loginScan = new File(userFile);
-    try {
-        Scanner read = new Scanner(loginScan);
-        boolean loginIdentifier = false;
-        while (read.hasNextLine())
-            {
-              String s = read.nextLine();  
-              String[] sArray = s.split("/");
-              
-              if (username == sArray[0] && Password == sArray[1])
-              {
-                JOptionPane.showMessageDialog(null,
-                    "Login Successful", "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
-                    loginIdentifier = true;
-                    
-              }
-              else
-              {
-                JOptionPane.showMessageDialog(null,
-                    "Invalid Username / Password", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-              }
+//View Profile
+    public void viewProfile(String fileName, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
+        
+        BufferedReader br ;        
+        
+        try{
+            String lines;
+            br = new BufferedReader(new FileReader(fileName));
+            
+            //int count = 0;
+            while((lines = br.readLine()) != null){
+                String[] array = lines.split("/"); 
+                
+                    name.setText(array[0]);
+                    phoneNum.setText(array[4]);
+                    email.setText(array[2]);
+                    mailingAdd.setText(array[3]);
+                
             }
-    }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,
-                    "File Not Found", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-                }
-        
-        
+            br.close();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }
+    
+    public static void loginFunc(String userFile, String username, String Password,JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
+        File loginScan = new File(userFile);
+        try {
+            Scanner read = new Scanner(loginScan);
+            boolean loginIdentifier = false;
+            while (read.hasNextLine())
+                {
+                  String s = read.nextLine();  
+                  String[] sArray = s.split("/");
+
+                  if (Password.equals(sArray[1]) && username.equals(sArray[0]))
+                  {
+                    JOptionPane.showMessageDialog(null,
+                        "Login Successful", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                    //Set Text of the details of the login user on Customer Interface
+                    name.setText(sArray[0]);
+                    phoneNum.setText(sArray[4]);
+                    email.setText(sArray[2]);
+                    mailingAdd.setText(sArray[3]);
+                    
+                    loginIdentifier = true;
+
+                  }
+                  else
+                  {
+                    JOptionPane.showMessageDialog(null,
+                        "Invalid Username / Password", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                  }
+                }
+        }catch(FileNotFoundException e){
+                    JOptionPane.showMessageDialog(null,
+                        "File Not Found", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                    }
+
+
+        }
 
 }
     

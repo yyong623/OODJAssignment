@@ -201,10 +201,10 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        TextFieldProfilePhoneNum.getAccessibleContext().setAccessibleName("PhoneBox");
-        TextFieldProfileName.getAccessibleContext().setAccessibleName("NameBox");
-        TextFieldProfileEmail.getAccessibleContext().setAccessibleName("EmailBox");
-        TextFieldProfileAddress.getAccessibleContext().setAccessibleName("AddressBox");
+        TextFieldProfilePhoneNum.getAccessibleContext().setAccessibleName("");
+        TextFieldProfileName.getAccessibleContext().setAccessibleName("");
+        TextFieldProfileEmail.getAccessibleContext().setAccessibleName("");
+        TextFieldProfileAddress.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout ProfileLayout = new javax.swing.GroupLayout(Profile);
         Profile.setLayout(ProfileLayout);
@@ -409,7 +409,6 @@ public class CustomerInterface extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addComponent(ShowAllOrderButton)
                         .addGap(1, 1, 1)))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -723,10 +722,10 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JTable ShoppingjTable;
     private javax.swing.JButton ShowAllOrderButton;
     private javax.swing.JTabbedPane Tab;
-    private javax.swing.JTextField TextFieldProfileAddress;
-    private javax.swing.JTextField TextFieldProfileEmail;
-    private javax.swing.JTextField TextFieldProfileName;
-    private javax.swing.JTextField TextFieldProfilePhoneNum;
+    public javax.swing.JTextField TextFieldProfileAddress;
+    public javax.swing.JTextField TextFieldProfileEmail;
+    public javax.swing.JTextField TextFieldProfileName;
+    public javax.swing.JTextField TextFieldProfilePhoneNum;
     private javax.swing.JTextField TextFiledSearch;
     private javax.swing.JButton jButtonView;
     private javax.swing.JLabel jLabel1;

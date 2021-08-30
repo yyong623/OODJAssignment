@@ -13,9 +13,11 @@ package oodjasssignment;
  */
 public class Login extends javax.swing.JPanel {
     String usr;
+    String name,phonNum,mailingAdd,email;
     /**
      * Creates new form Login
      */
+    CustomerInterface CustomerInterface;
     public Login() {
         initComponents();
     }
@@ -111,14 +113,17 @@ public class Login extends javax.swing.JPanel {
 
     private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
         // TODO add your handling code here:
+        CustomerInterface = new CustomerInterface();
         usr = this.UserIdTextField.getText();
+        
         String pwd = new String(this.PasswordField.getPassword());
-        User.loginFunc("Customer.txt", usr, pwd);
+        User.loginFunc("Customer.txt", usr, pwd,CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
         if (User.loginIdentifier = true){
             UserIdTextField.setText("");
             PasswordField.setText("");
             
-            CustomerInterface CustomerInterface = new CustomerInterface();
+            //CustomerInterface CustomerInterface = new CustomerInterface();
+            
             CustomerInterface.setVisible(true);
             
         }
