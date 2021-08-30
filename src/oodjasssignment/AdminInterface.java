@@ -540,7 +540,7 @@ public class AdminInterface extends javax.swing.JFrame {
         if (Fragile){
             FragileChecks = "Fragile";
         }else{
-            FragileChecks = "Not Fragile";
+            FragileChecks = "NonFragile";
         }
         String ProdPrice = this.addProdPrice.getText();
         String ProdQuan = this.addProdQuan.getText();
@@ -550,7 +550,7 @@ public class AdminInterface extends javax.swing.JFrame {
                         "Some Fields Are Empty", "Error",
                         JOptionPane.INFORMATION_MESSAGE);
         }else{
-        admin.addProd(ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
+        admin.addProd(ProdId,ProdName,FragileChecks,ProdPrice,ProdQuan);
         
         addProdID.setText("");
         addProdName.setText("");
@@ -631,10 +631,16 @@ public class AdminInterface extends javax.swing.JFrame {
          productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
         addProdID.setText(productID);
         addProdName.setText(productName);
-        if(productFrag == "NonFragile" ){
-            FragileCheck.setSelected(false);
-        } else {
-            FragileCheck.setSelected(true);
+        switch(productFrag){
+            case "Fragile":
+                FragileCheck.setSelected(true);
+                break;
+            case "NonFragile":
+                FragileCheck.setSelected(false);
+                break;
+            default:
+                FragileCheck.setSelected(false);
+                break;
         }
         addProdPrice.setText(productPrice);
         addProdQuan.setText(productQuan);
