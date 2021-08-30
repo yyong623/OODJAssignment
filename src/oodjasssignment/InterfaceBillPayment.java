@@ -20,7 +20,7 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
         initComponents();
         //user.viewOrder(jTableReceipt);
         ori.calculateFinalTotal(jTextFieldBill);
-        order.FindOrderId("OrderList.txt", "OrderList.txt", jTableReceipt);
+        order.FindOrderId("OrderList.txt", "Order.txt", jTableReceipt);
     }
 
     /**

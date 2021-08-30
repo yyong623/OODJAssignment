@@ -16,7 +16,7 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
     
     public InterfaceShoppingCart() {
         initComponents();
-        order.compareCusId("Order.txt", customer.TextFieldProfileName.getText(), jTable1);
+        //order.compareCusId("Order.txt", customer.TextFieldProfileName.getText(), jTableShoppingCart);
     }
 
     /**
@@ -29,37 +29,34 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableShoppingCart = new javax.swing.JTable();
         jButtonCheck = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
         jLabelShoppingList = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableShoppingCart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "OrderId", "Total Price", "Shipping Fee"
+                "OrderId", "Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTableShoppingCart.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableShoppingCart);
+        if (jTableShoppingCart.getColumnModel().getColumnCount() > 0) {
+            jTableShoppingCart.getColumnModel().getColumn(0).setResizable(false);
+            jTableShoppingCart.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jButtonCheck.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
@@ -119,6 +116,8 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         // TODO add your handling code here:
+        
+        //Get Selected row and view to bill interface
         InterfaceBillPayment bill = new InterfaceBillPayment();
         bill.setVisible(true);
         bill.pack();
@@ -169,6 +168,6 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCheck;
     private javax.swing.JLabel jLabelShoppingList;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableShoppingCart;
     // End of variables declaration//GEN-END:variables
 }

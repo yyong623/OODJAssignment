@@ -102,7 +102,7 @@ public class Order {
 
                     model.addRow(row); 
 
-                    FileWriter fw = new FileWriter("Order.txt", true);
+                    FileWriter fw = new FileWriter("OrderList.txt", true);
                     //Write to txt file (Order that has been selected)
                     fw.write(row[6] + "/" + row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + "/" + "\n");
                     //fw.write(Arrays.toString(row));
@@ -143,28 +143,44 @@ public class Order {
     }
     
     //Get Customer Id and compare to txt file
-    public void compareCusId(String fileName, String cusId, JTable tableBill){
+    public void compareCusId(String fileName, String cusName, JTable tableBill){
         Scanner sc;          
         try {
-            sc = new Scanner(new FileReader(fileName));
+            DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
+//            
+            Object[] list = new Object[3];
+//            Object[] columns = {"Order ID","Total"};
+            model.setColumnIdentifiers(list);
+            tableBill.setModel(model);
             
+            sc = new Scanner(new FileReader(fileName));
+//            int flag = 0;
             while(sc.hasNextLine()){
                 String line1 = sc.nextLine();
                 String[] Array = line1.split("/");
-                
+              
                 //Compare
-                if(Array[0].equals(cusId)){
-                    //if equal print that line 
-                    areEqual = true;
-                }else{
-                    areEqual = false;
-                }               
-            }
-            
-            if(areEqual == true){
-                ViewOrder(fileName,tableBill);
-            }else{
-                JOptionPane.showMessageDialog(null, "No Record");
+                if(cusName.equals(Array[0])){
+//                    flag = 1;
+                                        
+                    InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
+                    shoppingCart.setVisible(true);
+                    
+                    list[0] = Array[1];
+                    list[1] = Array[2];
+                    
+                    model.addRow(list);
+//                    
+//                    for (int i = 0 ; i < tableBill.getRowCount(); i ++ ){
+//                        for(int j = 0 ; j < tableBill.getColumnCount(); j ++){
+//                            String[] line = tableBill.getValueAt(i, j).toString().split("/");
+//                            model.addRow(list);
+//                        }
+//                    }
+                    
+                    JOptionPane.showMessageDialog(null, "HI");
+//                    break;
+                }else{System.out.println("HI");}
             }
         }catch(IOException e){
             System.out.println(e);
@@ -177,25 +193,26 @@ public class Order {
         DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
 
         int rowCount = model.getRowCount();
-
-        Object[][] list = new Object[rowCount][];
-
-        model.setColumnIdentifiers(list);
+        
+        Object[] columns = {"Order ID","Total"};
+        model.setColumnIdentifiers(columns);
         tableBill.setModel(model);
 
         try{
+            Object[] list = new Object[3];
+            
             Scanner sRead = new Scanner (new File (fileName));
 
             while(sRead.hasNextLine()){
                 String line = sRead.nextLine();
                 String[] array = line.split("/");
+                
+                list[0] = array[1];
+                list[1] = array[2];
+                    
 
-                for( int i = 0 ; i < rowCount ; i++){
-                    list[i][0] = array[1];
-                    list[i][1] = array[2];
-
-                    model.addRow(list);
-                }
+                model.addRow(list);
+                    
             }
         }catch(FileNotFoundException e){
             System.out.println(e);

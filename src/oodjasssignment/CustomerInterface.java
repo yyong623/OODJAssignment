@@ -643,10 +643,8 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSearchActionPerformed
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
-        InterfaceShoppingCart shoppingC = new InterfaceShoppingCart();
-        shoppingC.setVisible(true);
-        shoppingC.pack();
-        shoppingC.setLocationRelativeTo(null);
+        InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
+        order.compareCusId("Order.txt", TextFieldProfileName.getText(), shoppingCart.jTableShoppingCart);
     }//GEN-LAST:event_jButtonViewActionPerformed
 
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed

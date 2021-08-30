@@ -2,3 +2,4 @@
 123/78/Zombie/NonFragile/23.00/10/230.0/
 248/06/Basket/Fragile/67.98/4/271.92/
 248/78/Zombie/NonFragile/23.00/10/230.0/
+694/00/Book/NonFragile/49.99/2/99.98/
