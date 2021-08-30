@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package oodjasssignment;
-
 /**
  *
  * @author ASUS
@@ -16,7 +15,7 @@ public class OODJAsssignment {
      */
     public static void main(String[] args) {
         // Show login form
-        Login login = new Login();
+        LoginInterface login = new LoginInterface();
         login.setVisible(true);
     }
     

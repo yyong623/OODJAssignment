@@ -5,13 +5,11 @@
  */
 package oodjasssignment;
 
-
-
 /**
  *
- * @author User
+ * @author ASUS
  */
-public class Login extends javax.swing.JPanel {
+public class LoginInterface extends javax.swing.JFrame {
     String usr;
     String name,phonNum,mailingAdd,email;
     /**
@@ -19,7 +17,10 @@ public class Login extends javax.swing.JPanel {
      */
     CustomerInterface CustomerInterface;
     AdminInterface AdminInterface;
-    public Login() {
+    /**
+     * Creates new form LoginInterface
+     */
+    public LoginInterface() {
         initComponents();
     }
 
@@ -39,6 +40,8 @@ public class Login extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         PasswordField = new javax.swing.JPasswordField();
         AdminLoginBtn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         LoginBtn.setText("Login");
         LoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,12 +66,12 @@ public class Login extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(AdminLoginBtn)
@@ -82,15 +85,15 @@ public class Login extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGap(45, 45, 45)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(UserIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                .addComponent(PasswordField)))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                                .addComponent(UserIdTextField)
+                                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -106,27 +109,24 @@ public class Login extends javax.swing.JPanel {
                 .addGap(49, 49, 49))
         );
 
-        LoginBtn.getAccessibleContext().setAccessibleName("loginBtn");
-        UserIdTextField.getAccessibleContext().setAccessibleName("IDtextbox");
-        jLabel1.getAccessibleContext().setAccessibleName("UserIDLbl");
-        jLabel2.getAccessibleContext().setAccessibleName("passwordLbl");
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginBtnMouseClicked
         // TODO add your handling code here:
         CustomerInterface = new CustomerInterface();
         usr = this.UserIdTextField.getText();
-        
+
         String pwd = new String(this.PasswordField.getPassword());
         User.loginFunc("Customer.txt", usr, pwd,CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
         if (User.loginIdentifier = true){
             UserIdTextField.setText("");
             PasswordField.setText("");
-            
+
             //CustomerInterface CustomerInterface = new CustomerInterface();
-            
+
             CustomerInterface.setVisible(true);
-            
+
         }
         else{
             UserIdTextField.setText("");
@@ -147,10 +147,44 @@ public class Login extends javax.swing.JPanel {
         }else{
             UserIdTextField.setText("");
             PasswordField.setText("");
-        
+
         }
     }//GEN-LAST:event_AdminLoginBtnMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginInterface().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminLoginBtn;
