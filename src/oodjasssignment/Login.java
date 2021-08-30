@@ -138,7 +138,7 @@ public class Login extends javax.swing.JPanel {
         // TODO add your handling code here:
         usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
-        User.loginFunc("Customer.txt", usr, pwd, CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
+        User.loginFunc("Admin.txt", usr, pwd, CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
         if (User.loginIdentifier = true){
             UserIdTextField.setText("");
             PasswordField.setText("");
