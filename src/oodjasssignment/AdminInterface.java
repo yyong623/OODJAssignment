@@ -38,7 +38,16 @@ public class AdminInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Profile = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        AdminName = new javax.swing.JTextField();
+        AdminEmail = new javax.swing.JTextField();
+        AdminPhone = new javax.swing.JTextField();
+        AdminAddress = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ViewProdTable = new javax.swing.JTable();
@@ -80,8 +89,59 @@ public class AdminInterface extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setToolTipText("");
-        jTabbedPane1.setName(""); // NOI18N
+        Profile.setToolTipText("");
+        Profile.setName(""); // NOI18N
+
+        jLabel11.setText("Name");
+
+        jLabel12.setText("Phone Number");
+
+        jLabel13.setText("Email");
+
+        jLabel14.setText("Address");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel13))
+                .addGap(129, 129, 129)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AdminAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AdminPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(AdminPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(62, 62, 62)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(AdminAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
+        Profile.addTab("Profile", jPanel3);
 
         ViewProdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,6 +218,11 @@ public class AdminInterface extends javax.swing.JFrame {
         });
 
         UpdateProdBtn.setText("Update");
+        UpdateProdBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateProdBtnMouseClicked(evt);
+            }
+        });
         UpdateProdBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateProdBtnActionPerformed(evt);
@@ -237,12 +302,12 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FragileCheck)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(DelProdBtn)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("products", jPanel1);
+        Profile.addTab("products", jPanel1);
 
         ViewCusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,7 +419,8 @@ public class AdminInterface extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +442,7 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(AddCusPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(76, Short.MAX_VALUE))
+                        .addContainerGap(53, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,7 +453,7 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addComponent(DelProdBtn1))))
         );
 
-        jTabbedPane1.addTab("customers", jPanel2);
+        Profile.addTab("customers", jPanel2);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -416,10 +482,10 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("orders", panel1);
+        Profile.addTab("orders", panel1);
 
         label1.setAlignment(java.awt.Label.CENTER);
         label1.setForeground(new java.awt.Color(102, 204, 255));
@@ -433,7 +499,7 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -441,8 +507,8 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -609,6 +675,22 @@ public class AdminInterface extends javax.swing.JFrame {
         admin.viewTable(ViewCusTable,"Customer.txt");
     }//GEN-LAST:event_DelProdBtn1MouseClicked
 
+    private void UpdateProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateProdBtnMouseClicked
+        // TODO add your handling code here:
+        String ProdId = this.addProdID.getText();
+        String ProdName = this.addProdName.getText();
+        boolean Fragile = this.FragileCheck.isSelected();
+        String FragileChecks;
+        if (Fragile){
+            FragileChecks = "Fragile";
+        }else{
+            FragileChecks = "Not Fragile";
+        }
+        String ProdPrice = this.addProdPrice.getText();
+        String ProdQuan = this.addProdQuan.getText();
+        admin.editItems("Product.txt", productID,productName,productFrag,productPrice,productQuan, ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
+    }//GEN-LAST:event_UpdateProdBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -652,11 +734,16 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JTextField AddCusPhone;
     private javax.swing.JButton AddProdBtn;
     private javax.swing.JScrollPane AdmCusOrderTable;
+    public javax.swing.JTextField AdminAddress;
+    public javax.swing.JTextField AdminEmail;
+    public javax.swing.JTextField AdminName;
+    public javax.swing.JTextField AdminPhone;
     private javax.swing.JButton CancelProdBtn;
     private javax.swing.JButton CancelProdBtn1;
     private javax.swing.JButton DelProdBtn;
     private javax.swing.JButton DelProdBtn1;
     private javax.swing.JCheckBox FragileCheck;
+    private javax.swing.JTabbedPane Profile;
     private javax.swing.JButton UpdateCusBtn;
     private javax.swing.JButton UpdateProdBtn;
     private javax.swing.JTable ViewCusTable;
@@ -668,6 +755,10 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JTextField addProdQuan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -678,9 +769,9 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
     private java.awt.Label label1;
     private java.awt.Panel panel1;

@@ -106,8 +106,8 @@ public class Admin extends User {
     }
     private static Scanner x;
     
-    public void editProds(String filePath, String OldProdId, String OldProdName,String OldFragileCheck, String OldProdPrice, String OldProdQuan,
-            String newProdId, String newProdName,String newFragileCheck, String newProdPrice, String newProdQuan){
+    public void editItems(String filePath, String OldEntry1, String OldEntry2,String OldEntry3, String OldEntry4, String OldEntry5,
+            String newEntry1, String newEntry2,String newEntry3, String newEntry4, String newEntry5){
     String TempFile = "temp.txt";
     File oldFile = new File(filePath);
     File newFile = new File(TempFile);
@@ -124,11 +124,11 @@ public class Admin extends User {
         Fragile = x.next();
         Price = x.next();
         ProdQuan = x.next();
-        if (ID.equals(OldProdId)){
-            pw.println( newProdId +"/"+  newProdName +"/"+newFragileCheck +"/"+ newProdPrice +"/"+  newProdQuan +"\n");
+        if (ID.equals(OldEntry1)){
+            pw.println( newEntry1 +"/"+  newEntry2 +"/"+newEntry3 +"/"+ newEntry4 +"/"+  newEntry5 );
         }
         else{
-            pw.println(OldProdId +"/"+  OldProdName +"/"+OldFragileCheck +"/"+ OldProdPrice +"/"+  OldProdQuan +"\n");
+            pw.println(OldEntry1 +"/"+  OldEntry2 +"/"+OldEntry3 +"/"+ OldEntry4 +"/"+  OldEntry5 );
         }
         }
         x.close();
