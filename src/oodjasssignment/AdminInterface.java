@@ -22,7 +22,9 @@ public class AdminInterface extends javax.swing.JFrame {
     /** Creates new form AdminInterface */
     public AdminInterface() {
         initComponents();
-        
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+
         admin.viewTable(ViewCusTable,"Customer.txt");
         admin.viewTable(ViewProdTable,"Product.txt");
         
@@ -548,14 +550,15 @@ public class AdminInterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
         }else{
         admin.addProd(ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
-        JOptionPane.showMessageDialog(null,
-                        "Record Added Successfully", "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+        
         addProdID.setText("");
         addProdName.setText("");
         FragileCheck.setSelected(false);
         addProdPrice.setText("");
         addProdQuan.setText("");
+        
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+
         admin.viewTable(ViewProdTable,"Product.txt");
         }
         
@@ -583,6 +586,9 @@ public class AdminInterface extends javax.swing.JFrame {
         AddCusEmail.setText("");
         addCusAddress.setText("");
         AddCusPhone.setText("");
+        ViewCusTable.removeAll();
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
+
         admin.viewTable(ViewCusTable,"Customer.txt");
         
         }
@@ -600,9 +606,8 @@ public class AdminInterface extends javax.swing.JFrame {
     private void addProdPriceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addProdPriceKeyTyped
         // TODO add your handling code here:
         char c =evt.getKeyChar();
-        if(!Character.isDigit(c)){
+        if(Character.isAlphabetic(c)){
             evt.consume();
-            
         }
     }//GEN-LAST:event_addProdPriceKeyTyped
 
@@ -625,10 +630,10 @@ public class AdminInterface extends javax.swing.JFrame {
          productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
         addProdID.setText(productID);
         addProdName.setText(productName);
-        if(productFrag == "Fragile" ){
-            FragileCheck.setSelected(true);
-        } else {
+        if(productFrag == "NonFragile" ){
             FragileCheck.setSelected(false);
+        } else {
+            FragileCheck.setSelected(true);
         }
         addProdPrice.setText(productPrice);
         addProdQuan.setText(productQuan);
@@ -638,6 +643,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void ViewCusTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewCusTableMouseClicked
         // TODO add your handling code here:
+        try {
         DefaultTableModel CusTable = (DefaultTableModel)ViewCusTable.getModel();
         String CustomerID = CusTable.getValueAt(ViewCusTable.getSelectedRow(),0).toString();
         String CustomerPass = CusTable.getValueAt(ViewCusTable.getSelectedRow(),1).toString();
@@ -650,6 +656,12 @@ public class AdminInterface extends javax.swing.JFrame {
         AddCusEmail.setText(CustomerEmail);
         addCusAddress.setText(CustomerAddress);
         AddCusPhone.setText(CustomerPhone);
+        }
+        catch(java.lang.NullPointerException n) {
+        JOptionPane.showMessageDialog(null,
+                        "please select a row", "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_ViewCusTableMouseClicked
 
     private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked
@@ -660,6 +672,8 @@ public class AdminInterface extends javax.swing.JFrame {
         FragileCheck.setSelected(false);
         addProdPrice.setText("");
         addProdQuan.setText("");
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+
         admin.viewTable(ViewProdTable,"Product.txt");
     }//GEN-LAST:event_DelProdBtnMouseClicked
 
@@ -671,6 +685,8 @@ public class AdminInterface extends javax.swing.JFrame {
         AddCusEmail.setText("");
         addCusAddress.setText("");
         AddCusPhone.setText("");
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
+
         admin.viewTable(ViewCusTable,"Customer.txt");
     }//GEN-LAST:event_DelProdBtn1MouseClicked
 
@@ -688,6 +704,9 @@ public class AdminInterface extends javax.swing.JFrame {
         String ProdPrice = this.addProdPrice.getText();
         String ProdQuan = this.addProdQuan.getText();
         admin.editItems("Product.txt", productID,productName,productFrag,productPrice,productQuan, ProdId, ProdName,FragileChecks,ProdPrice,ProdQuan);
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+
+        admin.viewTable(ViewProdTable,"Product.txt");
     }//GEN-LAST:event_UpdateProdBtnMouseClicked
 
     /**

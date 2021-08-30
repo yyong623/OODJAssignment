@@ -50,11 +50,14 @@ public class Admin extends User {
     }
     
     public void addProd(String ProdId, String ProdName,String FragileCheck, String ProdPrice, String ProdQuan){
-        repeatChecker("Product.txt", name);
-        if (repeatIdentifier = false){
+        boolean repeatProd = repeatChecker("Product.txt", ProdId);
+        if (repeatProd = false){
             try {
                FileWriter fw = new FileWriter("Product.txt",true);
               fw.write( ProdId +"/"+  ProdName +"/"+FragileCheck +"/"+ ProdPrice +"/"+  ProdQuan +"\n");
+              JOptionPane.showMessageDialog(null,
+                        "Record Added Successfully", "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
                fw.close();
            } catch (IOException ex) {
               Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,9 +69,9 @@ public class Admin extends User {
     
     }
     
-    public void repeatChecker(String FileName, String comparedUserName){
-        Scanner FileReader = new Scanner(FileName);
-        repeatIdentifier = false;   
+    public boolean repeatChecker(String FileName, String comparedUserName){
+        
+        try (Scanner FileReader = new Scanner(new FileReader(FileName))){
         while (FileReader.hasNextLine())
         {
             String s = FileReader.nextLine();
@@ -80,18 +83,26 @@ public class Admin extends User {
                         "repeated", "Error",
                         JOptionPane.INFORMATION_MESSAGE);
                 repeatIdentifier = true;
+                break;
             }
             else
             {
-                FileReader.close();
+                repeatIdentifier = false;
             }
-        }FileReader.close();
+        }
+        FileReader.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+        
+        return repeatIdentifier;
 
     }
         
     public void addCus(String name,String email,String phoneNum,String mailingAdd,String password){
-        repeatChecker("Customer.txt", name);
-        if (repeatIdentifier = false){
+        boolean repeatCus = repeatChecker("Customer.txt", name);
+        if (repeatCus = false){
         try {
             FileWriter fw = new FileWriter("Customer.txt",true);
             fw.write( name +"/"+ password  +"/"+ email +"/"+  mailingAdd +"/"+ phoneNum +"\n");
