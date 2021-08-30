@@ -162,56 +162,35 @@ public class Order {
                 //Compare
                 if(cusName.equals(Array[0])){
 //                    flag = 1;
-                                        
-                    InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
-                    shoppingCart.setVisible(true);
-                    
-                    ViewOrder(fileName,tableBill);
+                            //Print the orderId and total            
+//                    InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
+//                    shoppingCart.setVisible(true); 
 //                    
-//                    for (int i = 0 ; i < tableBill.getRowCount(); i ++ ){
-//                        for(int j = 0 ; j < tableBill.getColumnCount(); j ++){
-//                            String[] line = tableBill.getValueAt(i, j).toString().split("/");
-//                            model.addRow(list);
-//                        }
-//                    }
-                    
-//                    JOptionPane.showMessageDialog(null, "HI");
-//                    break;
-                }else{System.out.println("HI");}
+//                    ViewOrder(fileName,tableBill);
+                                            
+                }
             }
         }catch(IOException e){
             System.out.println(e);
         }               
     }
 
+
     public void ViewOrder(String fileName, JTable tableBill){
         //get all the customer id (compare) and print customer's order Id (All Order)
         
-        DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
-
-        int rowCount = model.getRowCount();
-        
-        Object[] columns = {"Order ID","Total"};
-        model.setColumnIdentifiers(columns);
-        tableBill.setModel(model);
-
-        try{
-            Object[] list = new Object[2];
+        try(BufferedReader bfr = new BufferedReader(new FileReader(fileName))){            
             
-            Scanner sRead = new Scanner (new File (fileName));
-
-            while(sRead.hasNextLine()){
-                String line = sRead.nextLine();
-                String[] array = line.split("/");
-                
-                for ( int i = 0 ; i < rowCount; i++){
-                    list[0] = array[1];
-                    list[1] = array[2];
-                    
-                    model.addRow(list);
-                }       
+            DefaultTableModel model = (DefaultTableModel)tableBill.getModel();
+            //Get line from txt file
+            Object[] tableLine = bfr.lines().toArray();
+                                    
+            for(int i = 0 ; i < tableLine.length; i++){
+                String[] line = tableLine[i].toString().split("/");
+                model.addRow(line);                 
             }
-        }catch(FileNotFoundException e){
+            bfr.close();
+        }catch (IOException e){
             System.out.println(e);
         }
     }
