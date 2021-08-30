@@ -107,6 +107,10 @@ public class User {
 
     public void viewOrder(JTable table){
         
+        //Check the customer Id first
+        //if exist, give the order details to the view page
+        //
+        
         //Open File       
         
         int count = 0;
@@ -161,7 +165,7 @@ public class User {
                 for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
                     for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
 
-                            bw.write(orderListTable.getValueAt(i, j)+ "/");
+                            bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
                     }
                     bw.newLine();
                 }
@@ -176,19 +180,15 @@ public class User {
                 System.out.println(e);
             }
         }
-}
-    
-    
+    }
     
     public void edit(String fileName, String OldText,String newText){
         
         File f1 = new File(fileName);
         
         //Give oldText a null string to keep word
-        String oldWord = "";
-        
-        BufferedReader bfr = null;
-        
+        String oldWord = "";        
+        BufferedReader bfr = null;        
         FileWriter fw = null;
         
         try{
@@ -198,8 +198,7 @@ public class User {
             
             //If name is updated
             while(line != null){
-                oldWord = oldWord + line + System.lineSeparator();
-                
+                oldWord = oldWord + line + System.lineSeparator();                
                 line = bfr.readLine();
             }
             
@@ -244,8 +243,7 @@ public class User {
                     name.setText(array[0]);
                     phoneNum.setText(array[4]);
                     email.setText(array[2]);
-                    mailingAdd.setText(array[3]);
-                
+                    mailingAdd.setText(array[3]);                
             }
             br.close();
         }catch(IOException e){
@@ -253,47 +251,40 @@ public class User {
         }
     }
     
-    public static void loginFunc(String userFile, String username, String Password,JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
+    public static void loginFunc(String userFile, String username, String Password, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
         File loginScan = new File(userFile);
         try {
             Scanner read = new Scanner(loginScan);
             boolean loginIdentifier = false;
-            while (read.hasNextLine())
-                {
-                  String s = read.nextLine();  
-                  String[] sArray = s.split("/");
+            while (read.hasNextLine()){
+                String s = read.nextLine();  
+                String[] sArray = s.split("/");
 
-                  if (Password.equals(sArray[1]) && username.equals(sArray[0]))
-                  {
+                if (Password.equals(sArray[1]) && username.equals(sArray[0])){
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE);
-
-                    //Set Text of the details of the login user on Customer Interface
+                    
                     name.setText(sArray[0]);
                     phoneNum.setText(sArray[4]);
                     email.setText(sArray[2]);
-                    mailingAdd.setText(sArray[3]);
+                    mailingAdd.setText(sArray[3]);      
                     
                     loginIdentifier = true;
 
-                  }
-                  else
-                  {
-                    JOptionPane.showMessageDialog(null,
-                        "Invalid Username / Password", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                  }
                 }
+                else{
+                JOptionPane.showMessageDialog(null,
+                    "Invalid Username / Password", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }catch(FileNotFoundException e){
                     JOptionPane.showMessageDialog(null,
                         "File Not Found", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                    }
-
-
+            }
         }
-
 }
     
 

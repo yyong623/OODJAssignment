@@ -1,5 +1,2 @@
-67/Chair/Fragile/45.00/4/180.0/
-78/Zombie/NonFragile/23.00/10/230.0/
-00/Book/NonFragile/49.99/34/1699.66/
-67/Chair/Fragile/45.00/2/90.00/
-67/Chair/Fragile/45.00/2/90.00/
+here contains 
+cusid/orderId/totalSum

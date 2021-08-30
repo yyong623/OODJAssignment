@@ -51,29 +51,26 @@ public class Order {
     Admin ad = new Admin();
 
     //Method
-    public void addOrder(JTable shoppingTable, String id, String name, String type, String price, String quantity, JLabel quantityPre) {
+    public void addOrder(JTable shoppingTable, String orderId,String id, String name, String type, String price, String quantity, JLabel quantityPre) {
 
         DefaultTableModel model = (DefaultTableModel) shoppingTable.getModel();
 
-        Object[] columns = {"Product ID", "Product Name", "Type", "Price", "Quntity", "Total"};
+        Object[] columns = {"Order ID","Product ID", "Product Name", "Type", "Price", "Quntity", "Total"};
 
         model.setColumnIdentifiers(columns);
         shoppingTable.setModel(model);
 
         try {
-            check("Order.txt", id);
+            check("OrderList.txt", id);
             
             //Get Text to row
-            
+            row[6] = orderId; 
             row[0] = id;
             row[1] = name;
             row[2] = type;
             row[3] = price;
             row[4] = quantity;
-            row[6] = orderId;
-            
-            
-            
+                        
             double prices = Double.parseDouble(price);
             int unit = Integer.parseInt(quantity);
             //Get the value of the exist quantity
@@ -97,14 +94,13 @@ public class Order {
                     quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
 
                     //Update on txt file
-
                     update(String.valueOf(qua), String.valueOf(newQua));
 
                     model.addRow(row); 
 
                     FileWriter fw = new FileWriter("Order.txt", true);
                     //Write to txt file (Order that has been selected)
-                    fw.write(row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + row[6] + "/" + "\n");
+                    fw.write(row[6] + "/" + row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + "/" + "\n");
                     //fw.write(Arrays.toString(row));
                     fw.close();
                 }  
@@ -125,7 +121,7 @@ public class Order {
                 String line = scanFile.nextLine();
                 String[] words = line.split("/");
 
-                if (id.equals(words[0])) {
+                if (id.equals(words[1])) {
                     JOptionPane.showMessageDialog(null, "You have entered this product");
                     identifier = true;                   
                     break;
@@ -140,6 +136,33 @@ public class Order {
             System.out.println(e);
         }
         return identifier;
+    }
+    
+    //Compare two file 
+    public void FindOrderId() throws FileNotFoundException{
+        Scanner sc1 = new Scanner(new FileReader("OrderList.txt"));        
+        Scanner sc2 = new Scanner(new FileReader("Order.txt"));
+        
+        boolean areEqual = true;
+        int num = 1;
+        
+        try{
+            while(sc1.hasNextLine() && sc2.hasNextLine()){
+                String line1 = sc1.nextLine();
+                String line2 = sc2.nextLine();
+                
+                String[] olArray = line1.split("/");
+                String[] oArray = line2.split("/");
+                
+                if(olArray[0].equals(oArray[1])){
+                    areEqual = false;
+                }
+            }
+            
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }
+    
     }
 
     //Generate Order ID
@@ -192,5 +215,5 @@ public class Order {
                 System.out.println(ex);
             }
         }
-    }
+    }   
 }
