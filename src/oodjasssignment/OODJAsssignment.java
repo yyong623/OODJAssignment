@@ -12,10 +12,10 @@ package oodjasssignment;
 public class OODJAsssignment {
 
     /**
-     * @param args the command line arguments
+     * main class
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Show login form
         Login login = new Login();
         login.setVisible(true);
     }
