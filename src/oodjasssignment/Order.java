@@ -166,10 +166,7 @@ public class Order {
                     InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
                     shoppingCart.setVisible(true);
                     
-                    list[0] = Array[1];
-                    list[1] = Array[2];
-                    
-                    model.addRow(list);
+                    ViewOrder(fileName,tableBill);
 //                    
 //                    for (int i = 0 ; i < tableBill.getRowCount(); i ++ ){
 //                        for(int j = 0 ; j < tableBill.getColumnCount(); j ++){
@@ -178,7 +175,7 @@ public class Order {
 //                        }
 //                    }
                     
-                    JOptionPane.showMessageDialog(null, "HI");
+//                    JOptionPane.showMessageDialog(null, "HI");
 //                    break;
                 }else{System.out.println("HI");}
             }
@@ -199,7 +196,7 @@ public class Order {
         tableBill.setModel(model);
 
         try{
-            Object[] list = new Object[3];
+            Object[] list = new Object[2];
             
             Scanner sRead = new Scanner (new File (fileName));
 
@@ -207,12 +204,12 @@ public class Order {
                 String line = sRead.nextLine();
                 String[] array = line.split("/");
                 
-                list[0] = array[1];
-                list[1] = array[2];
+                for ( int i = 0 ; i < rowCount; i++){
+                    list[0] = array[1];
+                    list[1] = array[2];
                     
-
-                model.addRow(list);
-                    
+                    model.addRow(list);
+                }       
             }
         }catch(FileNotFoundException e){
             System.out.println(e);
