@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -107,12 +108,7 @@ public class User {
 
     public void viewOrder(JTable table){
         
-        //Check the customer Id first
-        //if exist, give the order details to the view page
-        //
-        
-        //Open File       
-        
+        //Open File
         int count = 0;
         try(BufferedReader bfr = new BufferedReader(new FileReader("OrderList.txt"))){
             
@@ -136,53 +132,55 @@ public class User {
         }
     }
     
-    public void deleteOrder(JTable orderListTable, String FileName){
-        DefaultTableModel model = (DefaultTableModel)orderListTable.getModel();
-                
-        //Get selected row index
-        int rowSelected = orderListTable.getSelectedRow();
-        //Check if a row is selected
-        if(rowSelected == -1){ //return -1 if no row is selected
-            
-            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
-        }else{
-        
-            model.removeRow(orderListTable.getSelectedRow());
-            
-            JOptionPane.showMessageDialog(null, "Item deleted");
-        
-            String tempFile = "tempOder.txt";
-            File oldFile = new File (FileName);
-            File newFile = new File (tempFile);
-
-            //Read text file to delete record as well
-
-            try{
-                FileWriter fw = new FileWriter(tempFile,true);
-
-                BufferedWriter bw = new BufferedWriter(fw);
-
-                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
-                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
-
-                            bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
-                    }
-                    bw.newLine();
-                }
-                bw.flush();
-                bw.close();
-                fw.close();
-                oldFile.delete();
-                File replace = new File(FileName);
-                newFile.renameTo(replace);
-                
-            }catch(IOException e ){
-                System.out.println(e);
-            }
-        }
-    }
-    
-    public void edit(String fileName, String OldText,String newText, JTextField cusId){
+//    public void deleteOrder(JTable orderListTable, String FileName){
+//        
+//        DefaultTableModel model = (DefaultTableModel) orderListTable.getModel();
+//
+//        //Get selected row index
+//        int rowSelected = orderListTable.getSelectedRow();
+//        //Check if a row is selected
+//        if(rowSelected == -1){ //return -1 if no row is selected
+//            
+//            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
+//        }else{
+//        
+//            model.removeRow(orderListTable.getSelectedRow());
+//            
+//            JOptionPane.showMessageDialog(null, "Item deleted");
+//        
+//            String tempFile = "tempOder.txt";
+//            File oldFile = new File (FileName);
+//            File newFile = new File (tempFile);
+//
+//            //Read text file to delete record as well
+//
+//            try{
+//                FileWriter fw = new FileWriter(tempFile,true);
+//
+//                BufferedWriter bw = new BufferedWriter(fw);
+//
+//                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
+//                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
+//
+//                            bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
+//                    }
+//                    bw.newLine();
+//                }
+//                bw.flush();
+//                bw.close();
+//                fw.close();
+//                oldFile.delete();
+//                File replace = new File(FileName);
+//                newFile.renameTo(replace);
+//                
+//            }catch(IOException e ){
+//                System.out.println(e);
+//            }
+//        }
+//
+//    }
+//    
+    public void edit(String fileName, String OldText,String newText){
         
         File f1 = new File(fileName);
         
@@ -206,7 +204,7 @@ public class User {
             String newWord = oldWord.replaceAll(OldText,newText);
             
             //Set Text HERE ! --> updated info
-            cusId.setText(newText);
+            //cusId.setText(newText);
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);
