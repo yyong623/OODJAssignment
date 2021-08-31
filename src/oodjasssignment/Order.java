@@ -51,6 +51,7 @@ public class Order {
     Object[] row = new Object[7];
     
     Admin ad = new Admin();
+    User user = new User();
     
     boolean areEqual = true;
 
@@ -87,11 +88,16 @@ public class Order {
 
                 if(identifier == false){    //This is where no duplication occur
 
-                    //Write to txt file (Order that has been selected)
-                    //Get all the row to append into text file for recording 
-                    String totalAmount = String.valueOf(unit * prices);
-                    row[5] = totalAmount;
-
+                    
+                    if(row[2].equals("Fragile")){
+                        //Write to txt file (Order that has been selected)
+                        //Get all the row to append into text file for recording 
+                        String totalAmount = String.valueOf((unit * prices) + 5.0);
+                        row[5] = totalAmount;
+                    }else if(row[2].equals("NonFragile")){
+                        String totalAmount = String.valueOf((unit * prices));
+                        row[5] = totalAmount;
+                    }
                     //Set the quantityPre to minus the enter unit
                     int newQua = qua - unit;
 
@@ -143,134 +149,166 @@ public class Order {
     }
     
     //Get Customer Id and compare to txt file
-    public void compareCusId(String fileName, String cusName, JTable tableBill){
+    public void compareCusId( String cusName, JTable tableBill){
         Scanner sc;          
         try {
             DefaultTableModel model = (DefaultTableModel) tableBill.getModel();
 //            
             Object[] list = new Object[3];
 //            Object[] columns = {"Order ID","Total"};
-            model.setColumnIdentifiers(list);
+//            model.setColumnIdentifiers(list);
             tableBill.setModel(model);
             
-            sc = new Scanner(new FileReader(fileName));
-//            int flag = 0;
+            sc = new Scanner(new FileReader("Order.txt"));
+            int flag = 0;
             while(sc.hasNextLine()){
                 String line1 = sc.nextLine();
                 String[] Array = line1.split("/");
               
                 //Compare
-                if(cusName.equals(Array[0])){
-//                    flag = 1;
-                            //Print the orderId and total            
-//                    InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
-//                    shoppingCart.setVisible(true); 
-//                    
-//                    ViewOrder(fileName,tableBill);
-                                            
+                if(Array[0].contains(cusName)){   
+                    flag = 1; 
+                    //Print the orderId and total
+                    InterfaceShoppingCart shoppingCart = new InterfaceShoppingCart();
+                    shoppingCart.setVisible(true); 
+                    shoppingCart.pack();
+                    shoppingCart.setLocationRelativeTo(null);
+                    
+                    System.out.println("HI");
+                    
+                    ViewOrder("Order.txt",tableBill,cusName);
+                  
+                    
+//                }else{
+//                    JOptionPane.showMessageDialog(null, "You have no order");
+//                    flag = 0;
+//                }
+                    break;
                 }
             }
+            
+//            if(flag == 1){                       
+//                ViewOrder("Order.txt", tableBill,cusName);
+//            }
         }catch(IOException e){
             System.out.println(e);
         }               
     }
 
 
-    public void ViewOrder(String fileName, JTable tableBill){
+    public void ViewOrder(String fileName, JTable tableBill, String cusId){
         //get all the customer id (compare) and print customer's order Id (All Order)
         
         try(BufferedReader bfr = new BufferedReader(new FileReader(fileName))){            
             
             DefaultTableModel model = (DefaultTableModel)tableBill.getModel();
-            //Get line from txt file
+            
             Object[] tableLine = bfr.lines().toArray();
+            
+//            for(int k = 0 ; k < tableLine.length; k++){
+//                String [] dataRow = tableLine[k].toString().split("/");
+//                model.addRow(dataRow);
+//                System.out.println("hi");
+//                if(cusId.equals(model.getValueAt(k, 0))){  
+//                    System.out.println("bye");
+//                    model.addRow(dataRow);
+//                }
+//            }
+            
+            
+            
+            
+            //Get line from txt file
+//            Object[] tableLine = bfr.lines().toArray();
                                     
-            for(int i = 0 ; i < tableLine.length; i++){
-                String[] line = tableLine[i].toString().split("/");
-                model.addRow(line);                 
-            }
+                for(int i = 0 ; i < tableLine.length; i++){                
+                    String[] dataRow = tableLine[i].toString().split("/");
+    //                if(cusId.contains(dataRow[0])){
+                        model.addRow(dataRow);    
+    //                }
+                }
             bfr.close();
         }catch (IOException e){
             System.out.println(e);
         }
     }
     
-    //Compare two file 
-    public void FindOrderId(String olFile, String oFile, JTable table){
-        Scanner sc1;  
-                
-        try {
-            sc1 = new Scanner(new FileReader(olFile));
-        
-            Scanner sc2 = new Scanner(new FileReader(oFile));
-
-            while(sc1.hasNextLine() && sc2.hasNextLine()){
-                String line1 = sc1.nextLine();
-                String line2 = sc2.nextLine();
-
-                String[] olArray = line1.split("/");
-                String[] oArray = line2.split("/");
-                
-                //Compare
-                if(oArray[1].equals(olArray[0])){
-                    //if equal print that line 
-                    areEqual = true;
-                }else{
-                    areEqual = false;
-                }
-                sc1.nextLine();
-                sc2.nextLine();
-            }
-            
-            //if the order Id in both order and orderlist is same get all the line
-            //Set the lines into table of bill
-            if(areEqual == true){
-                ViewOrderCart(olFile, table);
-            }else{
-                JOptionPane.showMessageDialog(null, "You have no order");
-            }
-            
-            sc1.close();
-            sc2.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    //Compare two file 
+//    public void FindOrderId(String olFile, String oFile, JTable table){
+//        Scanner sc1;  
+//                
+//        try {
+//            sc1 = new Scanner(new FileReader(olFile));
+//        
+//            Scanner sc2 = new Scanner(new FileReader(oFile));
+//
+//            while(sc1.hasNextLine() && sc2.hasNextLine()){
+//                String line1 = sc1.nextLine();
+//                String line2 = sc2.nextLine();
+//
+//                String[] olArray = line1.split("/");
+//                String[] oArray = line2.split("/");
+//                
+//                //Compare
+//                if(oArray[1].equals(olArray[0])){
+//                    //if equal print that line 
+//                    areEqual = true;
+//                }else{
+//                    areEqual = false;
+//                }
+//                sc1.nextLine();
+//                sc2.nextLine();
+//            }
+//            
+//            //if the order Id in both order and orderlist is same get all the line
+//            //Set the lines into table of bill
+//            if(areEqual == true){
+//                ViewOrderCart(olFile, table);
+//            }else{
+//                JOptionPane.showMessageDialog(null, "You have no order");
+//            }
+//            
+//            sc1.close();
+//            sc2.close();
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(Order.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
             
-    public void ViewOrderCart (String fileName , JTable table){
-
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-        int rowCount = model.getRowCount();
-
-        Object[][] list = new Object[rowCount][];
-
-        model.setColumnIdentifiers(list);
-        table.setModel(model);
-
-        try{
-            Scanner sRead = new Scanner (new File (fileName));
-
-            while(sRead.hasNextLine()){
-                String line = sRead.nextLine();
-                String[] array = line.split("/");
-
-                for( int i = 0 ; i < rowCount ; i++){
-                    list[i][0] = array[1];
-                    list[i][1] = array[2];
-                    list[i][2] = array[3];
-                    list[i][3] = array[4];
-                    list[i][4] = array[5];
-                    list[i][5] = array[6];
-
-                    model.addRow(list);
-                }
-            }
-        }catch(FileNotFoundException e){
-            System.out.println(e);
-        }
-    }
+//    public void ViewOrderCart (String fileName , JTable table){
+//
+//        DefaultTableModel model = (DefaultTableModel) table.getModel();
+//
+//        int rowCount = model.getRowCount();
+//
+//        Object[][] list = new Object[rowCount][];
+//
+//        model.setColumnIdentifiers(list);
+//        table.setModel(model);
+//
+//        try{
+//            Scanner sRead = new Scanner (new File (fileName));
+//
+//            while(sRead.hasNextLine()){
+//                String line = sRead.nextLine();
+//                String[] array = line.split("/");
+//
+//                for( int i = 0 ; i < rowCount ; i++){
+//                    list[i][0] = array[1];
+//                    list[i][1] = array[2];
+//                    list[i][2] = array[3];
+//                    list[i][3] = array[4];
+//                    list[i][4] = array[5];
+//                    list[i][5] = array[6];
+//
+//                    model.addRow(list);
+//                }
+//            }
+//        }catch(FileNotFoundException e){
+//            System.out.println(e);
+//        }
+//    }
 
     //Generate Order ID
     public void randomId(JTextField textField) {

@@ -362,20 +362,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Order" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="Order" pref="620" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Order" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="Order" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -438,20 +433,31 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelPriceProduct" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="jLabelProductId" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="jLabelName" min="-2" pref="83" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="ShowAllOrderButton" max="32767" attributes="0"/>
-                                      <Component id="jButtonView" max="32767" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabelName" min="-2" pref="83" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="ShowAllOrderButton" min="-2" pref="190" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButtonView" min="-2" pref="190" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabelPriceProduct" min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="jLabelProductId" min="-2" pref="83" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -461,59 +467,55 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabelTotalAmount" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="jTextFieldInvoice" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabelProductID" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <Component id="jLabelProductId" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabelType" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <Component id="jLabeltype" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabelProductName" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="jLabelTotalAmount2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="QuantityAmountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="jTextFieldUnitsProduct" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="jLabelUnits" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="jLabelPriceProduct" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabelQPrice" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="jLabelType" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="jLabeltype" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                   <Component id="jButtonView" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="ShowAllOrderButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabelProductID" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Component id="jLabelProductId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelProductName" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jLabelTotalAmount2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="QuantityAmountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ShowAllOrderButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="jTextFieldUnitsProduct" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="jLabelUnits" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabelPriceProduct" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelQPrice" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="26" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="249" max="-2" attributes="0"/>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

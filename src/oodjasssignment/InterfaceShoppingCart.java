@@ -16,7 +16,8 @@ public class InterfaceShoppingCart extends javax.swing.JFrame {
     
     public InterfaceShoppingCart() {
         initComponents();
-        //order.compareCusId("Order.txt", customer.TextFieldProfileName.getText(), jTableShoppingCart);
+        //order.compareCusId(customer.TextFieldProfileName, jTableShoppingCart);
+        //order.ViewOrder("Order.txt", jTableShoppingCart, customer.TextFieldProfileName.getText());
     }
 
     /**
