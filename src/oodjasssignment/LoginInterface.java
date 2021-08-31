@@ -5,6 +5,8 @@
  */
 package oodjasssignment;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -56,8 +58,6 @@ public class LoginInterface extends javax.swing.JFrame {
         jLabel1.setText("User ID");
 
         jLabel2.setText("password");
-
-        PasswordField.setText("jPasswordField1");
 
         AdminLoginBtn.setText("Login As Admin");
         AdminLoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,8 +118,8 @@ public class LoginInterface extends javax.swing.JFrame {
         usr = this.UserIdTextField.getText();
 
         String pwd = new String(this.PasswordField.getPassword());
-        User.loginFunc("Customer.txt", usr, pwd,CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
-        if (User.loginIdentifier = true){
+        boolean loginChecker = User.loginFunc("Customer.txt", usr, pwd,CustomerInterface.TextFieldProfileName,CustomerInterface.TextFieldProfilePhoneNum,CustomerInterface.TextFieldProfileEmail,CustomerInterface.TextFieldProfileAddress);
+        if (loginChecker = true){
             UserIdTextField.setText("");
             PasswordField.setText("");
 
@@ -129,6 +129,9 @@ public class LoginInterface extends javax.swing.JFrame {
 
         }
         else{
+            JOptionPane.showMessageDialog(null,
+                        "UserName/Password Incorrect", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             UserIdTextField.setText("");
             PasswordField.setText("");
         }
@@ -136,15 +139,20 @@ public class LoginInterface extends javax.swing.JFrame {
 
     private void AdminLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBtnMouseClicked
         // TODO add your handling code here:
+        AdminInterface AdminInterface = new AdminInterface();
         usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
-        User.loginFunc("Admin.txt", usr, pwd, AdminInterface.AdminName,AdminInterface.AdminPhone,AdminInterface.AdminEmail,AdminInterface.AdminAddress);
-        if (User.loginIdentifier = true){
+        boolean loginChecker = User.loginFunc("Admin.txt", usr, pwd, AdminInterface.AdminName,AdminInterface.AdminPhone,AdminInterface.AdminEmail,AdminInterface.AdminAddress);
+        if (loginChecker = true){
             UserIdTextField.setText("");
             PasswordField.setText("");
-            AdminInterface AdminInterface = new AdminInterface();
+            
             AdminInterface.setVisible(true);
+            
         }else{
+            JOptionPane.showMessageDialog(null,
+                        "UserName/Password Incorrect", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             UserIdTextField.setText("");
             PasswordField.setText("");
 

@@ -258,7 +258,7 @@ public class User {
         }
     }
     
-    public static void loginFunc(String userFile, String username, String Password, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
+    public static boolean loginFunc(String userFile, String username, String Password, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
         File loginScan = new File(userFile);
         try {
             Scanner read = new Scanner(loginScan);
@@ -266,7 +266,7 @@ public class User {
             while (read.hasNextLine()){
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
-
+                 
                 if (Password.equals(sArray[1]) && username.equals(sArray[0])){
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
@@ -278,19 +278,19 @@ public class User {
                     mailingAdd.setText(sArray[3]);      
                     
                     loginIdentifier = true;
-
+                    break;
                 }
                 else{
-                JOptionPane.showMessageDialog(null,
-                    "Invalid Username / Password", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                
                 }
+                
             }
         }catch(FileNotFoundException e){
                     JOptionPane.showMessageDialog(null,
                         "File Not Found", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
+        return loginIdentifier;
         }
 }
     

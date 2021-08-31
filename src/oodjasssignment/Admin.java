@@ -40,7 +40,10 @@ public class Admin extends User {
                                     
             for(int i = 0 ; i < tableLine.length; i++){
                 String[] line = tableLine[i].toString().split("/");
-                model.addRow(line); 
+                
+                if (line.equals("")){
+                continue;
+                }else{model.addRow(line); }
             }
             bfr.close();
     }catch (IOException e){
@@ -121,34 +124,44 @@ public class Admin extends User {
         
         }
     }
+
     private static Scanner x;
     
     public void editItems(String filePath, String OldEntry1, String OldEntry2,String OldEntry3, String OldEntry4, String OldEntry5,
             String newEntry1, String newEntry2,String newEntry3, String newEntry4, String newEntry5){
-    String TempFile = "temp.txt";
     File oldFile = new File(filePath);
     
-    File newFile = new File(TempFile);
+    File newFile = new File("temp.txt");
+    String Entry1 ="", Entry2 = "", Entry3 = "", Entry4="",Entry5="";
     
-    String ID = ""; String Name = ""; String Fragile = ""; String Price = "";String ProdQuan = "";
     try{
-        FileWriter fw = new FileWriter(TempFile,true);
-        BufferedWriter bw = new BufferedWriter(fw);
+        FileWriter fw = new FileWriter(newFile, true);
+        BufferedWriter bw = new BufferedWriter( fw );
         PrintWriter pw = new PrintWriter(bw);
         x = new Scanner(new File(filePath));
-        x.useDelimiter("[/,\n]");
+        x.useDelimiter("[/\n]");
+        
+
         while(x.hasNext()){
-            ID =x.next();
-            Name = x.next();
-            Fragile = x.next();
-            Price = x.next();
-            ProdQuan = x.next();
-            if (ID.equals(OldEntry1)){
-                pw.println( newEntry1 +"/"+  newEntry2 +"/"+newEntry3 +"/"+ newEntry4 +"/"+  newEntry5 );
-            }
-            else{
-                pw.println(OldEntry1 +"/"+  OldEntry2 +"/"+OldEntry3 +"/"+ OldEntry4 +"/"+  OldEntry5 );
-            }
+           Entry1 = x.next();
+           
+           Entry2 = x.next();
+           
+           Entry3 = x.next();
+           
+           Entry4 = x.next();
+           
+           Entry5 = x.next();
+           
+           if (Entry1.equals(OldEntry1) || Entry2.equals(OldEntry2) ||Entry3.equals(OldEntry3) || Entry4.equals(OldEntry4) || Entry5.equals(OldEntry5)){
+        pw.println(newEntry1 +"/"+  newEntry2 +"/"+newEntry3 +"/"+ newEntry4 +"/"+  newEntry5 );
+        
+        }
+           else{
+               pw.println(Entry1 +"/"+  Entry2 +"/"+Entry3 +"/"+ Entry4 +"/"+Entry5 );
+               
+           }
+             
         }
         x.close();
         pw.flush();
@@ -163,63 +176,44 @@ public class Admin extends User {
                         JOptionPane.INFORMATION_MESSAGE);
     }
     }
-//    
-//    public void updateRecordbyID() throws IOException {
-//    		String newName, newAge, newAddr, record, ID,record2;
-//    		
-//    		File db = new File("naldrix_db.txt");
-//    		File tempDB = new File("naldrix_db_temp.txt");
-//    		
-//    		BufferedReader br = new BufferedReader( new FileReader(db) );
-//    		BufferedWriter bw = new BufferedWriter( new FileWriter(tempDB) );
-//    		    		
-//    		Scanner strInput = new Scanner(System.in);
-//    		
-//    		System.out.println("\t\t Update Employee Record\n\n");   
-//		/****/		
-//			System.out.println("Enter the Employee ID: ");
-//	    		ID = strInput.nextLine();	    		
-//	    		
-//	    		
-//	    		while( ( record = br.readLine() ) != null ) {
-//	    			
-//	    			StringTokenizer st = new StringTokenizer(record,",");
-//	    			if( record.contains(ID) ) {
-//	    				System.out.println("|	"+st.nextToken()+"	"+st.nextToken()+" 		"+st.nextToken()+"			"+st.nextToken()+"      |");
-//	    			}
-//	    			
-//	    		}	    		
-//	    		System.out.println("|	                                            	          |");
-//	    		System.out.println(" ------------------------------------------------------------- ");
-//	    		
-//	    	br.close();
-//		/****/    	   
-//    		System.out.println("Enter the new Name: ");
-//    		newName = strInput.nextLine();    		
-//    		System.out.println("Enter the new Age: ");
-//    		newAge = strInput.nextLine();  
-//    		System.out.println("Enter the new Address: ");
-//    		newAddr = strInput.nextLine();  
-//    		
-//    		BufferedReader br2 = new BufferedReader( new FileReader(db) );
-//    			
-//    		while( (record2 = br2.readLine() ) != null ) {    			
-//    			if(record2.contains(ID)) {
-//    				bw.write(ID+","+newName+","+newAge+","+newAddr);
-//    			} else {
-//    			
-//    				bw.write(record2);	
-//    			}    			
-//    			bw.flush();
-//    			bw.newLine();
-//    		}
-//    		
-//    		bw.close();
-//    		br2.close();    		
-//    		db.delete();    		
-//    		boolean success = tempDB.renameTo(db);    		
-//    		System.out.println(success);    		
-//    		
-//    }
+    
+    
+public void exportChanges(JTable table, String OldFile){
+    String filePath = "Temporary.txt";
+    File oldFile = new File(OldFile);
+    File file = new File(filePath);
+    
+    try{
+        int indicator = 1;
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i = 0; i<table.getRowCount();i++){
+            for (int j = 0;j<table.getColumnCount();j++){
+                if (j==4){
+                    bw.write(table.getValueAt(i,j).toString());
+                }else{
+                    bw.write(table.getValueAt(i,j).toString()+"/");
+                }
+                
+                JOptionPane.showMessageDialog(null,
+                        table.getValueAt(i,j).toString(), "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        bw.newLine();
+    
+        }
+        bw.close();
+        fw.close();
+        File dump = new File(OldFile);
+        oldFile.delete();
+        file.renameTo(dump);
+            
+    }catch (IOException ex){
+    
+    }
+    
+    
+    }
+    
 
 }
