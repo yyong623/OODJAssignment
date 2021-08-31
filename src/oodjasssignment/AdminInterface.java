@@ -395,6 +395,11 @@ public class AdminInterface extends javax.swing.JFrame {
         });
 
         UpdateCusBtn.setText("Update");
+        UpdateCusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateCusBtnMouseClicked(evt);
+            }
+        });
 
         jLabel9.setText("Password : ");
 
@@ -516,7 +521,7 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("selected OrderId");
+        jLabel15.setText("selected OrderId : ");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -550,6 +555,8 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addComponent(ViewOrder)
                 .addContainerGap(168, Short.MAX_VALUE))
         );
+
+        SelectedId.setEditable(false);
 
         Profile.addTab("orders", panel1);
 
@@ -769,14 +776,9 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void UpdateProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateProdBtnMouseClicked
         // TODO add your handling code here:
-        try{
-        admin.exportChanges(ViewProdTable, "Product.txt");
-        }
-        catch (IOException e){
-        JOptionPane.showMessageDialog(null,
-                        "An Error has ouccured, pleas try again later.", "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-        }
+        
+        admin.exportChanges(ViewProdTable,"Product.txt");
+        
         ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
 
         admin.viewTable(ViewProdTable,"Product.txt");
@@ -797,6 +799,7 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         viewOrderAdm viewOrders = new viewOrderAdm();
+        viewOrders.OrderIdView.setText(SelectedId.getText());
         viewOrders.setVisible(true);
     }//GEN-LAST:event_ViewOrderMouseClicked
 
@@ -804,6 +807,11 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_LogoutLblMouseClicked
+
+    private void UpdateCusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateCusBtnMouseClicked
+        // TODO add your handling code here:
+        admin.exportChanges(ViewCusTable,"Customer.txt");
+    }//GEN-LAST:event_UpdateCusBtnMouseClicked
 
     /**
      * @param args the command line arguments

@@ -178,21 +178,41 @@ public class Admin extends User {
     }
     
     
-public void exportChanges(JTable table, String filePath) throws IOException{
+public void exportChanges(JTable table, String OldFile){
+    String filePath = "Temporary.txt";
+    File oldFile = new File(OldFile);
+    File file = new File(filePath);
     
-    File newFile = new File("temp.txt");
-    File oldFile = new File(filePath);
-    FileWriter fw = new FileWriter(newFile, true);
-    BufferedWriter bw = new BufferedWriter(fw);
-    for (int i = 0; i<table.getRowCount();i++){
-        for (int j = 0;j<table.getColumnCount();j++){
-            bw.write(table.getModel().getValueAt(i,j)+"/");
+    try{
+        int indicator = 1;
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i = 0; i<table.getRowCount();i++){
+            for (int j = 0;j<table.getColumnCount();j++){
+                if (j==4){
+                    bw.write(table.getValueAt(i,j).toString());
+                }else{
+                    bw.write(table.getValueAt(i,j).toString()+"/");
+                }
+                
+                JOptionPane.showMessageDialog(null,
+                        table.getValueAt(i,j).toString(), "Error",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        bw.newLine();
+    
         }
-    bw.write("\n");
+        bw.close();
+        fw.close();
+        File dump = new File(OldFile);
+        oldFile.delete();
+        file.renameTo(dump);
+            
+    }catch (IOException ex){
+    
     }
-    oldFile.delete();
-    File dump = new File(filePath);
-    newFile.renameTo(dump);
+    
+    
     }
     
 
