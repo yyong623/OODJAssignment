@@ -61,14 +61,14 @@ public class Order {
 
         DefaultTableModel model = (DefaultTableModel) shoppingTable.getModel();
 
-        Object[] columns = {"Product ID", "Product Name", "Type", "Price", "Quntity", "Total"};
+        Object[] columns = {"Product ID", "Product Name", "Type", "Price", "Quantity", "Total"};
 
         model.setColumnIdentifiers(columns);
         shoppingTable.setModel(model);
 
         try {
-            check("OrderList.txt", id, cusId);
-            
+            check("OrderList.txt", id, cusId);  
+
             //Get Text to row
             row[6] = orderId;
             row[7] = cusId;
@@ -82,14 +82,13 @@ public class Order {
             int unit = Integer.parseInt(quantity);
             //Get the value of the exist quantity
             int qua = Integer.parseInt(quantityPre.getText());
-
+            
             if (unit <= 0) {
                 JOptionPane.showMessageDialog(null, "Please Enter at least one amount !");
 
             } else if (qua >= unit) {
-
+                
                 if(identifier == false){    //This is where no duplication occur
-
                     
                     if(row[2].equals("Fragile")){
                         //Write to txt file (Order that has been selected)
@@ -151,23 +150,23 @@ public class Order {
         return identifier;
     }
     
-//    public void updateOrder(JTable table){
-//        try{
-//            FileWriter fw = new FileWriter("OrderList.txt");
-//            BufferedWriter bw = new BufferedWriter(fw);
-//            for (int i = 0 ; i < table.getRowCount(); i++){
-//                for (int j = 0; j < table.getColumnCount(); j++){
-//                    bw.write(table.getValueAt(i,j).toString() + "/");
-//                }
-//                bw.newLine();
-//            }
-//            bw.close();
-//            fw.close();
-//            
-//        }catch(IOException e){
-//            System.out.println(e);
-//        }
-//    }
+    public void viewOrder(JTable table){
+        try{
+            FileWriter fw = new FileWriter("OrderList.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0 ; i < table.getRowCount(); i++){
+                for (int j = 0; j < table.getColumnCount(); j++){
+                    bw.write(table.getValueAt(i,j).toString() + "/");
+                }
+                bw.newLine();
+            }
+            bw.close();
+            fw.close();
+            
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
 
     //Generate Order ID
     public void randomId(JTextField textField) {
@@ -177,7 +176,8 @@ public class Order {
         textField.setText(value);
         
     }
-
+    
+    //update the present amount
     public void update(String OldText, String newText) {
         File f1 = new File("Product.txt");
 
@@ -219,5 +219,5 @@ public class Order {
                 System.out.println(ex);
             }
         }
-    }   
+    }
 }

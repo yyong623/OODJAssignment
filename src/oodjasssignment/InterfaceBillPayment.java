@@ -12,15 +12,13 @@ package oodjasssignment;
 public class InterfaceBillPayment extends javax.swing.JFrame {
 
     User user = new User();
-    OrderItem ori;
-    Order order = new Order ();
-    
+    OrderItem oItem = new OrderItem();
+    CustomerInterface cusInt = new CustomerInterface();
+        
     public InterfaceBillPayment() {
-        this.ori = new OrderItem();
         initComponents();
-        //user.viewOrder(jTableReceipt);
-        ori.calculateFinalTotal(jTextFieldBill);
-        //order.FindOrderId("OrderList.txt", "Order.txt", jTableReceipt);
+        user.viewOrder(jTableAllOrder, "OrderList.txt");
+        
     }
 
     /**
@@ -33,25 +31,16 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelTotalBill = new javax.swing.JLabel();
         jLabelBill1 = new javax.swing.JLabel();
-        jTextFieldBill = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableReceipt = new javax.swing.JTable();
         jButtonDelete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableAllOrder = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTotalBill.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
-        jLabelTotalBill.setText("Total :");
-
         jLabelBill1.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
         jLabelBill1.setText("Order ");
-
-        jButton1.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
-        jButton1.setText("Pay");
 
         jButtonBack.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButtonBack.setText("Back");
@@ -61,32 +50,6 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
             }
         });
 
-        jTableReceipt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Product Id", "Product Name", "Type", "Price", "Quantity", "Total"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTableReceipt);
-        if (jTableReceipt.getColumnModel().getColumnCount() > 0) {
-            jTableReceipt.getColumnModel().getColumn(0).setResizable(false);
-            jTableReceipt.getColumnModel().getColumn(1).setResizable(false);
-            jTableReceipt.getColumnModel().getColumn(2).setResizable(false);
-            jTableReceipt.getColumnModel().getColumn(3).setResizable(false);
-            jTableReceipt.getColumnModel().getColumn(4).setResizable(false);
-            jTableReceipt.getColumnModel().getColumn(5).setResizable(false);
-        }
-
         jButtonDelete.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -95,50 +58,55 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
             }
         });
 
+        jTableAllOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Order Id", "Customer Id", "Product Id", "Name", "Type", "Price", "Quantity", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableAllOrder.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableAllOrder);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jButtonDelete)
-                                .addGap(33, 33, 33)
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(248, 248, 248)
-                                .addComponent(jLabelTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(141, 141, 141)
+                        .addComponent(jButtonDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(jLabelBill1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabelBill1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jLabelBill1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTotalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldBill, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButtonBack)
                     .addComponent(jButtonDelete))
                 .addGap(26, 26, 26))
@@ -165,8 +133,9 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        user.deleteOrder(jTableReceipt, "Order.txt");
-        ori.calculateFinalTotal(jTextFieldBill);    
+        
+        //delete
+        user.deleteOrder(jTableAllOrder, "OrderList.txt");
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
@@ -206,14 +175,11 @@ public class InterfaceBillPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JLabel jLabelBill1;
-    private javax.swing.JLabel jLabelTotalBill;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableReceipt;
-    private javax.swing.JTextField jTextFieldBill;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableAllOrder;
     // End of variables declaration//GEN-END:variables
 }

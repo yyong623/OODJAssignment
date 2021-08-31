@@ -106,23 +106,26 @@ public class User {
         }               
     }                
 
-    public void viewOrder(JTable table){
+    public void viewOrder(JTable table, String fileName){
         
         //Open File
         int count = 0;
-        try(BufferedReader bfr = new BufferedReader(new FileReader("OrderList.txt"))){
+        try(BufferedReader bfr = new BufferedReader(new FileReader(fileName))){
             
             
             DefaultTableModel model = (DefaultTableModel)table.getModel();
             //Get line from txt file
             Object[] tableLine = bfr.lines().toArray();
-                                    
+            
             for(int i = 0 ; i < tableLine.length; i++){
+
                 String[] line = tableLine[i].toString().split("/");
+
                 model.addRow(line); 
                 count++;
             }
             bfr.close();
+            
         }catch (IOException e){
             System.out.println(e);
         }
@@ -131,54 +134,60 @@ public class User {
             JOptionPane.showMessageDialog(null, "No Order Found ! \n Please Go Add one.");
         }
     }
+            
+                            
+                
+                    
+                
     
-//    public void deleteOrder(JTable orderListTable, String FileName){
-//        
-//        DefaultTableModel model = (DefaultTableModel) orderListTable.getModel();
-//
-//        //Get selected row index
-//        int rowSelected = orderListTable.getSelectedRow();
-//        //Check if a row is selected
-//        if(rowSelected == -1){ //return -1 if no row is selected
-//            
-//            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
-//        }else{
-//        
-//            model.removeRow(orderListTable.getSelectedRow());
-//            
-//            JOptionPane.showMessageDialog(null, "Item deleted");
-//        
-//            String tempFile = "tempOder.txt";
-//            File oldFile = new File (FileName);
-//            File newFile = new File (tempFile);
-//
-//            //Read text file to delete record as well
-//
-//            try{
-//                FileWriter fw = new FileWriter(tempFile,true);
-//
-//                BufferedWriter bw = new BufferedWriter(fw);
-//
-//                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
-//                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
-//
-//                            bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
-//                    }
-//                    bw.newLine();
-//                }
-//                bw.flush();
-//                bw.close();
-//                fw.close();
-//                oldFile.delete();
-//                File replace = new File(FileName);
-//                newFile.renameTo(replace);
-//                
-//            }catch(IOException e ){
-//                System.out.println(e);
-//            }
-//        }
-//
-//    }
+    public void deleteOrder(JTable orderListTable, String FileName){
+        
+        DefaultTableModel model = (DefaultTableModel) orderListTable.getModel();
+
+        //Get selected row index
+        int rowSelected = orderListTable.getSelectedRow();
+        //Check if a row is selected
+        if(rowSelected == -1){ //return -1 if no row is selected
+            
+            JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
+        }else{
+        
+            model.removeRow(orderListTable.getSelectedRow());
+            
+            JOptionPane.showMessageDialog(null, "Item deleted");
+        
+            String tempFile = "tempOder.txt";
+            File oldFile = new File (FileName);
+            File newFile = new File (tempFile);
+
+            //Read text file to delete record as well
+
+            try{
+                FileWriter fw = new FileWriter(tempFile,true);
+
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
+                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
+
+                        bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
+                        
+                    }
+                    bw.newLine();
+                }
+                bw.flush();
+                bw.close();
+                fw.close();
+                
+                oldFile.delete();
+                File replace = new File(FileName);
+                newFile.renameTo(replace);
+                
+            }catch(IOException e ){
+                System.out.println(e);
+            }
+        }
+    }
 //    
     public void edit(String fileName, String OldText,String newText){
         
