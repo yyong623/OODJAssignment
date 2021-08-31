@@ -12,6 +12,7 @@ package oodjasssignment;
 public class InterfaceUpdate extends javax.swing.JFrame {
 
     User user = new User();
+    CustomerInterface cInter = new CustomerInterface();
     
     public InterfaceUpdate() {
         initComponents();
@@ -104,7 +105,8 @@ public class InterfaceUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfrimActionPerformed
-        user.edit("Customer.txt",TextFieldOld.getText(), TextFieldNew.getText());
+        
+        //user.edit("Customer.txt", TextFieldOld, TextFieldNew, cInter );
         this.dispose();
     }//GEN-LAST:event_jButtonConfrimActionPerformed
 

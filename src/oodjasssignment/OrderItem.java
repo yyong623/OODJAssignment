@@ -1,8 +1,9 @@
 package oodjasssignment;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class OrderItem extends Order{
@@ -25,30 +26,25 @@ public class OrderItem extends Order{
 //        textField.setText(String.valueOf(total));
 //    }  
     
-    public void calculateFinalTotal(JTextField textField){
+    public void calculateFinalTotal(JLabel totalOutput, String name){
         double total = 0.0;
         //Get total price that stores in order list file
         Scanner scan;
         
-        try{
+        try{            
             scan = new Scanner(new File ("OrderList.txt"));
             
             while(scan.hasNextLine()){
                 String lines = scan.nextLine();
                 String[] price = lines.split("/");
                 
-                double amount = Double.parseDouble(price[6]);
-                total = total + amount;
-                if (price[3].equals("Fragile")){
-                    total = total + 5.00;
-                }else if (price[3].equals("NonFragile")){
-                    total = total;
+                if(name.equals(price[1])){
+                    double amount = Double.parseDouble(price[7]);
+                    total = total + amount;
                 }
-                
             }
-            textField.setText(String.valueOf(String.format("%.2f", total)));
-            
-        }catch(FileNotFoundException e){
+            totalOutput.setText(String.valueOf(String.format("%.2f", total)));
+        }catch(IOException e){
             System.out.println(e);
         }
         

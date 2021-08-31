@@ -182,7 +182,7 @@ public class User {
         }
     }
     
-    public void edit(String fileName, String OldText,String newText){
+    public void edit(String fileName, String OldText,String newText, JTextField cusId){
         
         File f1 = new File(fileName);
         
@@ -206,7 +206,7 @@ public class User {
             String newWord = oldWord.replaceAll(OldText,newText);
             
             //Set Text HERE ! --> updated info
-            //newText;
+            cusId.setText(newText);
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);
