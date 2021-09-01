@@ -150,23 +150,6 @@ public class Order {
         return identifier;
     }
     
-    public void viewOrder(JTable table){
-        try{
-            FileWriter fw = new FileWriter("OrderList.txt");
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0 ; i < table.getRowCount(); i++){
-                for (int j = 0; j < table.getColumnCount(); j++){
-                    bw.write(table.getValueAt(i,j).toString() + "/");
-                }
-                bw.newLine();
-            }
-            bw.close();
-            fw.close();
-            
-        }catch(IOException e){
-            System.out.println(e);
-        }
-    }
 
     //Generate Order ID
     public void randomId(JTextField textField) {
@@ -219,5 +202,5 @@ public class Order {
                 System.out.println(ex);
             }
         }
-    }
+    }             
 }
