@@ -62,6 +62,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         TextFieldProfileAddress = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButtonEdit = new javax.swing.JButton();
+        jButtonRefresh = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Order = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -98,12 +99,14 @@ public class CustomerInterface extends javax.swing.JFrame {
         jScrollPaneSearchView = new javax.swing.JScrollPane();
         jTableSearchViewProduct = new javax.swing.JTable();
         jButtonViewProduct = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableViewOrder = new javax.swing.JTable();
         jTextFieldSearchOrder = new javax.swing.JTextField();
         jButtonClearOrder = new javax.swing.JButton();
         jButtonSearchOrder = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         LabelLogOut = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
@@ -163,6 +166,14 @@ public class CustomerInterface extends javax.swing.JFrame {
             }
         });
 
+        jButtonRefresh.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        jButtonRefresh.setText("Refresh");
+        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -187,9 +198,11 @@ public class CustomerInterface extends javax.swing.JFrame {
                             .addComponent(TextFieldProfileName, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(100, 100, 100))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118)
+                .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +226,9 @@ public class CustomerInterface extends javax.swing.JFrame {
                     .addComponent(TextFieldProfileAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelProfileAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEdit))
                 .addContainerGap())
         );
 
@@ -243,7 +258,7 @@ public class CustomerInterface extends javax.swing.JFrame {
                     .addGroup(ProfileLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         Tab.addTab("Profile", Profile);
@@ -553,6 +568,9 @@ public class CustomerInterface extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("* Please insert product Id or name to find ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -561,17 +579,16 @@ public class CustomerInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPaneSearchView)
+                        .addComponent(jScrollPaneSearchView, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(LabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 413, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(TextFiledSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(TextFiledSearch))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -579,13 +596,17 @@ public class CustomerInterface extends javax.swing.JFrame {
                         .addComponent(jButtonViewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AddToOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(LabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addComponent(LabelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ButtonSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -666,10 +687,17 @@ public class CustomerInterface extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("* Please insert you Id to search for your order list");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonClearOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(267, 267, 267))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,17 +705,18 @@ public class CustomerInterface extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jTextFieldSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonSearchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))
+                        .addComponent(jButtonSearchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonClearOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(267, 267, 267))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldSearchOrder)
                     .addComponent(jButtonSearchOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
@@ -775,7 +804,7 @@ public class CustomerInterface extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         user.deleteOrder(ShoppingjTable, "OrderList.txt", this.jTextFieldInvoice.getText(), this.TextFieldProfileName.getText());
-        oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());
+        
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
@@ -787,7 +816,8 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed
-        
+        //Recalculate if the order is deleted
+        oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());
         try{
             FileWriter fw = new FileWriter("Order.txt", true);
             
@@ -819,6 +849,10 @@ public class CustomerInterface extends javax.swing.JFrame {
         interUpdate.pack();
         interUpdate.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -884,6 +918,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClearOrder;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEdit;
+    private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearchOrder;
     private javax.swing.JButton jButtonViewProduct;
     private javax.swing.JLabel jLabel1;
@@ -891,6 +926,8 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPriceProduct;
     private javax.swing.JLabel jLabelProductID;

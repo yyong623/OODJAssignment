@@ -24,10 +24,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="LogoutLbl" min="-2" pref="72" max="-2" attributes="0"/>
-                  <Component id="Profile" min="-2" pref="868" max="-2" attributes="0"/>
+                  <Component id="Profile" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
@@ -81,7 +81,7 @@
                           <Component id="AdminName" min="-2" pref="458" max="-2" attributes="0"/>
                           <Component id="AdminPhone" min="-2" pref="458" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="154" max="32767" attributes="0"/>
+                      <EmptySpace pref="164" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -204,7 +204,7 @@
                                       <Component id="addProdPrice" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="90" max="32767" attributes="0"/>
+                              <EmptySpace pref="137" max="32767" attributes="0"/>
                               <Component id="UpdateProdBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="AddProdBtn" min="-2" max="-2" attributes="0"/>

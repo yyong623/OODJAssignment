@@ -216,6 +216,7 @@ public class User {
             String newWord = oldWord.replaceAll(OldText,newText);
             
             //Set Text HERE ! --> updated info
+            text.setText("null");
             text.setText(newText);
             
             //Rewrite the text file with new data

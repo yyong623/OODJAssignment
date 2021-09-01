@@ -1,2 +1,5 @@
 988/ZEKAI/61/Chair/Fragile/15.00/3/50.0/
 988/ZEKAI/16/Zombie/NonFragile/56.00/4/224.0/
+684/KAI/61/Chair/Fragile/15.00/3/50.0/
+684/KAI/06/Basket/Fragile/61.98/4/252.92/
+684/KAI/120120/Water/NonFragile/50.99/4/203.96/
