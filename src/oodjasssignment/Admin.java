@@ -19,13 +19,15 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 /**
  *
  * @author ASUS
  */
 public class Admin extends User {
     public int AdminId;
-    
+    DefaultTableModel dm;
 
     public void setAdminId(int AdminId) {
         this.AdminId = AdminId;
@@ -260,5 +262,11 @@ public void exportChanges(JTable table, String OldFile){
                 System.out.println(e);
             }
         }
+    }
+    public void filter(JTable table, String query){
+        
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
+        table.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(query));
     }
 }

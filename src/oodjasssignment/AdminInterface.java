@@ -67,8 +67,8 @@ public class AdminInterface extends javax.swing.JFrame {
         UpdateProdBtn = new javax.swing.JButton();
         FragileCheck = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
-        SearchProducts = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        searchProd = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ViewCusTable = new javax.swing.JTable();
@@ -86,14 +86,16 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         AddCusPassw = new javax.swing.JTextField();
         AddCusPhone = new javax.swing.JTextField();
-        SearchCustomer = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
+        SearchCus = new javax.swing.JTextField();
         panel1 = new java.awt.Panel();
         AdmCusOrderTable = new javax.swing.JScrollPane();
         ViewOrderTable = new javax.swing.JTable();
         ViewOrder = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         SelectedId = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        SearchOrder = new javax.swing.JTextField();
         LogoutLbl = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -248,6 +250,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel16.setText("Search : ");
 
+        searchProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchProdKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,9 +263,6 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 770, Short.MAX_VALUE)
-                        .addComponent(DelProdBtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -288,22 +293,24 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(AddProdBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(CancelProdBtn)))
+                        .addComponent(CancelProdBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DelProdBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchProd, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addComponent(SearchProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(searchProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -411,6 +418,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel17.setText("Search : ");
 
+        SearchCus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchCusKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -456,8 +469,8 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(SearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchCus, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -465,8 +478,8 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
+                    .addComponent(jLabel17)
+                    .addComponent(SearchCus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
@@ -541,37 +554,56 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel15.setText("selected OrderId : ");
 
+        jLabel18.setText("Search : ");
+
+        SearchOrder.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchOrderKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ViewOrder)
-                .addGap(125, 125, 125))
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
                         .addComponent(SelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ViewOrder)
+                        .addGap(125, 125, 125))))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(SelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(ViewOrder)
-                .addContainerGap(168, Short.MAX_VALUE))
+                    .addComponent(jLabel18)
+                    .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(ViewOrder))
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(SelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28))
         );
 
         SelectedId.setEditable(false);
@@ -831,6 +863,24 @@ public class AdminInterface extends javax.swing.JFrame {
         admin.exportChanges(ViewCusTable,"Customer.txt");
     }//GEN-LAST:event_UpdateCusBtnMouseClicked
 
+    private void SearchCusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchCusKeyReleased
+        // TODO add your handling code here:
+        String searchItem = SearchCus.getText();
+        admin.filter(ViewCusTable, searchItem);
+    }//GEN-LAST:event_SearchCusKeyReleased
+
+    private void searchProdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchProdKeyReleased
+        // TODO add your handling code here:
+        String searchItem = searchProd.getText();
+        admin.filter(ViewProdTable, searchItem);
+    }//GEN-LAST:event_searchProdKeyReleased
+
+    private void SearchOrderKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchOrderKeyReleased
+        // TODO add your handling code here:
+        String searchItem = SearchOrder.getText();
+        admin.filter(ViewOrderTable, searchItem);
+    }//GEN-LAST:event_SearchOrderKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -885,8 +935,8 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JCheckBox FragileCheck;
     private java.awt.Label LogoutLbl;
     private javax.swing.JTabbedPane Profile;
-    private javax.swing.JTextField SearchCustomer;
-    private javax.swing.JTextField SearchProducts;
+    private javax.swing.JTextField SearchCus;
+    private javax.swing.JTextField SearchOrder;
     public static javax.swing.JTextField SelectedId;
     private javax.swing.JButton UpdateCusBtn;
     private javax.swing.JButton UpdateProdBtn;
@@ -908,6 +958,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -922,6 +973,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Panel panel1;
+    private javax.swing.JTextField searchProd;
     // End of variables declaration//GEN-END:variables
 
 
