@@ -62,7 +62,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         TextFieldProfileAddress = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButtonEdit = new javax.swing.JButton();
-        jButtonRefresh = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         Order = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -166,14 +165,6 @@ public class CustomerInterface extends javax.swing.JFrame {
             }
         });
 
-        jButtonRefresh.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
-        jButtonRefresh.setText("Refresh");
-        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRefreshActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -200,9 +191,7 @@ public class CustomerInterface extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118)
-                .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(232, 232, 232))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +215,7 @@ public class CustomerInterface extends javax.swing.JFrame {
                     .addComponent(TextFieldProfileAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelProfileAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEdit))
+                .addComponent(jButtonEdit)
                 .addContainerGap())
         );
 
@@ -494,11 +481,11 @@ public class CustomerInterface extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Order, javax.swing.GroupLayout.PREFERRED_SIZE, 512, Short.MAX_VALUE)
+            .addComponent(Order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         Tab.addTab("Order", null, jPanel1, "");
@@ -805,6 +792,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         user.deleteOrder(ShoppingjTable, "OrderList.txt", this.jTextFieldInvoice.getText(), this.TextFieldProfileName.getText());
         
+        oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
@@ -849,10 +837,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         interUpdate.pack();
         interUpdate.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButtonEditActionPerformed
-
-    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -918,7 +902,6 @@ public class CustomerInterface extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClearOrder;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonEdit;
-    private javax.swing.JButton jButtonRefresh;
     private javax.swing.JButton jButtonSearchOrder;
     private javax.swing.JButton jButtonViewProduct;
     private javax.swing.JLabel jLabel1;

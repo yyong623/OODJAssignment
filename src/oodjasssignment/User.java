@@ -147,21 +147,11 @@ public class User {
         }else{        
                         
             JOptionPane.showMessageDialog(null, "Item deleted");
-        
-            //Replace the quantity //Label //Textfield                        
-//            int selectedRow = orderListTable.getSelectedRow();
-//            int unitQuan = Integer.parseInt(orderListTable.getModel().getValueAt(selectedRow, 4).toString());
-            
-//            unit.setText(model.getValueAt(selectedRow, 4).toString());
-            
-//            int total = Integer.parseInt(exisitQuan) + unitQuan;
-//            Order order = new Order();
-//            order.update(exisitQuan, String.valueOf(total));
 
             model.removeRow(orderListTable.getSelectedRow());
             
             //Read text file to delete record as well
-            String tempFile = "tempOder.txt";
+            String tempFile = "tempOrder.txt";
             File oldFile = new File (FileName);
             File newFile = new File (tempFile);
             
@@ -180,6 +170,7 @@ public class User {
                 }
                 bw.flush();
                 bw.close();
+                fw.flush();
                 fw.close();
                 
                 oldFile.delete();
