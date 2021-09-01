@@ -94,15 +94,11 @@ public class Admin extends User {
                 break;
             }
             else
-            {
-                
-            }
+            {}
         }
         FileReader.close();
         }
-        catch (FileNotFoundException e) {
-            System.out.println(e);
-        }
+        catch (FileNotFoundException e) {System.out.println(e);}
         
         return repeatIdentifier;
 
@@ -127,57 +123,6 @@ public class Admin extends User {
         }
     }
 
-    private static Scanner x;
-    
-    public void editItems(String filePath, String OldEntry1, String OldEntry2,String OldEntry3, String OldEntry4, String OldEntry5,
-            String newEntry1, String newEntry2,String newEntry3, String newEntry4, String newEntry5){
-    File oldFile = new File(filePath);
-    
-    File newFile = new File("temp.txt");
-    String Entry1 ="", Entry2 = "", Entry3 = "", Entry4="",Entry5="";
-    
-    try{
-        FileWriter fw = new FileWriter(newFile, true);
-        BufferedWriter bw = new BufferedWriter( fw );
-        PrintWriter pw = new PrintWriter(bw);
-        x = new Scanner(new File(filePath));
-        x.useDelimiter("[/\n]");
-        
-
-        while(x.hasNext()){
-           Entry1 = x.next();
-           
-           Entry2 = x.next();
-           
-           Entry3 = x.next();
-           
-           Entry4 = x.next();
-           
-           Entry5 = x.next();
-           
-           if (Entry1.equals(OldEntry1) || Entry2.equals(OldEntry2) ||Entry3.equals(OldEntry3) || Entry4.equals(OldEntry4) || Entry5.equals(OldEntry5)){
-        pw.println(newEntry1 +"/"+  newEntry2 +"/"+newEntry3 +"/"+ newEntry4 +"/"+  newEntry5 );
-        
-        }
-           else{
-               pw.println(Entry1 +"/"+  Entry2 +"/"+Entry3 +"/"+ Entry4 +"/"+Entry5 );
-               
-           }
-             
-        }
-        x.close();
-        pw.flush();
-        pw.close();
-        oldFile.delete();
-        File dump = new File(filePath);
-        newFile.renameTo(dump);
-    }
-    catch(Exception e){
-        JOptionPane.showMessageDialog(null,
-                        "Error", "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-    }
-    }
     
     
 public void exportChanges(JTable table, String OldFile){
@@ -196,10 +141,6 @@ public void exportChanges(JTable table, String OldFile){
                 }else{
                     bw.write(table.getValueAt(i,j).toString()+"/");
                 }
-                
-                JOptionPane.showMessageDialog(null,
-                        table.getValueAt(i,j).toString(), "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
             }
         bw.newLine();
     
