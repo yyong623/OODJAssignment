@@ -1,4 +1,2 @@
-740/ZEKAI/16/Zombie/NonFragile/56.00/3/168.0/
-740/ZEKAI/06/Basket/Fragile/61.98/3/190.94/
-742/KAI/61/Chair/Fragile/15.00/4/65.0/
-742/KAI/16/Zombie/NonFragile/56.00/4/224.0/
+988/ZEKAI/61/Chair/Fragile/15.00/3/50.0/
+988/ZEKAI/16/Zombie/NonFragile/56.00/4/224.0/

@@ -750,7 +750,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked
         // TODO add your handling code here:
-        user.deleteOrder(ViewProdTable, "Product.txt");
+        //user.deleteOrder(ViewProdTable, "Product.txt");
         addProdID.setText("");
         addProdName.setText("");
         FragileCheck.setSelected(false);
@@ -763,7 +763,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void DelProdBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtn1MouseClicked
         // TODO add your handling code here:
-        user.deleteOrder(ViewCusTable, "Customer.txt");
+        //user.deleteOrder(ViewCusTable, "Customer.txt");
         AddCusName.setText("");
         AddCusPassw.setText("");
         AddCusEmail.setText("");

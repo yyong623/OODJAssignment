@@ -105,8 +105,9 @@ public class InterfaceUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfrimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfrimActionPerformed
+        CustomerInterface cusInt = new CustomerInterface();
+        user.edit("Customer.txt", TextFieldOld.getText(), TextFieldNew.getText(), cusInt.TextFieldProfilePhoneNum);
         
-        user.edit("Customer.txt", TextFieldOld.getText(), TextFieldNew.getText());
         this.dispose();
     }//GEN-LAST:event_jButtonConfrimActionPerformed
 

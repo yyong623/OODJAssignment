@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -79,11 +78,11 @@ public class User {
         
       
     //Search method
-    public void searchProduct(JTable table, String valueToSearch){  
+    public void search(JTable table, String valueToSearch, String FileName){  
                        
         try{
             
-            BufferedReader br = new BufferedReader(new FileReader("Product.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(FileName));
             
             DefaultTableModel model = (DefaultTableModel)table.getModel();
             
@@ -134,42 +133,46 @@ public class User {
             JOptionPane.showMessageDialog(null, "No Order Found ! \n Please Go Add one.");
         }
     }
-            
-                            
-                
-                    
-                
     
-    public void deleteOrder(JTable orderListTable, String FileName){
+    public void deleteOrder(JTable orderListTable, String FileName, String orderId, String cusId){
         
         DefaultTableModel model = (DefaultTableModel) orderListTable.getModel();
-
+                
         //Get selected row index
         int rowSelected = orderListTable.getSelectedRow();
         //Check if a row is selected
         if(rowSelected == -1){ //return -1 if no row is selected
             
             JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
-        }else{
-        
-            model.removeRow(orderListTable.getSelectedRow());
-            
+        }else{        
+                        
             JOptionPane.showMessageDialog(null, "Item deleted");
         
+            //Replace the quantity //Label //Textfield                        
+//            int selectedRow = orderListTable.getSelectedRow();
+//            int unitQuan = Integer.parseInt(orderListTable.getModel().getValueAt(selectedRow, 4).toString());
+            
+//            unit.setText(model.getValueAt(selectedRow, 4).toString());
+            
+//            int total = Integer.parseInt(exisitQuan) + unitQuan;
+//            Order order = new Order();
+//            order.update(exisitQuan, String.valueOf(total));
+
+            model.removeRow(orderListTable.getSelectedRow());
+            
+            //Read text file to delete record as well
             String tempFile = "tempOder.txt";
             File oldFile = new File (FileName);
             File newFile = new File (tempFile);
-
-            //Read text file to delete record as well
-
+            
             try{
                 FileWriter fw = new FileWriter(tempFile,true);
 
                 BufferedWriter bw = new BufferedWriter(fw);
-
+                
                 for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
-                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){ 
-
+                    bw.write(orderId +"/"+ cusId +"/");
+                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){                         
                         bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
                         
                     }
@@ -188,8 +191,8 @@ public class User {
             }
         }
     }
-//    
-    public void edit(String fileName, String OldText,String newText){
+    
+    public void edit(String fileName, String OldText,String newText,JTextField text){
         
         File f1 = new File(fileName);
         
@@ -213,7 +216,7 @@ public class User {
             String newWord = oldWord.replaceAll(OldText,newText);
             
             //Set Text HERE ! --> updated info
-            //cusId.setText(newText);
+            text.setText(newText);
             
             //Rewrite the text file with new data
             fw = new FileWriter(f1);
