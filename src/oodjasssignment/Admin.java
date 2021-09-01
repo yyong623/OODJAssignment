@@ -264,7 +264,7 @@ public void exportChanges(JTable table, String OldFile){
         }
     }
     public void filter(JTable table, String query){
-        
+        dm = (DefaultTableModel) table.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
         table.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
