@@ -796,11 +796,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked
         // TODO add your handling code here:
         admin.deleteItems(ViewProdTable, "Product.txt");
-        addProdID.setText("");
-        addProdName.setText("");
-        FragileCheck.setSelected(false);
-        addProdPrice.setText("");
-        addProdQuan.setText("");
+
         ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
 
         admin.viewTable(ViewProdTable,"Product.txt");
@@ -809,11 +805,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private void DelCusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelCusBtnMouseClicked
         // TODO add your handling code here:
         admin.deleteItems(ViewCusTable, "Customer.txt");
-        AddCusName.setText("");
-        AddCusPassw.setText("");
-        AddCusEmail.setText("");
-        addCusAddress.setText("");
-        AddCusPhone.setText("");
+
         ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
 
         admin.viewTable(ViewCusTable,"Customer.txt");
