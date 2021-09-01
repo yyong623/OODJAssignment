@@ -81,7 +81,7 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         CancelProdBtn1 = new javax.swing.JButton();
         AddCusBtn = new javax.swing.JButton();
-        DelProdBtn1 = new javax.swing.JButton();
+        DelCusBtn = new javax.swing.JButton();
         UpdateCusBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         AddCusPassw = new javax.swing.JTextField();
@@ -387,10 +387,10 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        DelProdBtn1.setText("Delete");
-        DelProdBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        DelCusBtn.setText("Delete");
+        DelCusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DelProdBtn1MouseClicked(evt);
+                DelCusBtnMouseClicked(evt);
             }
         });
 
@@ -452,7 +452,7 @@ public class AdminInterface extends javax.swing.JFrame {
                                 .addComponent(AddCusBtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(CancelProdBtn1))
-                            .addComponent(DelProdBtn1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(DelCusBtn, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
@@ -477,7 +477,7 @@ public class AdminInterface extends javax.swing.JFrame {
                             .addComponent(CancelProdBtn1)
                             .addComponent(UpdateCusBtn))
                         .addGap(47, 47, 47)
-                        .addComponent(DelProdBtn1))
+                        .addComponent(DelCusBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddCusEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,15 +504,33 @@ public class AdminInterface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Customer Name", "Order ID", "total(RM)"
+                "Order ID", "Customer Name", "product ID", "product name", "type", "PricePerUnit", "Quantity", "total(RM)"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         ViewOrderTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ViewOrderTableMouseClicked(evt);
             }
         });
         AdmCusOrderTable.setViewportView(ViewOrderTable);
+        if (ViewOrderTable.getColumnModel().getColumnCount() > 0) {
+            ViewOrderTable.getColumnModel().getColumn(0).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(1).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(2).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(3).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(4).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(5).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(6).setResizable(false);
+            ViewOrderTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         ViewOrder.setText("VIew Order");
         ViewOrder.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -750,7 +768,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked
         // TODO add your handling code here:
-        user.deleteOrder(ViewProdTable, "Product.txt");
+        admin.deleteItems(ViewProdTable, "Product.txt");
         addProdID.setText("");
         addProdName.setText("");
         FragileCheck.setSelected(false);
@@ -761,9 +779,9 @@ public class AdminInterface extends javax.swing.JFrame {
         admin.viewTable(ViewProdTable,"Product.txt");
     }//GEN-LAST:event_DelProdBtnMouseClicked
 
-    private void DelProdBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtn1MouseClicked
+    private void DelCusBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelCusBtnMouseClicked
         // TODO add your handling code here:
-        user.deleteOrder(ViewCusTable, "Customer.txt");
+        admin.deleteItems(ViewCusTable, "Customer.txt");
         AddCusName.setText("");
         AddCusPassw.setText("");
         AddCusEmail.setText("");
@@ -772,7 +790,7 @@ public class AdminInterface extends javax.swing.JFrame {
         ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
 
         admin.viewTable(ViewCusTable,"Customer.txt");
-    }//GEN-LAST:event_DelProdBtn1MouseClicked
+    }//GEN-LAST:event_DelCusBtnMouseClicked
 
     private void UpdateProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateProdBtnMouseClicked
         // TODO add your handling code here:
@@ -862,8 +880,8 @@ public class AdminInterface extends javax.swing.JFrame {
     public javax.swing.JTextField AdminPhone;
     private javax.swing.JButton CancelProdBtn;
     private javax.swing.JButton CancelProdBtn1;
+    private javax.swing.JButton DelCusBtn;
     private javax.swing.JButton DelProdBtn;
-    private javax.swing.JButton DelProdBtn1;
     private javax.swing.JCheckBox FragileCheck;
     private java.awt.Label LogoutLbl;
     private javax.swing.JTabbedPane Profile;
