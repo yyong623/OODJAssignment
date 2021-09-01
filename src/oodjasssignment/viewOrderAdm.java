@@ -47,7 +47,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order Id", "ProductId", "Product Name", "Fragile?", "Price per unit", "quantity", "subtotal"
+                "Order Id", "Customer Name", "ProductId", "Product Name", "Type of Product", "PricePerUnit", "quantity", "subtotal"
             }
         ));
         jScrollPane1.setViewportView(OrderListTable);

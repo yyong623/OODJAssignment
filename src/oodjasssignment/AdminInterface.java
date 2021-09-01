@@ -517,11 +517,11 @@ public class AdminInterface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Order ID", "Customer Name", "product ID", "product name", "type", "PricePerUnit", "Quantity", "total(RM)"
+                "Customer Name", "Order ID", "total(RM)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -538,11 +538,6 @@ public class AdminInterface extends javax.swing.JFrame {
             ViewOrderTable.getColumnModel().getColumn(0).setResizable(false);
             ViewOrderTable.getColumnModel().getColumn(1).setResizable(false);
             ViewOrderTable.getColumnModel().getColumn(2).setResizable(false);
-            ViewOrderTable.getColumnModel().getColumn(3).setResizable(false);
-            ViewOrderTable.getColumnModel().getColumn(4).setResizable(false);
-            ViewOrderTable.getColumnModel().getColumn(5).setResizable(false);
-            ViewOrderTable.getColumnModel().getColumn(6).setResizable(false);
-            ViewOrderTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
         ViewOrder.setText("VIew Order");
