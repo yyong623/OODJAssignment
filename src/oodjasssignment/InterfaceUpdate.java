@@ -12,8 +12,7 @@ package oodjasssignment;
 public class InterfaceUpdate extends javax.swing.JFrame {
 
     User user = new User();
-    
-    
+        
     public InterfaceUpdate() {
         initComponents();
     }

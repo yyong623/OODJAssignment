@@ -108,6 +108,7 @@ public class Order {
                     //Write to txt file (Order that has been selected)
                     fw.write(row[6] + "/" + row[7] + "/" + row[0] + "/" + row[1] + "/" + row[2] + "/" + row[3] + "/" + row[4] + "/" + row[5] + "/" + "\n");
                     //fw.write(Arrays.toString(row));
+                    fw.flush();
                     fw.close();
                 }  
             }else {
@@ -197,5 +198,29 @@ public class Order {
                 System.out.println(ex);
             }
         }
-    }             
+    }    
+    
+    public void calculateFinalTotal(JLabel totalOutput, String name){
+        double total = 0.0;
+        //Get total price that stores in order list file
+        Scanner scan;
+        
+        try{            
+            scan = new Scanner(new File ("OrderList.txt"));
+            
+            while(scan.hasNextLine()){
+                String lines = scan.nextLine();
+                String[] price = lines.split("/");
+                
+                if(name.equals(price[1])){
+                    double amount = Double.parseDouble(price[7]);
+                    total = total + amount;
+                }
+            }
+            totalOutput.setText(String.valueOf(String.format("%.2f", total)));
+            scan.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }        
+    }
 }

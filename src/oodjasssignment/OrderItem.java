@@ -14,6 +14,13 @@ public class OrderItem extends Order{
     public double price;
     
     //Method
+
+    /**
+     *
+     * @param totalOutput
+     * @param name
+     */
+    @Override
     public void calculateFinalTotal(JLabel totalOutput, String name){
         double total = 0.0;
         //Get total price that stores in order list file
@@ -32,12 +39,13 @@ public class OrderItem extends Order{
                 }
             }
             totalOutput.setText(String.valueOf(String.format("%.2f", total)));
+            scan.close();
         }catch(IOException e){
             System.out.println(e);
         }        
     }
     
-    public void calculateSum (JTable table, JLabel total){
+    public void calculate (JTable table, JLabel total){
         double sum = 0.0;
         for (int i = 0 ; i < table.getRowCount(); i++){
             sum = sum + Integer.parseInt(table.getValueAt(i,5).toString());

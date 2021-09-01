@@ -10,4 +10,5 @@ public class Customer extends User{
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }  
+
 }

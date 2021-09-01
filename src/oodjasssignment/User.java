@@ -1,13 +1,15 @@
 package oodjasssignment;
 
-//Import Exceptation
+//Import File Buffered reader and writer
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;   //Import file not found exception
 import java.io.IOException;
+
+import java.io.FileReader;      //Import file writer and reader 
+import java.io.FileWriter;
+
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -49,7 +51,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        User.name = name;
     }
 
     public String getEmail() {
@@ -57,7 +59,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        User.email = email;
     }
 
     public String getPhoneNum() {
@@ -65,7 +67,7 @@ public class User {
     }
 
     public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
+        User.phoneNum = phoneNum;
     }
 
     public String getMailingAdd() {
@@ -73,15 +75,14 @@ public class User {
     }
 
     public void setMailingAdd(String mailingAdd) {
-        this.mailingAdd = mailingAdd;
+        User.mailingAdd = mailingAdd;
     }
         
       
     //Search method
     public void search(JTable table, String valueToSearch, String FileName){  
                        
-        try{
-            
+        try{            
             BufferedReader br = new BufferedReader(new FileReader(FileName));
             
             DefaultTableModel model = (DefaultTableModel)table.getModel();
@@ -99,7 +100,7 @@ public class User {
             if(count == 0){
                JOptionPane.showMessageDialog(null, "No Item Found !"); 
             }
-       
+            br.close();
         }catch(IOException e){
             System.out.println("File Not Found");
         }               
@@ -116,10 +117,8 @@ public class User {
             //Get line from txt file
             Object[] tableLine = bfr.lines().toArray();
             
-            for(int i = 0 ; i < tableLine.length; i++){
-
-                String[] line = tableLine[i].toString().split("/");
-
+            for (Object tableLine1 : tableLine) {   //for(int i = 0 ; i < tableLine.length; i++){
+                String[] line = tableLine1.toString().split("/");
                 model.addRow(line); 
                 count++;
             }
@@ -189,8 +188,8 @@ public class User {
         
         //Give oldText a null string to keep word
         String oldWord = "";        
-        BufferedReader bfr = null;        
-        FileWriter fw = null;
+        BufferedReader bfr;        
+        FileWriter fw;
         
         try{
             bfr = new BufferedReader(new FileReader(f1));            
@@ -205,31 +204,30 @@ public class User {
             
             //Replace oldText into newText
             String newWord = oldWord.replaceAll(OldText,newText);
-            
-            //Set Text HERE ! --> updated info
-            text.setText("null");
-            text.setText(newText);
-            
+
             //Rewrite the text file with new data
             fw = new FileWriter(f1);
             
             fw.write(newWord);
             JOptionPane.showMessageDialog(null, "Successfully Updated");
+            bfr.close();
+            fw.close();
         }catch (IOException e){
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Update Failed");
-        }finally{
-            //Close all the reader and writer
-            try {
-                bfr.close();
-                fw.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
         }
     }
     
 //View Profile
+
+    /**
+     *
+     * @param fileName
+     * @param name
+     * @param phoneNum
+     * @param email
+     * @param mailingAdd
+     */
     public void viewProfile(String fileName, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
         
         BufferedReader br ;        
@@ -280,6 +278,7 @@ public class User {
                 }
                 
             }
+            read.close();
         }catch(FileNotFoundException e){
                     JOptionPane.showMessageDialog(null,
                         "File Not Found", "Error",
