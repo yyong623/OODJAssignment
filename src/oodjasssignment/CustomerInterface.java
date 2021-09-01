@@ -790,6 +790,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSearchActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        
         user.deleteOrder(ShoppingjTable, "OrderList.txt", this.jTextFieldInvoice.getText(), this.TextFieldProfileName.getText());
         
         oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());

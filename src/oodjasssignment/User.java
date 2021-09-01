@@ -11,10 +11,11 @@ import java.io.FileReader;      //Import file writer and reader
 import java.io.FileWriter;
 
 import java.util.Scanner;
-import javax.swing.JOptionPane;
+
+import javax.swing.JOptionPane;     //JFrame import 
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableModel; //Table Model
 
 public class User {
    
@@ -136,47 +137,44 @@ public class User {
     public void deleteOrder(JTable orderListTable, String FileName, String orderId, String cusId){
         
         DefaultTableModel model = (DefaultTableModel) orderListTable.getModel();
-                
+        
         //Get selected row index
         int rowSelected = orderListTable.getSelectedRow();
         //Check if a row is selected
-        if(rowSelected == -1){ //return -1 if no row is selected
-            
+        if(rowSelected == -1){      //Return -1 if no row is selected
             JOptionPane.showMessageDialog(null, "Please Select an Item to delete");
-        }else{        
-                        
-            JOptionPane.showMessageDialog(null, "Item deleted");
-
+        }else{
+            JOptionPane.showMessageDialog(null, "Item Deleted");
+            
             model.removeRow(orderListTable.getSelectedRow());
             
-            //Read text file to delete record as well
+            //Read text file to delete record 
             String tempFile = "tempOrder.txt";
-            File oldFile = new File (FileName);
-            File newFile = new File (tempFile);
+            File oldFile = new File(FileName);
+            File newFile = new File(tempFile);
             
             try{
-                FileWriter fw = new FileWriter(tempFile,true);
-
-                BufferedWriter bw = new BufferedWriter(fw);
+                FileWriter fw1 = new FileWriter(tempFile,true);
                 
-                for(int i = 0 ; i < orderListTable.getRowCount(); i ++){
-                    bw.write(orderId +"/"+ cusId +"/");
-                    for(int j = 0 ; j < orderListTable.getColumnCount(); j ++){                         
-                        bw.write(orderListTable.getValueAt(i, j).toString()+ "/");
-                        
+                BufferedWriter bw1 = new BufferedWriter(fw1);
+                
+                for (int i = 0; i < orderListTable.getRowCount(); i++){
+                    bw1.write(orderId +"/"+ cusId +"/");
+                    for (int j = 0 ; j < orderListTable.getColumnCount(); j++){
+                        bw1.write(orderListTable.getValueAt(i,j).toString()+"/");
                     }
-                    bw.newLine();
+                    bw1.newLine();
                 }
-                bw.flush();
-                bw.close();
-                fw.flush();
-                fw.close();
+                bw1.flush();                
+                fw1.flush();
+                bw1.close();
+                fw1.close();
                 
                 oldFile.delete();
                 File replace = new File(FileName);
                 newFile.renameTo(replace);
                 
-            }catch(IOException e ){
+            }catch(IOException e){
                 System.out.println(e);
             }
         }
