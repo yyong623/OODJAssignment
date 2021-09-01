@@ -251,12 +251,15 @@ public class User {
         }
     }
     
-    public static boolean loginFunc(String userFile, String username, String Password, JTextField name, JTextField phoneNum, JTextField email, JTextField mailingAdd){
+    public static void loginFunc(String userFile,String Navigator,String username,String Password){
+        CustomerInterface CustomerInterface = new CustomerInterface();
+        AdminInterface AdminInterface = new AdminInterface();
         File loginScan = new File(userFile);
         try {
             Scanner read = new Scanner(loginScan);
-            boolean loginIdentifier = false;
+            
             while (read.hasNextLine()){
+                 
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
                  
@@ -265,18 +268,40 @@ public class User {
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE);
                     
-                    name.setText(sArray[0]);
-                    phoneNum.setText(sArray[4]);
-                    email.setText(sArray[2]);
-                    mailingAdd.setText(sArray[3]);      
+                         
                     
-                    loginIdentifier = true;
+                    
+                    if (Navigator == "Customer"){
+                         
+
+                        CustomerInterface.TextFieldProfileName.setText(sArray[0]);
+                        CustomerInterface.TextFieldProfilePhoneNum.setText(sArray[4]);
+                        CustomerInterface.TextFieldProfileEmail.setText(sArray[2]);
+                        CustomerInterface.TextFieldProfileAddress.setText(sArray[3]); 
+                        CustomerInterface.setVisible(true);
+                        
+                        AdminInterface.dispose();
+                    }    
+                    else if(Navigator == "Admin"){
+                         
+
+                        AdminInterface.AdminName.setText(sArray[0]);
+                        AdminInterface.AdminPhone.setText(sArray[4]);
+                        AdminInterface.AdminEmail.setText(sArray[2]);
+                        AdminInterface.AdminAddress.setText(sArray[3]); 
+                        AdminInterface.setVisible(true);
+                        CustomerInterface.dispose();
+                    }
                     break;
                 }
-                else{
-                
+                else if(!read.hasNextLine()){
+                JOptionPane.showMessageDialog(null,
+                        "UserName/Password Incorrect", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 }
-                
+                else{}
+            
+            
             }
             read.close();
         }catch(FileNotFoundException e){
@@ -284,8 +309,10 @@ public class User {
                         "File Not Found", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-        return loginIdentifier;
+        
         }
+
+
 }
     
 
