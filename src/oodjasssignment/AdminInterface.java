@@ -1072,9 +1072,7 @@ public class AdminInterface extends javax.swing.JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
         }else{
         admin.addCus(CusName, CusPass, CusEmail, CusAdd, CusPhone);
-        JOptionPane.showMessageDialog(null,
-                        "Record Added Successfully", "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+        
         AddCusName.setText("");
         AddCusPassw.setText("");
         AddCusEmail.setText("");

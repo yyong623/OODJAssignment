@@ -79,34 +79,34 @@ public class Admin extends User {
     
     }
     
-    public String repeatChecker(String FileName, String comparedUserName){
-        // the identifier that notifies the program if something is repeated
-        String repeatIdentifier = "false";
-        try (Scanner FileReader = new Scanner(new FileReader(FileName))){
-            //scans the file 
-        while (FileReader.hasNextLine())
-        {
-            String s = FileReader.nextLine();
-            String[] sArray = s.split("/");
-            // change the identifer to true if the compared item exist in the text file
-            if (comparedUserName.equals(sArray[0]))
-            {
-                JOptionPane.showMessageDialog(null,
-                        "repeated", "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-                repeatIdentifier = "true";
-                break;
-            }
-            else
-            {}
-        }
-        FileReader.close();
-        }
-        catch (FileNotFoundException e) {System.out.println(e);}
-        
-        return repeatIdentifier;
-
-    }
+//    public String repeatChecker(String FileName, String comparedUserName){
+//        // the identifier that notifies the program if something is repeated
+//        String repeatIdentifier = "false";
+//        try (Scanner FileReader = new Scanner(new FileReader(FileName))){
+//            //scans the file 
+//        while (FileReader.hasNextLine())
+//        {
+//            String s = FileReader.nextLine();
+//            String[] sArray = s.split("/");
+//            // change the identifer to true if the compared item exist in the text file
+//            if (comparedUserName.equals(sArray[0]))
+//            {
+//                JOptionPane.showMessageDialog(null,
+//                        "repeated", "Error",
+//                        JOptionPane.INFORMATION_MESSAGE);
+//                repeatIdentifier = "true";
+//                break;
+//            }
+//            else
+//            {}
+//        }
+//        FileReader.close();
+//        }
+//        catch (FileNotFoundException e) {System.out.println(e);}
+//        
+//        return repeatIdentifier;
+//
+//    }
         
     public void addCus(String name,String password,String email,String phoneNum,String mailingAdd){
         // calling the repeatchecker to check if the previous customer exist
