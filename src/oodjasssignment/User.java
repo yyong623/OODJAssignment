@@ -245,9 +245,10 @@ public class User {
         }
     }
     
-    public static void loginFunc(String userFile,String Navigator,String username,String Password){
+    public static void loginFunc(String userFile,String username,String Password){
+        //
         CustomerInterface CustomerInterface = new CustomerInterface();
-        AdminInterface AdminInterface = new AdminInterface();
+        
         File loginScan = new File(userFile);
         try {
             Scanner read = new Scanner(loginScan);
@@ -256,45 +257,33 @@ public class User {
                  
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
-                 
-                if (sArray[0].equals(username) && sArray[1].equals(Password)){
+                 //compare if the password and username is the same with the one in text file
+                if (Password.equals(sArray[1]) && username.equals(sArray[0])){
+                    // if yes then show login message & redirect to the Customer panel
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE); 
-                    
-                    if ("Customer".equals(Navigator)){
-                         
 
                         CustomerInterface.TextFieldProfileName.setText(sArray[0]);
                         CustomerInterface.TextFieldProfilePhoneNum.setText(sArray[4]);
                         CustomerInterface.TextFieldProfileEmail.setText(sArray[2]);
                         CustomerInterface.TextFieldProfileAddress.setText(sArray[3]); 
                         CustomerInterface.setVisible(true);
-                        
-                        AdminInterface.dispose();
-                    }    
-                    else if("Admin".equals(Navigator)){
-                         
-
-                        AdminInterface.AdminName.setText(sArray[0]);
-                        AdminInterface.AdminPhone.setText(sArray[4]);
-                        AdminInterface.AdminEmail.setText(sArray[2]);
-                        AdminInterface.AdminAddress.setText(sArray[3]); 
-                        AdminInterface.setVisible(true);
-                        CustomerInterface.dispose();
+                        // ends the loop when the name match
+                        break;
                     }
-                    break;
-                }
                 else if(!read.hasNextLine()){
+                    //this line will run if the name or password does not match
+                    //only occurs when the reader does not have remaining lines to read
                 JOptionPane.showMessageDialog(null,
                         "UserName/Password Incorrect", "Error",
                         JOptionPane.ERROR_MESSAGE);
+            }else{
+                    // close the interface if login fails
+                CustomerInterface.dispose();
                 }
-                else{}
-            
-            
-            }
             read.close();
+            }
         }catch(FileNotFoundException e){
                     JOptionPane.showMessageDialog(null,
                         "File Not Found", "Error",

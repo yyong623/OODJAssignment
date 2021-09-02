@@ -208,12 +208,10 @@
                                       <Component id="addProdPrice" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="137" max="32767" attributes="0"/>
+                              <EmptySpace pref="218" max="32767" attributes="0"/>
                               <Component id="UpdateProdBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="AddProdBtn" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="CancelProdBtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -247,7 +245,6 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="addProdPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="AddProdBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="CancelProdBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="UpdateProdBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -364,11 +361,6 @@
                 <Property name="text" type="java.lang.String" value="Add Quantity"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="CancelProdBtn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Clear"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="AddProdBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
@@ -446,7 +438,7 @@
                                       <Component id="AddCusPassw" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="78" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -464,14 +456,12 @@
                                       <Component id="AddCusEmail" min="-2" pref="138" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="163" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="UpdateCusBtn" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="AddCusBtn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="CancelProdBtn1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="DelCusBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -502,7 +492,6 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="AddCusBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CancelProdBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="UpdateCusBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
@@ -616,11 +605,6 @@
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Name : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="CancelProdBtn1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="AddCusBtn">

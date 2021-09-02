@@ -5,6 +5,7 @@
 258/ZEKAI/67/Zombie/NonFragile/00.00/3/0.0/
 258/ZEKAI/31/Water/NonFragile/00.00/3/0.0/
 258/ZEKAI/12/Chair/Fragile/00.00/3/5.0/
-9/KAI/45/Basket/Fragile/00.08/4/5.32/
-240/KAI/28/Water/NonFragile/00.00/3/0.0/
-786/ZEKAI/45/Basket/Fragile/00.08/3/5.24/
+585//45/Basket/Fragile/00.08/10/5.8/
+313//45/Basket/Fragile/00.08/10/5.8/
+541/Admin/45/Basket/Fragile/00.08/10/5.8/
+230/Admin/45/Basket/Fragile/00.08/10/5.8/
