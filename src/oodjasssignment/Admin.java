@@ -25,13 +25,27 @@ import javax.swing.table.TableRowSorter;
  * @author ASUS
  */
 public class Admin extends User {
-    public int AdminId;
+    
+    
+//    private String adminId, adminPass;
     DefaultTableModel dm;
 
-    public void setAdminId(int AdminId) {
-        this.AdminId = AdminId;
-    }  
-    
+//   public Admin(String id, String pass){
+//      adminId = id; 
+//      adminPass = pass;
+//}
+//public boolean adminLogin(String AdminId, String AdmPass){
+//    if (this.AdminId != null) {
+//            return this.adminId.equalsIgnoreCase(AdminId) && this.adminPass.equals(AdmPass);
+//        }else{
+//            return false;
+//        }
+//    }
+//   
+//    public void setAdminId(int AdminId) {
+//        this.AdminId = AdminId;
+//    }  
+//    
     
     public static void viewTable(JTable ViewProdTable, String txtFileName){
     try (BufferedReader bfr = new BufferedReader(new FileReader(txtFileName))){
@@ -79,34 +93,7 @@ public class Admin extends User {
     
     }
     
-//    public String repeatChecker(String FileName, String comparedUserName){
-//        // the identifier that notifies the program if something is repeated
-//        String repeatIdentifier = "false";
-//        try (Scanner FileReader = new Scanner(new FileReader(FileName))){
-//            //scans the file 
-//        while (FileReader.hasNextLine())
-//        {
-//            String s = FileReader.nextLine();
-//            String[] sArray = s.split("/");
-//            // change the identifer to true if the compared item exist in the text file
-//            if (comparedUserName.equals(sArray[0]))
-//            {
-//                JOptionPane.showMessageDialog(null,
-//                        "repeated", "Error",
-//                        JOptionPane.INFORMATION_MESSAGE);
-//                repeatIdentifier = "true";
-//                break;
-//            }
-//            else
-//            {}
-//        }
-//        FileReader.close();
-//        }
-//        catch (FileNotFoundException e) {System.out.println(e);}
-//        
-//        return repeatIdentifier;
-//
-//    }
+
         
     public void addCus(String name,String password,String email,String phoneNum,String mailingAdd){
         // calling the repeatchecker to check if the previous customer exist
@@ -223,6 +210,7 @@ public void exportChanges(JTable table, String OldFile){
     public static void loginFunc(String userFile,String username,String Password){
         //polymorphism from user, as it does the same thing but it calls
         //the admin interface instead
+        
         AdminInterface AdminInterface = new AdminInterface();
         File loginScan = new File(userFile);
         try {
