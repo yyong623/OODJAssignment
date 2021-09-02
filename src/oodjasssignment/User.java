@@ -26,7 +26,7 @@ public class User {
     public static String username;                      //Customer UserName (to enter the system)
     protected String password;                          //Customer Passwords (strong and unique)
     static boolean loginIdentifier;
-        
+    
     //Setter and Getter Username & Password
     public static void setUsername(String username) {
         User.username = username;
