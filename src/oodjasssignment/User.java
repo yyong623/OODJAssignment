@@ -249,6 +249,7 @@ public class User {
     }
     
     public static void loginFunc(String userFile,String username,String Password){
+        //
         CustomerInterface CustomerInterface = new CustomerInterface();
         
         File loginScan = new File(userFile);
@@ -259,8 +260,9 @@ public class User {
                  
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
-                 
+                 //compare if the password and username is the same with the one in text file
                 if (Password.equals(sArray[1]) && username.equals(sArray[0])){
+                    // if yes then show login message & redirect to the Customer panel
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE); 
@@ -270,13 +272,19 @@ public class User {
                         CustomerInterface.TextFieldProfileEmail.setText(sArray[2]);
                         CustomerInterface.TextFieldProfileAddress.setText(sArray[3]); 
                         CustomerInterface.setVisible(true);
+                        // ends the loop when the name match
                         break;
                     }
                 else if(!read.hasNextLine()){
+                    //this line will run if the name or password does not match
+                    //only occurs when the reader does not have remaining lines to read
                 JOptionPane.showMessageDialog(null,
                         "UserName/Password Incorrect", "Error",
                         JOptionPane.ERROR_MESSAGE);
-            }else{}
+            }else{
+                    // close the interface if login fails
+                CustomerInterface.dispose();
+                }
             read.close();
             }
         }catch(FileNotFoundException e){

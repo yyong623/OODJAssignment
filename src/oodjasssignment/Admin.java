@@ -45,6 +45,7 @@ public class Admin extends User {
             if (line.equals("")){
                 continue;
             }else{
+                // add the line to the tables
                 model.addRow(line); 
             }
         }
@@ -79,13 +80,15 @@ public class Admin extends User {
     }
     
     public String repeatChecker(String FileName, String comparedUserName){
+        // the identifier that notifies the program if something is repeated
         String repeatIdentifier = "false";
         try (Scanner FileReader = new Scanner(new FileReader(FileName))){
+            //scans the file 
         while (FileReader.hasNextLine())
         {
             String s = FileReader.nextLine();
             String[] sArray = s.split("/");
-            
+            // change the identifer to true if the compared item exist in the text file
             if (comparedUserName.equals(sArray[0]))
             {
                 JOptionPane.showMessageDialog(null,
@@ -105,8 +108,10 @@ public class Admin extends User {
 
     }
         
-    public void addCus(String name,String email,String phoneNum,String mailingAdd,String password){
+    public void addCus(String name,String password,String email,String phoneNum,String mailingAdd){
+        // calling the repeatchecker to check if the previous customer exist
         String repeatCus = repeatChecker("Customer.txt", name);
+        //code goes here if the customer name does not exist
         if (repeatCus == "false"){
         try {
             BufferedWriter fw = new BufferedWriter(new FileWriter("Customer.txt",true));
@@ -120,7 +125,7 @@ public class Admin extends User {
         }
         }
         else{
-        
+        // do nothing if the customer name is repeated
         }
     }
 
@@ -130,9 +135,9 @@ public void exportChanges(JTable table, String OldFile){
     String filePath = "Temporary.txt";
     File oldFile = new File(OldFile);
     File file = new File(filePath);
-    
+    //writes all the item in the table into another textfile called Temporary.txt
     try{
-        int indicator = 1;
+        
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         for (int i = 0; i<table.getRowCount();i++){
@@ -149,6 +154,7 @@ public void exportChanges(JTable table, String OldFile){
         bw.close();
         fw.close();
         File dump = new File(OldFile);
+        // deletes the old file and rename the new written file to the old file
         oldFile.delete();
         file.renameTo(dump);
             
@@ -206,14 +212,17 @@ public void exportChanges(JTable table, String OldFile){
         }
     }
     public void filter(JTable table, String query){
+        //gets the table structure
         dm = (DefaultTableModel) table.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
         table.setRowSorter(tr);
+        // shows the rows that contains the item in the query
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
     
     public static void loginFunc(String userFile,String username,String Password){
-        
+        //polymorphism from user, as it does the same thing but it calls
+        //the admin interface instead
         AdminInterface AdminInterface = new AdminInterface();
         File loginScan = new File(userFile);
         try {
@@ -223,8 +232,9 @@ public void exportChanges(JTable table, String OldFile){
                  
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
-                 
+                 //compare if the password and username is the same with the one in text file
                 if (Password.equals(sArray[1]) && username.equals(sArray[0])){
+                    // if yes then show login message & redirect to the admin panel
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE); 
@@ -233,13 +243,19 @@ public void exportChanges(JTable table, String OldFile){
                         AdminInterface.AdminEmail.setText(sArray[2]);
                         AdminInterface.AdminAddress.setText(sArray[3]); 
                         AdminInterface.setVisible(true);
+                        // ends the loop when the name match
                         break;
                     }
                 else if(!read.hasNextLine()){
+                    //this line will run if the name or password does not match
+                    //only occurs when the reader does not have remaining lines to read
                 JOptionPane.showMessageDialog(null,
                         "UserName/Password Incorrect", "Error",
                         JOptionPane.ERROR_MESSAGE);
-            }else{}
+            }else{
+                    // close the interface if login fails
+                AdminInterface.dispose();
+                }
             read.close();
             }
         }catch(FileNotFoundException e){
