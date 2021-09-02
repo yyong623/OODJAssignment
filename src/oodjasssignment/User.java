@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel; //Table Model
 public class User {
    
     Scanner scan = new Scanner(System.in);    
-     
+    
     //Data Type
     static String name,email, phoneNum, mailingAdd;     //Customer Name, Email, Phone Number, Mailing Address
     public static String username;                      //Customer UserName (to enter the system)
@@ -28,7 +28,7 @@ public class User {
     static boolean loginIdentifier;
     
     //Setter and Getter Username & Password
-    
+
     public String getUsername() {
         return username;
     }

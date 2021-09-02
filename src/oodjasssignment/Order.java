@@ -197,14 +197,14 @@ public class Order {
         Scanner scan;
         
         try{            
-            scan = new Scanner(new File ("OrderList.txt"));
+            scan = new Scanner(new File ("Order.txt"));
             
             while(scan.hasNextLine()){
                 String lines = scan.nextLine();
                 String[] price = lines.split("/");
                 
                 if(name.equals(price[1])){
-                    double amount = Double.parseDouble(price[7]);
+                    double amount = Double.parseDouble(price[2]);
                     total = total + amount;
                 }
             }

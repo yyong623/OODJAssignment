@@ -5,8 +5,6 @@
  */
 package oodjasssignment;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author ASUS
@@ -17,6 +15,7 @@ public class LoginInterface extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    User user;
     CustomerInterface CustomerInterface;
     AdminInterface AdminInterface;
     /**
@@ -127,7 +126,7 @@ public class LoginInterface extends javax.swing.JFrame {
     private void AdminLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminLoginBtnMouseClicked
         // TODO add your handling code here:
         
-        usr = this.UserIdTextField.getText();
+        usr = this.UserIdTextField.getText();        
         String pwd = new String(this.PasswordField.getPassword());
         Admin.loginFunc("Admin.txt", usr, pwd);
         UserIdTextField.setText("");
