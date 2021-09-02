@@ -14,16 +14,15 @@ import javax.swing.table.TableRowSorter;
  * @author ASUS
  */
 public class viewOrderAdm extends javax.swing.JFrame {
-    DefaultTableModel dm;
+    
+    Admin admin = new Admin();
     /**
      * Creates new form viewOrderAdm
      */
     public viewOrderAdm() {
         initComponents();
-        Admin.viewTable(OrderListTable, "OrderList.txt");
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
-        OrderListTable.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(AdminInterface.SelectedId.getText()));
+        admin.viewTable(OrderListTable, "OrderList.txt");
+        admin.filter(OrderListTable, OrderIdView.getText());
     }
 
     /**
