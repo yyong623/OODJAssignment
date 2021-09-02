@@ -31,6 +31,7 @@ public class AdminInterface extends javax.swing.JFrame {
         admin.viewTable(ViewCusTable,"Customer.txt");
         admin.viewTable(ViewProdTable,"Product.txt");
         admin.viewTable(ViewOrderTable,"Order.txt");
+        order.calculateFinalTotal(OrderTotal, AdminName.getText());
         
     }
 
@@ -93,10 +94,10 @@ public class AdminInterface extends javax.swing.JFrame {
         AdmCusOrderTable = new javax.swing.JScrollPane();
         ViewOrderTable = new javax.swing.JTable();
         ViewOrder = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        SelectedId = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         SearchOrder = new javax.swing.JTextField();
+        totalOrders = new javax.swing.JLabel();
+        OrderTotal = new javax.swing.JLabel();
         Order = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         ShowAllOrderButton = new javax.swing.JButton();
@@ -148,8 +149,6 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel14.setText("Address");
 
-        AdminName.setText("Admin");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -192,6 +191,9 @@ public class AdminInterface extends javax.swing.JFrame {
         );
 
         AdminName.setEditable(false);
+        AdminEmail.setEditable(false);
+        AdminPhone.setEditable(false);
+        AdminAddress.setEditable(false);
 
         Profile.addTab("Profile", jPanel3);
 
@@ -578,8 +580,6 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("selected OrderId : ");
-
         jLabel18.setText("Search : ");
 
         SearchOrder.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -588,6 +588,11 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
+        totalOrders.setText("Total : ");
+
+        OrderTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        OrderTotal.setText("total");
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -595,22 +600,21 @@ public class AdminInterface extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                    .addComponent(ViewOrder)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(SelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ViewOrder)
-                        .addGap(125, 125, 125))))
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addComponent(totalOrders)
+                                .addGap(46, 46, 46)
+                                .addComponent(OrderTotal)
+                                .addGap(87, 87, 87)))))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -621,18 +625,14 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addComponent(SearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AdmCusOrderTable, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(ViewOrder))
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel15)
-                        .addComponent(SelectedId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OrderTotal)
+                    .addComponent(totalOrders))
+                .addGap(8, 8, 8)
+                .addComponent(ViewOrder)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
-
-        SelectedId.setEditable(false);
 
         Profile.addTab("orders", panel1);
 
@@ -1154,12 +1154,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void ViewOrderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewOrderTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel CusTable = (DefaultTableModel)ViewOrderTable.getModel();
-        String CustomerID = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),0).toString();
-        String OrderId = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),1).toString();
-        String  Total= CusTable.getValueAt(ViewOrderTable.getSelectedRow(),2).toString();
+//        DefaultTableModel CusTable = (DefaultTableModel)ViewOrderTable.getModel();
+//        String CustomerID = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),0).toString();
+//        String OrderId = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),1).toString();
+//        String  Total= CusTable.getValueAt(ViewOrderTable.getSelectedRow(),2).toString();
+//        
         
-        SelectedId.setText(OrderId);
         
     }//GEN-LAST:event_ViewOrderTableMouseClicked
 
@@ -1167,7 +1167,7 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         viewOrderAdm viewOrders = new viewOrderAdm();
-        viewOrders.OrderIdView.setText(SelectedId.getText());
+        
         admin.filter(viewOrders.OrderListTable, viewOrders.OrderIdView.getText());
         viewOrders.setVisible(true);
     }//GEN-LAST:event_ViewOrderMouseClicked
@@ -1317,12 +1317,12 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JLabel LabelSearch;
     private java.awt.Label LogoutLbl;
     private javax.swing.JPanel Order;
+    private javax.swing.JLabel OrderTotal;
     private javax.swing.JTabbedPane Profile;
     private javax.swing.JLabel QuantityAmountLabel;
     private javax.swing.JPanel Search;
     private javax.swing.JTextField SearchCus;
     private javax.swing.JTextField SearchOrder;
-    public static javax.swing.JTextField SelectedId;
     private javax.swing.JTable ShoppingjTable;
     private javax.swing.JButton ShowAllOrderButton;
     private javax.swing.JTextField TextFiledSearch;
@@ -1346,7 +1346,6 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1388,6 +1387,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUnitsProduct;
     private java.awt.Panel panel1;
     private javax.swing.JTextField searchProd;
+    private javax.swing.JLabel totalOrders;
     // End of variables declaration//GEN-END:variables
 
 
