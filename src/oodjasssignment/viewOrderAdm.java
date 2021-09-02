@@ -146,7 +146,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GoBackLbl;
     public static javax.swing.JTextField OrderIdView;
-    private javax.swing.JTable OrderListTable;
+    public javax.swing.JTable OrderListTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

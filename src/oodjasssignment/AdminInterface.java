@@ -64,7 +64,6 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         addProdQuan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        CancelProdBtn = new javax.swing.JButton();
         AddProdBtn = new javax.swing.JButton();
         DelProdBtn = new javax.swing.JButton();
         UpdateProdBtn = new javax.swing.JButton();
@@ -82,7 +81,6 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        CancelProdBtn1 = new javax.swing.JButton();
         AddCusBtn = new javax.swing.JButton();
         DelCusBtn = new javax.swing.JButton();
         UpdateCusBtn = new javax.swing.JButton();
@@ -259,8 +257,6 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel4.setText("Add Quantity");
 
-        CancelProdBtn.setText("Clear");
-
         AddProdBtn.setText("Add");
         AddProdBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -331,12 +327,10 @@ public class AdminInterface extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
                         .addComponent(UpdateProdBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(AddProdBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(CancelProdBtn))
+                        .addComponent(AddProdBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +356,6 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(addProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(AddProdBtn)
-                        .addComponent(CancelProdBtn)
                         .addComponent(UpdateProdBtn))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -428,8 +421,6 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel8.setText("Name : ");
 
-        CancelProdBtn1.setText("Cancel");
-
         AddCusBtn.setText("Add");
         AddCusBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -486,7 +477,7 @@ public class AdminInterface extends javax.swing.JFrame {
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(AddCusPassw, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 78, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -500,14 +491,12 @@ public class AdminInterface extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(AddCusEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(UpdateCusBtn)
                                 .addGap(18, 18, 18)
-                                .addComponent(AddCusBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(CancelProdBtn1))
+                                .addComponent(AddCusBtn))
                             .addComponent(DelCusBtn, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -530,7 +519,6 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(AddCusBtn)
-                            .addComponent(CancelProdBtn1)
                             .addComponent(UpdateCusBtn))
                         .addGap(47, 47, 47)
                         .addComponent(DelCusBtn))
@@ -1182,6 +1170,7 @@ public class AdminInterface extends javax.swing.JFrame {
        
         viewOrderAdm viewOrders = new viewOrderAdm();
         viewOrders.OrderIdView.setText(SelectedId.getText());
+        admin.filter(viewOrders.OrderListTable, viewOrders.OrderIdView.getText());
         viewOrders.setVisible(true);
     }//GEN-LAST:event_ViewOrderMouseClicked
 
@@ -1323,8 +1312,6 @@ public class AdminInterface extends javax.swing.JFrame {
     public javax.swing.JTextField AdminName;
     public javax.swing.JTextField AdminPhone;
     private javax.swing.JButton ButtonSearch;
-    private javax.swing.JButton CancelProdBtn;
-    private javax.swing.JButton CancelProdBtn1;
     private javax.swing.JButton ClearButton;
     private javax.swing.JButton DelCusBtn;
     private javax.swing.JButton DelProdBtn;
