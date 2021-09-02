@@ -1,4 +1,4 @@
 12/Chair/Fragile/00.00/19
-67/Zombie/NonFragile/00.00/28
-45/Basket/Fragile/00.08/733
-28/Water/NonFragile/00.00/288
+67/Zombie/NonFragile/00.00/25
+45/Basket/Fragile/00.08/742
+25/Water/NonFragile/00.00/258

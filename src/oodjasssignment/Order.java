@@ -18,14 +18,10 @@ public class Order {
 
     //Variable
    
-    public JTextField orderId;         //Order Id
+    public String orderId;         //Order Id
     public int orderNumber;     //Order Quantity Number
     public double totalPrice;   //Total Price Ordered
     boolean identifier;         //Boolean
-
-    public JTextField getOrderId() {
-        return orderId;
-    }
 
     public int getOrderNumber() {
         return orderNumber;

@@ -12,15 +12,22 @@ public class OrderItem extends Order{
     public int orderItemQuantity, productId;    //QUantity choosen, Product Id
     public double Totalprice;                        //Total price of choosen by the quantity insert
     
-    //Method
+    public double getTotalprice(){
+        
+        return Totalprice;
+    } 
+    
+    public void setTotalprice(double Totalprice) {
+        this.Totalprice = Totalprice;
+    }
 
+    //Method
     /**
      * @param totalOutput
      * @param name
      */
     @Override
-    public void calculateFinalTotal(JLabel totalOutput, String name){
-        
+    public void calculateFinalTotal(JLabel totalOutput, String name) {
         //Get total price that stores in order list file
         Scanner scan;
         
@@ -40,6 +47,6 @@ public class OrderItem extends Order{
             scan.close();
         }catch(IOException e){
             System.out.println(e);
-        }        
+        }
     } 
 }
