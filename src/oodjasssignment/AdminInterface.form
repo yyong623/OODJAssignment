@@ -709,8 +709,8 @@
                           <Component id="totalOrders" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="ViewOrder" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <Component id="ViewOrder" min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -763,7 +763,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="ViewOrder">
               <Properties>
-                <Property name="text" type="java.lang.String" value="VIew Order"/>
+                <Property name="text" type="java.lang.String" value="VIew all Order Details"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ViewOrderMouseClicked"/>

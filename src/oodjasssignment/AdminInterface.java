@@ -573,7 +573,7 @@ public class AdminInterface extends javax.swing.JFrame {
             ViewOrderTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        ViewOrder.setText("VIew Order");
+        ViewOrder.setText("VIew all Order Details");
         ViewOrder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ViewOrderMouseClicked(evt);
@@ -630,8 +630,8 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addComponent(OrderTotal)
                     .addComponent(totalOrders))
                 .addGap(8, 8, 8)
-                .addComponent(ViewOrder)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(ViewOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         Profile.addTab("orders", panel1);

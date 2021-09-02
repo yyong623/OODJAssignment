@@ -50,7 +50,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(OrderListTable);
 
-        jLabel1.setText("OrderId : ");
+        jLabel1.setText("Search : ");
 
         OrderIdView.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
