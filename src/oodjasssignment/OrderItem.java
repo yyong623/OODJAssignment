@@ -10,7 +10,7 @@ public class OrderItem extends Order{
     //Data Tpye
     public String productName, type;            //Product Name, Product Type (Fragile/NonFragile)    
     public int orderItemQuantity, productId;    //QUantity choosen, Product Id
-    public double price;                        //Total price of choosen by the quantity insert
+    public double Totalprice;                        //Total price of choosen by the quantity insert
     
     //Method
 
@@ -20,7 +20,7 @@ public class OrderItem extends Order{
      */
     @Override
     public void calculateFinalTotal(JLabel totalOutput, String name){
-        double total = 0.0;
+        
         //Get total price that stores in order list file
         Scanner scan;
         
@@ -33,10 +33,10 @@ public class OrderItem extends Order{
                 
                 if(name.equals(price[1])){
                     double amount = Double.parseDouble(price[7]);
-                    total = total + amount;
+                    Totalprice = Totalprice + amount;
                 }
             }
-            totalOutput.setText(String.valueOf(String.format("%.2f", total)));
+            totalOutput.setText(String.valueOf(String.format("%.2f", Totalprice)));
             scan.close();
         }catch(IOException e){
             System.out.println(e);

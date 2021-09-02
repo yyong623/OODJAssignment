@@ -23,10 +23,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         initComponents();
         order.randomId(jTextFieldInvoice);
         
-        //Hide specific column in the View Order interface
-        jTableViewOrder.getColumnModel().getColumn(0).setMaxWidth(0);
-        jTableViewOrder.getColumnModel().getColumn(0).setMinWidth(0);
-        jTableViewOrder.getColumnModel().getColumn(0).setPreferredWidth(0);
+        //Hide specific column in the View Order interface        
         jTableViewOrder.getColumnModel().getColumn(1).setMaxWidth(0);
         jTableViewOrder.getColumnModel().getColumn(1).setMinWidth(0);
         jTableViewOrder.getColumnModel().getColumn(1).setPreferredWidth(0);

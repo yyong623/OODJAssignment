@@ -24,25 +24,18 @@ public class User {
     //Data Type
     static String name,email, phoneNum, mailingAdd;     //Customer Name, Email, Phone Number, Mailing Address
     public static String username;                      //Customer UserName (to enter the system)
-    protected String password;                          //Customer Passwords (strong and unique)
+    private static String password;                          //Customer Passwords (strong and unique)
     static boolean loginIdentifier;
     
     //Setter and Getter Username & Password
-    public static void setUsername(String username) {
-        User.username = username;
-    }
     
-    public static String getUsername() {
+    public String getUsername() {
         return username;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }    
+    }       
         
     //Setter and Getter Variable
     public String getName() {
@@ -76,6 +69,10 @@ public class User {
     public void setMailingAdd(String mailingAdd) {
         User.mailingAdd = mailingAdd;
     }
+
+    public User() {
+    }
+    
     
     //Method
     //Search method
@@ -260,12 +257,12 @@ public class User {
                 String s = read.nextLine();  
                 String[] sArray = s.split("/");
                  
-                if (Password.equals(sArray[1]) && username.equals(sArray[0])){
+                if (sArray[0].equals(username) && sArray[1].equals(Password)){
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE); 
                     
-                    if (Navigator == "Customer"){
+                    if ("Customer".equals(Navigator)){
                          
 
                         CustomerInterface.TextFieldProfileName.setText(sArray[0]);
@@ -276,7 +273,7 @@ public class User {
                         
                         AdminInterface.dispose();
                     }    
-                    else if(Navigator == "Admin"){
+                    else if("Admin".equals(Navigator)){
                          
 
                         AdminInterface.AdminName.setText(sArray[0]);

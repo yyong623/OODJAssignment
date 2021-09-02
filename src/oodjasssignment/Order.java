@@ -18,12 +18,12 @@ public class Order {
 
     //Variable
    
-    public int orderId;         //Order Id
+    public JTextField orderId;         //Order Id
     public int orderNumber;     //Order Quantity Number
     public double totalPrice;   //Total Price Ordered
     boolean identifier;         //Boolean
 
-    public int getOrderId() {
+    public JTextField getOrderId() {
         return orderId;
     }
 
@@ -35,7 +35,7 @@ public class Order {
         return totalPrice;
     }
 
-    
+    //Object 
     Object[] row = new Object[8];
     
     Admin ad = new Admin();
@@ -148,7 +148,7 @@ public class Order {
     }
     
     //update the present amount
-    public void update(String OldText, String newText) {
+    public static void update(String OldText, String newText) {
         File f1 = new File("Product.txt");
 
         //Give oldText a null string to keep word

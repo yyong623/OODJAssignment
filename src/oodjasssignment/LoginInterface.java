@@ -129,7 +129,7 @@ public class LoginInterface extends javax.swing.JFrame {
         
         usr = this.UserIdTextField.getText();
         String pwd = new String(this.PasswordField.getPassword());
-        User.loginFunc("Admin.txt","Admin", usr, pwd);
+        //User.loginFunc("Admin.txt","Admin", usr, pwd);
         UserIdTextField.setText("");
         PasswordField.setText("");
     }//GEN-LAST:event_AdminLoginBtnMouseClicked
