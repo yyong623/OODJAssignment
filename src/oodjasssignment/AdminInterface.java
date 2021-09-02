@@ -1128,52 +1128,14 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void ViewProdTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewProdTableMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel ProdsTable = (DefaultTableModel)ViewProdTable.getModel();
-         productID = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),0).toString();
-         productName = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),1).toString();
-         productFrag = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),2).toString();
-         productPrice = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),3).toString();
-         productQuan = ProdsTable.getValueAt(ViewProdTable.getSelectedRow(),4).toString();
-        addProdID.setText(productID);
-        addProdName.setText(productName);
-        switch(productFrag){
-            case "Fragile":
-                FragileCheck.setSelected(true);
-                break;
-            case "NonFragile":
-                FragileCheck.setSelected(false);
-                break;
-            default:
-                FragileCheck.setSelected(false);
-                break;
-        }
-        addProdPrice.setText(productPrice);
-        addProdQuan.setText(productQuan);
+        
         
         
     }//GEN-LAST:event_ViewProdTableMouseClicked
 
     private void ViewCusTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewCusTableMouseClicked
         // TODO add your handling code here:
-        try {
-        DefaultTableModel CusTable = (DefaultTableModel)ViewCusTable.getModel();
-        String CustomerID = CusTable.getValueAt(ViewCusTable.getSelectedRow(),0).toString();
-        String CustomerPass = CusTable.getValueAt(ViewCusTable.getSelectedRow(),1).toString();
-        String  CustomerEmail= CusTable.getValueAt(ViewCusTable.getSelectedRow(),2).toString();
-        String CustomerAddress = CusTable.getValueAt(ViewCusTable.getSelectedRow(),3).toString();
-        String CustomerPhone = CusTable.getValueAt(ViewCusTable.getSelectedRow(),4).toString();
-        AddCusName.setText(CustomerID);
-        AddCusPassw.setText(CustomerPass);
         
-        AddCusEmail.setText(CustomerEmail);
-        addCusAddress.setText(CustomerAddress);
-        AddCusPhone.setText(CustomerPhone);
-        }
-        catch(java.lang.NullPointerException n) {
-        JOptionPane.showMessageDialog(null,
-                        "please select a row", "Error",
-                        JOptionPane.INFORMATION_MESSAGE);
-        }
     }//GEN-LAST:event_ViewCusTableMouseClicked
 
     private void DelProdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelProdBtnMouseClicked

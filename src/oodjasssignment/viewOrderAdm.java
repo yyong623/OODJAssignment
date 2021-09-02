@@ -38,6 +38,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
         OrderListTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         OrderIdView = new javax.swing.JTextField();
+        GoBackLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +54,20 @@ public class viewOrderAdm extends javax.swing.JFrame {
 
         jLabel1.setText("OrderId : ");
 
+        OrderIdView.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                OrderIdViewKeyReleased(evt);
+            }
+        });
+
+        GoBackLbl.setForeground(new java.awt.Color(0, 0, 255));
+        GoBackLbl.setText("Go Back ...");
+        GoBackLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GoBackLblMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,7 +80,8 @@ public class viewOrderAdm extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(OrderIdView, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GoBackLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -74,7 +90,8 @@ public class viewOrderAdm extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(OrderIdView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(OrderIdView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GoBackLbl))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(128, Short.MAX_VALUE))
@@ -82,6 +99,16 @@ public class viewOrderAdm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OrderIdViewKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_OrderIdViewKeyReleased
+        // TODO add your handling code here:
+        admin.filter(OrderListTable, OrderIdView.getText());
+    }//GEN-LAST:event_OrderIdViewKeyReleased
+
+    private void GoBackLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GoBackLblMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_GoBackLblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -119,6 +146,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel GoBackLbl;
     public static javax.swing.JTextField OrderIdView;
     private javax.swing.JTable OrderListTable;
     private javax.swing.JLabel jLabel1;

@@ -248,9 +248,9 @@ public class User {
         }
     }
     
-    public static void loginFunc(String userFile,String Navigator,String username,String Password){
+    public static void loginFunc(String userFile,String username,String Password){
         CustomerInterface CustomerInterface = new CustomerInterface();
-        AdminInterface AdminInterface = new AdminInterface();
+        
         File loginScan = new File(userFile);
         try {
             Scanner read = new Scanner(loginScan);
@@ -264,40 +264,21 @@ public class User {
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
                         JOptionPane.INFORMATION_MESSAGE); 
-                    
-                    if (Navigator == "Customer"){
-                         
 
                         CustomerInterface.TextFieldProfileName.setText(sArray[0]);
                         CustomerInterface.TextFieldProfilePhoneNum.setText(sArray[4]);
                         CustomerInterface.TextFieldProfileEmail.setText(sArray[2]);
                         CustomerInterface.TextFieldProfileAddress.setText(sArray[3]); 
                         CustomerInterface.setVisible(true);
-                        
-                        AdminInterface.dispose();
-                    }    
-                    else if(Navigator == "Admin"){
-                         
-
-                        AdminInterface.AdminName.setText(sArray[0]);
-                        AdminInterface.AdminPhone.setText(sArray[4]);
-                        AdminInterface.AdminEmail.setText(sArray[2]);
-                        AdminInterface.AdminAddress.setText(sArray[3]); 
-                        AdminInterface.setVisible(true);
-                        CustomerInterface.dispose();
+                        break;
                     }
-                    break;
-                }
                 else if(!read.hasNextLine()){
                 JOptionPane.showMessageDialog(null,
                         "UserName/Password Incorrect", "Error",
                         JOptionPane.ERROR_MESSAGE);
-                }
-                else{}
-            
-            
-            }
+            }else{}
             read.close();
+            }
         }catch(FileNotFoundException e){
                     JOptionPane.showMessageDialog(null,
                         "File Not Found", "Error",

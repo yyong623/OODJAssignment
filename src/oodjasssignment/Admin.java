@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -212,4 +211,43 @@ public void exportChanges(JTable table, String OldFile){
         table.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
+    
+    public static void loginFunc(String userFile,String username,String Password){
+        
+        AdminInterface AdminInterface = new AdminInterface();
+        File loginScan = new File(userFile);
+        try {
+            Scanner read = new Scanner(loginScan);
+            
+            while (read.hasNextLine()){
+                 
+                String s = read.nextLine();  
+                String[] sArray = s.split("/");
+                 
+                if (Password.equals(sArray[1]) && username.equals(sArray[0])){
+                    JOptionPane.showMessageDialog(null,
+                        "Login Successful", "Success",
+                        JOptionPane.INFORMATION_MESSAGE); 
+                        AdminInterface.AdminName.setText(sArray[0]);
+                        AdminInterface.AdminPhone.setText(sArray[4]);
+                        AdminInterface.AdminEmail.setText(sArray[2]);
+                        AdminInterface.AdminAddress.setText(sArray[3]); 
+                        AdminInterface.setVisible(true);
+                        break;
+                    }
+                else if(!read.hasNextLine()){
+                JOptionPane.showMessageDialog(null,
+                        "UserName/Password Incorrect", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }else{}
+            read.close();
+            }
+        }catch(FileNotFoundException e){
+                    JOptionPane.showMessageDialog(null,
+                        "File Not Found", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        
+        }    
+    
 }
