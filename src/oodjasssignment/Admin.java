@@ -36,18 +36,20 @@ public class Admin extends User {
     
     public static void viewTable(JTable ViewProdTable, String txtFileName){
     try (BufferedReader bfr = new BufferedReader(new FileReader(txtFileName))){
-                DefaultTableModel model = (DefaultTableModel)ViewProdTable.getModel();
-            //Get line from txt file
-            Object[] tableLine = bfr.lines().toArray();
+        DefaultTableModel model = (DefaultTableModel)ViewProdTable.getModel();
+        //Get line from txt file
+        Object[] tableLine = bfr.lines().toArray();
                                     
-            for(int i = 0 ; i < tableLine.length; i++){
-                String[] line = tableLine[i].toString().split("/");
+        for(int i = 0 ; i < tableLine.length; i++){
+            String[] line = tableLine[i].toString().split("/");
                 
-                if (line.equals("")){
+            if (line.equals("")){
                 continue;
-                }else{model.addRow(line); }
+            }else{
+                model.addRow(line); 
             }
-            bfr.close();
+        }
+        bfr.close();
     }catch (IOException e){
             System.out.println(e);
         }

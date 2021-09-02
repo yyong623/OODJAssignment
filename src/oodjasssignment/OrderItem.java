@@ -4,19 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JLabel;
-import javax.swing.JTable;
 
 public class OrderItem extends Order{
     
     //Data Tpye
-    public String productId, productName,type;
-    public int orderItemQuantity;
-    public double price;
+    public String productName, type;            //Product Name, Product Type (Fragile/NonFragile)    
+    public int orderItemQuantity, productId;    //QUantity choosen, Product Id
+    public double price;                        //Total price of choosen by the quantity insert
     
     //Method
 
     /**
-     *
      * @param totalOutput
      * @param name
      */
@@ -43,13 +41,5 @@ public class OrderItem extends Order{
         }catch(IOException e){
             System.out.println(e);
         }        
-    }
-    
-    public void calculate (JTable table, JLabel total){
-        double sum = 0.0;
-        for (int i = 0 ; i < table.getRowCount(); i++){
-            sum = sum + Integer.parseInt(table.getValueAt(i,5).toString());
-        }
-        total.setText(String.valueOf(String.format("%.2f",sum)));
-    }    
+    } 
 }

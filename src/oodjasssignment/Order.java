@@ -16,19 +16,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class Order {
 
-    //Data Type
-    public String productName;
-    public int orderId,productId;
-    public int orderNumber;
-    public double totalPrice;
-    boolean identifier;
+    //Variable
+   
+    public int orderId;         //Order Id
+    public int orderNumber;     //Order Quantity Number
+    public double totalPrice;   //Total Price Ordered
+    boolean identifier;         //Boolean
 
     public int getOrderId() {
         return orderId;
-    }
-
-    public int getProductId() {
-        return productId;
     }
 
     public int getOrderNumber() {
@@ -39,10 +35,6 @@ public class Order {
         return totalPrice;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" + "orderId=" + orderId + ", productId=" + productId + ", productName=" + productName + ", orderNumber=" + orderNumber + ", totalPrice=" + totalPrice + '}';
-    }
     
     Object[] row = new Object[8];
     
@@ -62,7 +54,7 @@ public class Order {
         shoppingTable.setModel(model);
 
         try {
-            check("OrderList.txt", id, cusId);  
+            check("OrderList.txt", id, cusId, orderId);  
 
             //Get Text to row
             row[6] = orderId;
@@ -99,7 +91,7 @@ public class Order {
 
                     quantityPre.setText(String.valueOf(newQua));    //Assign new Quantity
 
-                    //Update on txt file
+                    //Update on txt file (Update Method)
                     update(String.valueOf(qua), String.valueOf(newQua));
 
                     model.addRow(row); 
@@ -120,15 +112,14 @@ public class Order {
     
     }
 
-    public boolean check(String file, String id, String name) {
+    public boolean check(String file, String id, String name, String orderId) {
         
-        //flag = 0;
         try (Scanner scanFile = new Scanner(new FileReader(file))) {
             while (scanFile.hasNextLine()) {
                 String line = scanFile.nextLine();
                 String[] words = line.split("/");
                 
-                if(name.equals(words[1])){
+                if(name.equals(words[1]) && orderId.equals(words[0])){
                     if (id.equals(words[2])) {      //txt file index is [2]
                         JOptionPane.showMessageDialog(null, "You have entered this product");
                         identifier = true;                   

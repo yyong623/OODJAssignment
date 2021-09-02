@@ -19,15 +19,14 @@ import javax.swing.table.DefaultTableModel; //Table Model
 
 public class User {
    
-    Scanner scan = new Scanner(System.in);
-    
+    Scanner scan = new Scanner(System.in);    
+     
     //Data Type
-    static String name,email, phoneNum, mailingAdd;
-    public static String username;
-    protected String password;
+    static String name,email, phoneNum, mailingAdd;     //Customer Name, Email, Phone Number, Mailing Address
+    public static String username;                      //Customer UserName (to enter the system)
+    protected String password;                          //Customer Passwords (strong and unique)
     static boolean loginIdentifier;
-    //Method
-    
+        
     //Setter and Getter Username & Password
     public static void setUsername(String username) {
         User.username = username;
@@ -46,7 +45,6 @@ public class User {
     }    
         
     //Setter and Getter Variable
-
     public String getName() {
         return name;
     }
@@ -78,8 +76,8 @@ public class User {
     public void setMailingAdd(String mailingAdd) {
         User.mailingAdd = mailingAdd;
     }
-        
-      
+    
+    //Method
     //Search method
     public void search(JTable table, String valueToSearch, String FileName){  
                        
@@ -90,7 +88,7 @@ public class User {
             
             String line;
             int count = 0;
-            while((line = br.readLine()) != null){
+            while((line = br.readLine()) != null){  //Read line in the buffered reader
                 
                 if(line.contains(valueToSearch)){
                     String[] row = line.split("/");
@@ -118,6 +116,7 @@ public class User {
             //Get line from txt file
             Object[] tableLine = bfr.lines().toArray();
             
+            //Loop Through the exists line
             for (Object tableLine1 : tableLine) {   //for(int i = 0 ; i < tableLine.length; i++){
                 String[] line = tableLine1.toString().split("/");
                 model.addRow(line); 
@@ -264,10 +263,7 @@ public class User {
                 if (Password.equals(sArray[1]) && username.equals(sArray[0])){
                     JOptionPane.showMessageDialog(null,
                         "Login Successful", "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
-                    
-                         
-                    
+                        JOptionPane.INFORMATION_MESSAGE); 
                     
                     if (Navigator == "Customer"){
                          
@@ -309,8 +305,6 @@ public class User {
             }
         
         }
-
-
 }
     
 
