@@ -1273,6 +1273,19 @@ public class AdminInterface extends javax.swing.JFrame {
         }catch(IOException e){
             System.out.println(e);
         }
+        ViewOrderTable.setModel(new DefaultTableModel(null,new String []{"Customer Name", "Order Id","Total"}));
+        admin.viewTable(ViewOrderTable,"Order.txt");
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Product Type","Price","Quantity"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
+        admin.viewTable(ViewProdTable,"Product.txt");
+        
+        
     }//GEN-LAST:event_jButtonCheckOutActionPerformed
 
     private void ButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSearchActionPerformed
