@@ -787,18 +787,14 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSearchActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        
         user.deleteOrder(ShoppingjTable, "OrderList.txt", this.jTextFieldInvoice.getText(), this.TextFieldProfileName.getText());
         
-        oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void ShowAllOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAllOrderButtonActionPerformed
-        
         //Add order
         order.addOrder(ShoppingjTable, jTextFieldInvoice.getText(), TextFieldProfileName.getText(), jLabelProductId.getText(), jLabelName.getText(), jLabeltype.getText(), jLabelPriceProduct.getText(), jTextFieldUnitsProduct.getText(), QuantityAmountLabel);
-        //Sum price
-        oItem.calculateFinalTotal(jLabelTotalOutput, this.TextFieldProfileName.getText());
+        
     }//GEN-LAST:event_ShowAllOrderButtonActionPerformed
 
     private void jButtonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckOutActionPerformed

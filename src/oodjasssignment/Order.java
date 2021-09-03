@@ -76,8 +76,8 @@ public class Order {
                     if(row[2].equals("Fragile")){
                         //Write to txt file (Order that has been selected)
                         //Get all the row to append into text file for recording 
-                        String totalAmount = String.valueOf((unit * prices) + 5.0);
-                        row[5] = totalAmount;
+                        String totalAmount1 = String.valueOf((unit * prices) + 5.0);
+                        row[5] = totalAmount1;
                     }else if(row[2].equals("NonFragile")){
                         String totalAmount = String.valueOf((unit * prices));
                         row[5] = totalAmount;
