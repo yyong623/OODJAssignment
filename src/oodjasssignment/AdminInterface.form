@@ -282,7 +282,7 @@
                       <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="Product ID" type="java.lang.Object"/>
                         <Column editable="true" title="Product Name" type="java.lang.Object"/>
-                        <Column editable="true" title="Fragile" type="java.lang.Object"/>
+                        <Column editable="true" title="Product Type" type="java.lang.Object"/>
                         <Column editable="true" title="Price" type="java.lang.Float"/>
                         <Column editable="true" title="Quantity" type="java.lang.Integer"/>
                       </Table>

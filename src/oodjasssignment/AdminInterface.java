@@ -25,8 +25,23 @@ public class AdminInterface extends javax.swing.JFrame {
     /** Creates new form AdminInterface */
     public AdminInterface() {
         initComponents();
-        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
-        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Product Type","Price","Quantity"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
+        
         order.randomId(jTextFieldInvoice);
         admin.viewTable(ViewCusTable,"Customer.txt");
         admin.viewTable(ViewProdTable,"Product.txt");
@@ -202,7 +217,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Fragile", "Price", "Quantity"
+                "Product ID", "Product Name", "Product Type", "Price", "Quantity"
             }
         ) {
             Class[] types = new Class [] {
@@ -1051,7 +1066,14 @@ public class AdminInterface extends javax.swing.JFrame {
         addProdPrice.setText("");
         addProdQuan.setText("");
         
-        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Product Type","Price","Quantity"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
 
         admin.viewTable(ViewProdTable,"Product.txt");
         }
@@ -1079,7 +1101,14 @@ public class AdminInterface extends javax.swing.JFrame {
         addCusAddress.setText("");
         AddCusPhone.setText("");
         ViewCusTable.removeAll();
-        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
 
         admin.viewTable(ViewCusTable,"Customer.txt");
         
@@ -1128,7 +1157,14 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         admin.deleteItems(ViewProdTable, "Product.txt");
 
-        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Product Type","Price","Quantity"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
 
         admin.viewTable(ViewProdTable,"Product.txt");
     }//GEN-LAST:event_DelProdBtnMouseClicked
@@ -1137,7 +1173,14 @@ public class AdminInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         admin.deleteItems(ViewCusTable, "Customer.txt");
 
-        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}));
+        ViewCusTable.setModel(new DefaultTableModel(null,new String []{"Name", "Password","Email","Address","Phone Number"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
 
         admin.viewTable(ViewCusTable,"Customer.txt");
     }//GEN-LAST:event_DelCusBtnMouseClicked
@@ -1147,7 +1190,14 @@ public class AdminInterface extends javax.swing.JFrame {
         
         admin.exportChanges(ViewProdTable,"Product.txt");
         
-        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Fragile","Price","Quantity"}));
+        ViewProdTable.setModel(new DefaultTableModel(null,new String []{"Product ID", "Product Name","Product Type","Price","Quantity"}){ 
+            @Override
+   public boolean isCellEditable(int rowIndex, int columnIndex) {
+       boolean[] canEdit = new boolean [] {
+        false, true, true, true, true
+    };
+        return canEdit [columnIndex];
+    }});
 
         admin.viewTable(ViewProdTable,"Product.txt");
     }//GEN-LAST:event_UpdateProdBtnMouseClicked
