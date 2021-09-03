@@ -191,51 +191,5 @@ public void exportChanges(JTable table, String OldFile){
         tr.setRowFilter(RowFilter.regexFilter(query));
     }
     
-    public static void loginFunc(String userFile,String username,String Password){
-        //polymorphism from user, as it does the same thing but it calls
-        //the admin interface instead
-        
-        AdminInterface AdminInterface = new AdminInterface();
-        File loginScan = new File(userFile);
-        try {
-            Scanner read = new Scanner(loginScan);
-            
-            while (read.hasNextLine()){
-                 
-                String s = read.nextLine();  
-                String[] sArray = s.split("/");
-                 //compare if the password and username is the same with the one in text file
-                if (Password.equals(sArray[1]) && username.equals(sArray[0])){
-                    // if yes then show login message & redirect to the admin panel
-                    JOptionPane.showMessageDialog(null,
-                        "Login Successful", "Success",
-                        JOptionPane.INFORMATION_MESSAGE); 
-                        AdminInterface.AdminName.setText(sArray[0]);
-                        AdminInterface.AdminPhone.setText(sArray[4]);
-                        AdminInterface.AdminEmail.setText(sArray[2]);
-                        AdminInterface.AdminAddress.setText(sArray[3]); 
-                        AdminInterface.setVisible(true);
-                        // ends the loop when the name match
-                        break;
-                    }
-                else if(!read.hasNextLine()){
-                    //this line will run if the name or password does not match
-                    //only occurs when the reader does not have remaining lines to read
-                JOptionPane.showMessageDialog(null,
-                        "UserName/Password Incorrect", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }else{
-                    // close the interface if login fails
-                AdminInterface.dispose();
-                }
-            read.close();
-            }
-        }catch(FileNotFoundException e){
-                    JOptionPane.showMessageDialog(null,
-                        "File Not Found", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        
-        }    
     
 }
