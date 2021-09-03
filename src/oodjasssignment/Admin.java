@@ -26,26 +26,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class Admin extends User {
     
-    
-//    private String adminId, adminPass;
+   
     DefaultTableModel dm;
 
-//   public Admin(String id, String pass){
-//      adminId = id; 
-//      adminPass = pass;
-//}
-//public boolean adminLogin(String AdminId, String AdmPass){
-//    if (this.AdminId != null) {
-//            return this.adminId.equalsIgnoreCase(AdminId) && this.adminPass.equals(AdmPass);
-//        }else{
-//            return false;
-//        }
-//    }
-//   
-//    public void setAdminId(int AdminId) {
-//        this.AdminId = AdminId;
-//    }  
-//    
+
     
     public static void viewTable(JTable ViewProdTable, String txtFileName){
     try (BufferedReader bfr = new BufferedReader(new FileReader(txtFileName))){

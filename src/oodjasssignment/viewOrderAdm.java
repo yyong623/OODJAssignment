@@ -20,7 +20,7 @@ public class viewOrderAdm extends javax.swing.JFrame {
     public viewOrderAdm() {
         initComponents();
         admin.viewTable(OrderListTable, "OrderList.txt");
-        admin.filter(OrderListTable, OrderIdView.getText());
+        
     }
 
     /**

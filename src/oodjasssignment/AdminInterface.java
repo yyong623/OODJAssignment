@@ -1154,11 +1154,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
     private void ViewOrderTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewOrderTableMouseClicked
         // TODO add your handling code here:
-//        DefaultTableModel CusTable = (DefaultTableModel)ViewOrderTable.getModel();
-//        String CustomerID = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),0).toString();
-//        String OrderId = CusTable.getValueAt(ViewOrderTable.getSelectedRow(),1).toString();
-//        String  Total= CusTable.getValueAt(ViewOrderTable.getSelectedRow(),2).toString();
-//        
+
         
         
     }//GEN-LAST:event_ViewOrderTableMouseClicked

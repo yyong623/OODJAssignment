@@ -209,27 +209,5 @@ public class Order {
         }        
     }
     
-//    public void calculateFinalTotal(JLabel totalOutput, String name){
-//        double total = 0.0;
-//        //Get total price that stores in order list file
-//        Scanner scan;
-//        
-//        try{            
-//            scan = new Scanner(new File ("Order.txt"));
-//            
-//            while(scan.hasNextLine()){
-//                String lines = scan.nextLine();
-//                String[] price = lines.split("/");
-//                
-//                if(name.equals(price[1])){
-//                    double amount = Double.parseDouble(price[2]);
-//                    total = total + amount;
-//                }
-//            }
-//            totalOutput.setText(String.valueOf(String.format("%.2f", total)));
-//            scan.close();
-//        }catch(IOException e){
-//            System.out.println(e);
-//        }        
-//    }
+
 }
